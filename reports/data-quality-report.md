@@ -17,8 +17,8 @@
 
 | 欄位 | 缺值 | 處理 |
 |---|---|---|
-| `signal_title_zh` / `signal_title_en` | 12 筆（早期回填） | 顯示層 fallback `topic`（與 `新聞總索引.md` DataviewJS 同規則），不影響計數型圖表 |
-| `paywall` | 12 筆 | falsy 視為 false（與總索引行為一致）；付費牆計數 10 筆為 `paywall: true` 明示值 |
+| `signal_title_zh` / `signal_title_en` | ~~12 筆（2026-06-06 單日 schema 過渡）~~ → **0**（2026-07-22 依當日日報 Signal Map 以 source_url 精準配對回填 12/12，備份於 scratchpad） |
+| `paywall` | ~~12 筆~~ → **0**（同批補為明示 `false`，與原 falsy 顯示語義相同） |
 | 其他關鍵欄位（date/region/category/summary/source_url） | 0 | — |
 
 ## Stop 條件檢查

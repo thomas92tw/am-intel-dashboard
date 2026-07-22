@@ -6,7 +6,7 @@
     "gate1_cleaned_data_acceptance": {
       "status": "PASS",
       "evidence": "reports/data-quality-report.md",
-      "notes": "326/326 files parsed (builder hard-fails on mismatch); unique grain; 12 legacy notes lack signal_title_* (topic fallback, same rule as 新聞總索引 DataviewJS); paywall falsy treated as false"
+      "notes": "326/326 files parsed (builder hard-fails on mismatch); unique grain; the 12 legacy 2026-06-06 notes were backfilled with signal_title_zh/en + paywall from the daily report Signal Map on 2026-07-22 (matched by source_url, 12/12) — missingness now 0"
     },
     "gate2_chart_recommendation_review": {
       "status": "PASS",
