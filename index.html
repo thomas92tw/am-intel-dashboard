@@ -3,219 +3,289 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AM-intel 新聞資料庫 Dashboard</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📰</text></svg>">
-<link rel="stylesheet" href="gamma-tokens.css">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<title>AM-INTEL // NEWS DATABASE</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%230B0D10%22/><text y=%22.9em%22 font-size=%2280%22 x=%2210%22>▣</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-  body {
-    font-family: 'Inter Tight', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
-  }
-  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 var(--sp-5) var(--sp-14); }
+:root {
+  --bg:        #0B0D10;
+  --panel:     #12151A;
+  --panel-2:   #0F1216;
+  --line:      #262B33;
+  --line-soft: #1C2128;
+  --amber:     #FFB020;
+  --amber-dim: #B87E17;
+  --green:     #3DD68C;
+  --red:       #FF5C5C;
+  --fg-1:      #E8EAED;
+  --fg-2:      #9AA3AF;
+  --fg-3:      #5C6470;
+  --mono:      'IBM Plex Mono', ui-monospace, monospace;
+  --disp:      'Chakra Petch', 'Noto Sans TC', sans-serif;
+  --body:      'Noto Sans TC', system-ui, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  background-image:
+    linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
+  background-size: 28px 28px;
+  color: var(--fg-1);
+  font-family: var(--body);
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--amber); }
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 16px 64px; }
 
-  /* ---------- Hero (navy) ---------- */
-  .hero {
-    background: linear-gradient(160deg, var(--gamma-navy-deep) 0%, var(--gamma-navy) 70%);
-    color: var(--fg-on-dark-1);
-    padding: var(--sp-10) 0 var(--sp-14);
-    margin-bottom: calc(-1 * var(--sp-8));
-  }
-  .hero .wrap { padding-bottom: 0; }
-  .hero .overline { color: var(--gamma-pink); }
-  .hero h1 {
-    font-family: var(--font-display);
-    font-weight: 800; font-size: clamp(28px, 5vw, 48px);
-    line-height: 1.08; letter-spacing: -0.015em; margin: var(--sp-2) 0 var(--sp-3);
-  }
-  .hero .meta { color: var(--fg-on-dark-2); font-size: var(--fs-14); }
+/* ---------- Header ---------- */
+header { border-bottom: 1px solid var(--line); background: rgba(11,13,16,0.92); }
+.hd {
+  max-width: 1180px; margin: 0 auto; padding: 18px 16px 14px;
+  display: flex; flex-wrap: wrap; gap: 10px 24px; align-items: baseline; justify-content: space-between;
+}
+.hd .brand {
+  font-family: var(--disp); font-weight: 700; font-size: 22px;
+  letter-spacing: 0.06em; text-transform: uppercase;
+}
+.hd .brand .slash { color: var(--amber); }
+.hd .brand .sub { color: var(--fg-3); font-weight: 500; }
+.hd .status { font-family: var(--mono); font-size: 12px; color: var(--fg-2); letter-spacing: 0.04em; }
+.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--green); margin-right: 6px; box-shadow: 0 0 6px var(--green); vertical-align: 1px; }
+.dot.stale { background: var(--amber); box-shadow: 0 0 6px var(--amber); }
+.hazard {
+  height: 5px;
+  background: repeating-linear-gradient(-45deg, var(--amber) 0 12px, transparent 12px 24px);
+  opacity: 0.85;
+}
 
-  /* ---------- Cards ---------- */
-  .card {
-    background: var(--bg-surface);
-    border-radius: var(--radius-card);
-    box-shadow: var(--shadow-md);
-    padding: var(--sp-6);
-  }
-  .stats-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: var(--sp-4); margin-bottom: var(--sp-4);
-  }
-  .stat .overline { font-size: 11px; }
-  .stat .num {
-    font-family: var(--font-display); font-weight: 800;
-    font-size: clamp(24px, 3.4vw, 40px); line-height: 1.1;
-    color: var(--gamma-navy); margin-top: var(--sp-2);
-    letter-spacing: -0.02em;
-  }
-  .stat .num small { font-size: 0.45em; font-weight: 600; color: var(--fg-3); }
-  .stat .sub { font-size: var(--fs-13); color: var(--fg-3); margin-top: var(--sp-1); }
+/* ---------- Panels ---------- */
+.panel {
+  position: relative;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  padding: 16px 18px;
+}
+.panel::before, .panel::after {
+  content: ""; position: absolute; width: 10px; height: 10px; pointer-events: none;
+}
+.panel::before { top: -1px; left: -1px; border-top: 2px solid var(--amber); border-left: 2px solid var(--amber); }
+.panel::after { bottom: -1px; right: -1px; border-bottom: 2px solid var(--amber); border-right: 2px solid var(--amber); }
+.plabel {
+  font-family: var(--mono); font-size: 11px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.2em; color: var(--fg-3);
+  margin-bottom: 10px;
+}
+.plabel .idx { color: var(--amber-dim); margin-right: 8px; }
 
-  .charts-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: var(--sp-4); margin-bottom: var(--sp-4);
-  }
-  .chart h3 {
-    font-size: var(--fs-16); font-weight: 700; margin: 0 0 var(--sp-4);
-    color: var(--gamma-navy);
-  }
-  .bar-row {
-    display: grid; grid-template-columns: 110px 1fr 36px;
-    align-items: center; gap: var(--sp-2);
-    font-size: var(--fs-13); margin-bottom: var(--sp-2);
-    cursor: pointer; border-radius: var(--radius-sm); padding: 2px 4px;
-    transition: background var(--dur-fast) var(--ease-out);
-  }
-  .bar-row:hover { background: var(--gamma-pink-tint); }
-  .bar-row .lbl { color: var(--fg-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .bar-row .track { display: block; background: var(--neutral-100); border-radius: var(--radius-chip); height: 12px; overflow: hidden; }
-  .bar-row .fill { display: block; background: var(--gamma-pink); height: 100%; border-radius: var(--radius-chip); min-width: 3px; }
-  .bar-row.active .fill { background: var(--gamma-navy); }
-  .bar-row .cnt { text-align: right; color: var(--fg-3); font-family: var(--font-mono); font-size: var(--fs-12); }
+.grid-kpi { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 20px 0 12px; }
+.kpi .num {
+  font-family: var(--mono); font-weight: 600;
+  font-size: clamp(26px, 3.2vw, 40px); line-height: 1.05;
+  color: var(--amber); letter-spacing: -0.01em;
+}
+.kpi .num.txt { font-size: clamp(17px, 2vw, 24px); color: var(--fg-1); }
+.kpi .sub { font-family: var(--mono); font-size: 11px; color: var(--fg-3); margin-top: 6px; letter-spacing: 0.06em; }
 
-  /* ---------- Controls ---------- */
-  .controls { margin-bottom: var(--sp-4); }
-  .controls-row { display: flex; flex-wrap: wrap; gap: var(--sp-3); align-items: center; }
-  input[type="search"], select, input[type="date"] {
-    font-family: inherit; font-size: var(--fs-14); color: var(--fg-1);
-    border: 1px solid var(--border-medium); border-radius: var(--radius-input);
-    padding: 10px 14px; background: var(--bg-surface); outline: none;
-    transition: border-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
-  }
-  input[type="search"] { flex: 1 1 240px; }
-  input[type="search"]:focus, select:focus, input[type="date"]:focus {
-    border-color: var(--gamma-pink); box-shadow: 0 0 0 3px var(--gamma-pink-tint);
-  }
-  select { max-width: 180px; }
-  .btn {
-    font-family: inherit; font-size: var(--fs-14); font-weight: 600;
-    background: var(--gamma-navy); color: #fff; border: none;
-    border-radius: var(--radius-button); padding: 10px 20px; cursor: pointer;
-    transition: background var(--dur-fast) var(--ease-out);
-  }
-  .btn:hover { background: var(--gamma-navy-soft); }
-  .btn:disabled { background: var(--neutral-300); cursor: not-allowed; }
-  .btn.pink { background: var(--gamma-pink); color: var(--gamma-navy); }
-  .btn.pink:hover { background: var(--gamma-pink-hover); }
-  .btn.ghost {
-    background: transparent; color: var(--fg-2);
-    border: 1px solid var(--border-medium);
-  }
-  .status { font-size: var(--fs-13); color: var(--fg-3); margin-top: var(--sp-3); }
-  .chip {
-    display: inline-flex; align-items: center; gap: 6px;
-    background: var(--gamma-pink-tint); color: var(--gamma-navy);
-    border-radius: var(--radius-chip); padding: 4px 12px;
-    font-size: var(--fs-12); font-weight: 600; margin: var(--sp-2) 6px 0 0;
-    cursor: pointer; border: none; font-family: inherit;
-  }
-  .chip:hover { background: var(--gamma-pink-soft); }
+.grid-charts { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 12px; }
 
-  /* ---------- Table ---------- */
-  .table-card { padding: var(--sp-3) 0; overflow: hidden; }
-  .table-scroll { overflow-x: auto; }
-  table { width: 100%; border-collapse: collapse; font-size: var(--fs-14); }
-  th {
-    text-align: left; font-size: var(--fs-12); font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg-3);
-    padding: var(--sp-3) var(--sp-4); border-bottom: 1px solid var(--border-light);
-    white-space: nowrap;
-  }
-  td {
-    padding: var(--sp-3) var(--sp-4);
-    border-bottom: 1px solid var(--border-light);
-    vertical-align: top;
-  }
-  tr.item-row { cursor: pointer; transition: background var(--dur-fast) var(--ease-out); }
-  tr.item-row:hover { background: var(--gamma-pink-tint); }
-  td.date { font-family: var(--font-mono); font-size: var(--fs-12); color: var(--fg-3); white-space: nowrap; }
-  td.title { min-width: 260px; font-weight: 500; color: var(--gamma-navy); }
-  td.title a { color: var(--fg-link); text-decoration: none; }
-  td.title a:hover { text-decoration: underline; color: var(--gamma-pink-hover); }
-  td.geo, td.cat, td.src { font-size: var(--fs-13); color: var(--fg-2); white-space: nowrap; }
-  .paywall-tag {
-    display: inline-block; margin-left: 6px; font-size: 11px; font-weight: 600;
-    background: var(--gamma-pink-soft); color: var(--gamma-navy);
-    border-radius: var(--radius-chip); padding: 1px 8px;
-  }
-  tr.detail-row td {
-    background: var(--neutral-050); font-size: var(--fs-14); line-height: 1.6;
-    color: var(--fg-2); padding: var(--sp-4) var(--sp-6);
-  }
-  tr.detail-row .ki { margin-top: var(--sp-2); font-size: var(--fs-13); color: var(--fg-3); }
-  .empty { text-align: center; color: var(--fg-3); padding: var(--sp-10); }
+/* bars */
+.bar-row {
+  display: grid; grid-template-columns: 104px 1fr 34px;
+  align-items: center; gap: 8px;
+  font-size: 12px; margin-bottom: 7px; cursor: pointer; padding: 2px 3px;
+}
+.bar-row:hover { background: rgba(255,176,32,0.07); }
+.bar-row .lbl { color: var(--fg-2); font-family: var(--mono); font-size: 11px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bar-row .track { display: block; background: var(--line-soft); height: 9px; overflow: hidden; }
+.bar-row .fill { display: block; background: linear-gradient(90deg, var(--amber-dim), var(--amber)); height: 100%; min-width: 2px; }
+.bar-row.active .lbl { color: var(--amber); }
+.bar-row.active .fill { background: #fff; }
+.bar-row .cnt { text-align: right; color: var(--fg-3); font-family: var(--mono); font-size: 11px; }
 
-  footer { text-align: center; margin-top: var(--sp-8); }
-  footer .meta a { color: var(--fg-3); }
+/* trend */
+#trend svg { display: block; width: 100%; height: 150px; }
+.trend-meta { font-family: var(--mono); font-size: 11px; color: var(--fg-3); margin-top: 8px; letter-spacing: 0.05em; }
 
-  @media (max-width: 760px) {
-    .stats-grid { grid-template-columns: 1fr 1fr; }
-    .charts-grid { grid-template-columns: 1fr; }
-    select { max-width: none; flex: 1 1 40%; }
-    input[type="date"] { flex: 1 1 40%; }
-    td.title { min-width: 200px; }
-  }
+/* ---------- Controls ---------- */
+.controls { margin-bottom: 12px; }
+.controls-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.search-wrap { flex: 1 1 260px; position: relative; }
+.search-wrap::before {
+  content: ">"; position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+  font-family: var(--mono); color: var(--amber); font-size: 14px;
+}
+input[type="search"], select, input[type="date"] {
+  font-family: var(--mono); font-size: 13px; color: var(--fg-1);
+  background: var(--panel-2); border: 1px solid var(--line); border-radius: 2px;
+  padding: 9px 12px; outline: none; width: 100%;
+}
+.search-wrap input { padding-left: 28px; }
+select, input[type="date"] { width: auto; color-scheme: dark; }
+select { max-width: 170px; }
+input:focus, select:focus { border-color: var(--amber); box-shadow: 0 0 0 1px rgba(255,176,32,0.35); }
+.btn {
+  font-family: var(--mono); font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; border-radius: 2px; padding: 10px 16px; cursor: pointer;
+  border: 1px solid var(--line); background: var(--panel-2); color: var(--fg-2);
+}
+.btn:hover { border-color: var(--fg-3); color: var(--fg-1); }
+.btn.primary { background: var(--amber); border-color: var(--amber); color: #10120A; }
+.btn.primary:hover { background: #FFC24D; }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.status-line { font-family: var(--mono); font-size: 12px; color: var(--fg-3); margin-top: 10px; letter-spacing: 0.04em; }
+.status-line b { color: var(--amber); font-weight: 600; }
+.chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em;
+  background: transparent; color: var(--amber);
+  border: 1px solid var(--amber-dim); border-radius: 2px; padding: 3px 10px;
+  margin: 8px 6px 0 0; cursor: pointer;
+}
+.chip:hover { background: rgba(255,176,32,0.12); }
+
+/* ---------- Table ---------- */
+.table-panel { padding: 0; }
+.table-head {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 18px; border-bottom: 1px solid var(--line);
+}
+.table-scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+th {
+  text-align: left; font-family: var(--mono); font-size: 10px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.18em; color: var(--fg-3);
+  padding: 10px 14px; border-bottom: 1px solid var(--line); white-space: nowrap;
+}
+td { padding: 11px 14px; border-bottom: 1px solid var(--line-soft); vertical-align: top; font-size: 13px; }
+tr.item-row { cursor: pointer; }
+tr.item-row:hover { background: rgba(255,176,32,0.05); box-shadow: inset 2px 0 0 var(--amber); }
+tr.item-row.open { background: rgba(255,176,32,0.07); box-shadow: inset 2px 0 0 var(--amber); }
+td.date { font-family: var(--mono); font-size: 11px; color: var(--fg-3); white-space: nowrap; }
+td.title { min-width: 300px; }
+td.title .zh { color: var(--fg-1); font-weight: 500; }
+td.title .en { font-size: 11px; color: var(--fg-3); margin-top: 3px; font-family: var(--mono); }
+td.geo, td.cat, td.src { font-family: var(--mono); font-size: 11px; color: var(--fg-2); white-space: nowrap; }
+td.cat .tag {
+  border: 1px solid var(--line); padding: 2px 8px; border-radius: 2px;
+  color: var(--fg-2); letter-spacing: 0.05em;
+}
+.pw {
+  display: inline-block; margin-left: 6px; font-size: 10px; font-family: var(--mono);
+  color: var(--amber); border: 1px solid var(--amber-dim); border-radius: 2px; padding: 1px 6px;
+}
+
+/* ---------- Detail ---------- */
+tr.detail-row td { background: var(--panel-2); padding: 18px 22px 20px; border-bottom: 1px solid var(--line); }
+.det { display: grid; grid-template-columns: 1.6fr 1fr; gap: 18px 28px; }
+.det .dlabel {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--amber-dim); margin: 0 0 6px;
+}
+.det .summary { font-size: 13.5px; line-height: 1.75; color: var(--fg-1); }
+.det .ki { font-size: 12.5px; line-height: 1.65; color: var(--fg-2); margin-top: 4px; }
+.det .src-url {
+  font-family: var(--mono); font-size: 11.5px; word-break: break-all;
+  color: var(--amber); text-decoration: none; line-height: 1.6;
+}
+.det .src-url:hover { text-decoration: underline; }
+.det .meta-grid { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; font-size: 12px; }
+.det .meta-grid .k { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-3); padding-top: 2px; white-space: nowrap; }
+.det .meta-grid .v { color: var(--fg-2); font-family: var(--mono); font-size: 11.5px; line-height: 1.6; }
+.det .tagchip {
+  display: inline-block; font-family: var(--mono); font-size: 10.5px;
+  border: 1px solid var(--line); border-radius: 2px; padding: 2px 8px;
+  margin: 0 5px 5px 0; color: var(--fg-2);
+}
+.det .en-title { font-family: var(--mono); font-size: 12px; color: var(--fg-2); line-height: 1.5; }
+.empty { text-align: center; color: var(--fg-3); padding: 48px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; }
+.morebar { text-align: center; padding: 14px; }
+
+footer { margin-top: 28px; text-align: center; }
+footer .f {
+  font-family: var(--mono); font-size: 11px; color: var(--fg-3); letter-spacing: 0.06em; line-height: 1.8;
+}
+
+@media (max-width: 860px) {
+  .grid-kpi { grid-template-columns: 1fr 1fr; }
+  .grid-charts { grid-template-columns: 1fr; }
+  .det { grid-template-columns: 1fr; }
+  select { max-width: none; flex: 1 1 44%; }
+  input[type="date"] { flex: 1 1 44%; }
+  td.title { min-width: 230px; }
+}
 </style>
 </head>
 <body>
 
-<div class="hero">
-  <div class="wrap">
-    <div class="overline">AM-intel · News Database</div>
-    <h1>新聞資料庫 Dashboard</h1>
-    <div class="meta" id="hero-meta">載入中…</div>
+<header>
+  <div class="hd">
+    <div class="brand">AM-INTEL <span class="slash">//</span> <span class="sub">NEWS DATABASE</span></div>
+    <div class="status" id="hd-status"><span class="dot"></span>INITIALIZING…</div>
   </div>
-</div>
+  <div class="hazard"></div>
+</header>
 
 <div class="wrap">
-  <div class="stats-grid">
-    <div class="card stat"><div class="overline">總則數</div><div class="num" id="st-total">–</div><div class="sub">news_item notes</div></div>
-    <div class="card stat"><div class="overline">最新回填</div><div class="num" id="st-latest" style="font-size:clamp(18px,2.4vw,26px)">–</div><div class="sub" id="st-latest-n"></div></div>
-    <div class="card stat"><div class="overline">分類 Top</div><div class="num" id="st-topcat" style="font-size:clamp(18px,2.4vw,26px)">–</div><div class="sub" id="st-topcat-n"></div></div>
-    <div class="card stat"><div class="overline">區域 Top</div><div class="num" id="st-topregion" style="font-size:clamp(18px,2.4vw,26px)">–</div><div class="sub" id="st-topregion-n"></div></div>
+
+  <div class="grid-kpi">
+    <div class="panel kpi"><div class="plabel"><span class="idx">01</span>Total Records</div><div class="num" id="st-total">–</div><div class="sub">news_item notes</div></div>
+    <div class="panel kpi"><div class="plabel"><span class="idx">02</span>Latest Backfill</div><div class="num txt" id="st-latest" style="font-family:var(--mono)">–</div><div class="sub" id="st-latest-n">–</div></div>
+    <div class="panel kpi"><div class="plabel"><span class="idx">03</span>Top Category</div><div class="num txt" id="st-topcat">–</div><div class="sub" id="st-topcat-n">–</div></div>
+    <div class="panel kpi"><div class="plabel"><span class="idx">04</span>Top Region</div><div class="num txt" id="st-topregion">–</div><div class="sub" id="st-topregion-n">–</div></div>
   </div>
 
-  <div class="charts-grid">
-    <div class="card chart"><h3>分類分佈</h3><div id="chart-category"></div></div>
-    <div class="card chart"><h3>區域分佈</h3><div id="chart-region"></div></div>
+  <div class="grid-charts">
+    <div class="panel"><div class="plabel"><span class="idx">05</span>Category Distribution</div><div id="chart-category"></div></div>
+    <div class="panel"><div class="plabel"><span class="idx">06</span>Region Distribution</div><div id="chart-region"></div></div>
+    <div class="panel"><div class="plabel"><span class="idx">07</span>Daily Intake</div><div id="trend"></div><div class="trend-meta" id="trend-meta"></div></div>
   </div>
 
-  <div class="card controls">
+  <div class="panel controls">
+    <div class="plabel"><span class="idx">08</span>Query Console</div>
     <div class="controls-row">
-      <input type="search" id="q" placeholder="關鍵字，例如：馬來西亞、稀土、AI 晶片…">
-      <select id="f-region"><option value="">全部區域</option></select>
-      <select id="f-category"><option value="">全部分類</option></select>
+      <span class="search-wrap"><input type="search" id="q" placeholder="keyword: 馬來西亞 / 稀土 / AI 晶片…"></span>
+      <select id="f-region"><option value="">ALL REGIONS</option></select>
+      <select id="f-category"><option value="">ALL CATEGORIES</option></select>
       <input type="date" id="f-from" title="起日">
       <input type="date" id="f-to" title="迄日">
-      <button class="btn ghost" id="btn-reset">重設</button>
-      <button class="btn pink" id="btn-copy" disabled>複製 Markdown</button>
+      <button class="btn" id="btn-reset">Reset</button>
+      <button class="btn primary" id="btn-copy" disabled>Copy Markdown</button>
     </div>
-    <div class="status" id="status"></div>
+    <div class="status-line" id="status"></div>
     <div id="active-chips"></div>
   </div>
 
-  <div class="card table-card">
+  <div class="panel table-panel">
+    <div class="table-head">
+      <div class="plabel" style="margin:0"><span class="idx">09</span>Records</div>
+      <div class="status-line" id="table-count" style="margin:0"></div>
+    </div>
     <div class="table-scroll">
       <table>
-        <thead><tr><th>日期</th><th>新聞</th><th>區域 / 國家</th><th>分類</th><th>來源</th></tr></thead>
+        <thead><tr><th>Date</th><th>Signal</th><th>Region / Country</th><th>Category</th><th>Source</th></tr></thead>
         <tbody id="tbody"></tbody>
       </table>
     </div>
   </div>
 
-  <footer>
-    <div class="meta" id="footer-meta"></div>
-  </footer>
+  <footer><div class="f" id="footer-meta"></div></footer>
 </div>
 
 <script>
 const EXPORT_CAP = 100;
 const PAGE_SIZE = 60;
+const TREND_DAYS = 20;
 let DATA = { items: [] };
 let matches = [];
 let shown = 0;
 
 const $ = (id) => document.getElementById(id);
 const text = (v) => v == null ? "" : (Array.isArray(v) ? v.map(text).join(" ") : String(v));
+const esc = (s) => text(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
 function searchable(it) {
   return [
@@ -225,7 +295,6 @@ function searchable(it) {
     it.source, it.tags, it.source_tags, it.stakeholders,
   ].map(text).join(" ").toLowerCase();
 }
-
 const titleText = (it) => it.signal_title_zh || it.topic || it.note;
 const sourceLabel = (it) => `${it.source || "原文"}${it.paywall ? "（付費牆）" : ""}`;
 const mdLink = (label, url) => url ? `[${label}](${url})` : label;
@@ -233,11 +302,9 @@ const mdLink = (label, url) => url ? `[${label}](${url})` : label;
 /* ---------- Export (AM-intel/AGENTS.md Markdown Export Policy) ---------- */
 function exportMarkdown(list, keyword) {
   const lines = [
-    `# 關鍵字檢索：${keyword || "（全部）"}`,
-    "",
+    `# 關鍵字檢索：${keyword || "（全部）"}`, "",
     `匯出時間：${new Date().toISOString().slice(0, 16).replace("T", " ")}`,
-    `結果數：${list.length}`,
-    "",
+    `結果數：${list.length}`, "",
   ];
   for (const it of list) {
     lines.push(`## ${titleText(it)}`);
@@ -254,13 +321,10 @@ function exportMarkdown(list, keyword) {
   return lines.join("\n");
 }
 
-/* ---------- Stats & charts ---------- */
+/* ---------- Stats / charts ---------- */
 function countBy(items, key) {
   const m = new Map();
-  for (const it of items) {
-    const k = it[key] || "（未填）";
-    m.set(k, (m.get(k) || 0) + 1);
-  }
+  for (const it of items) m.set(it[key] || "N/A", (m.get(it[key] || "N/A") || 0) + 1);
   return [...m.entries()].sort((a, b) => b[1] - a[1]);
 }
 
@@ -269,10 +333,9 @@ function renderBars(el, pairs, filterId) {
   const max = pairs.length ? pairs[0][1] : 1;
   for (const [label, n] of pairs) {
     const row = document.createElement("div");
-    row.className = "bar-row";
-    if ($(filterId).value === label) row.classList.add("active");
+    row.className = "bar-row" + ($(filterId).value === label ? " active" : "");
     row.innerHTML =
-      `<span class="lbl" title="${label}">${label}</span>` +
+      `<span class="lbl" title="${esc(label)}">${esc(label)}</span>` +
       `<span class="track"><span class="fill" style="width:${(n / max * 100).toFixed(1)}%"></span></span>` +
       `<span class="cnt">${n}</span>`;
     row.addEventListener("click", () => {
@@ -283,20 +346,41 @@ function renderBars(el, pairs, filterId) {
   }
 }
 
+function renderTrend() {
+  const byDate = countBy(DATA.items, "date").sort((a, b) => a[0].localeCompare(b[0]));
+  const recent = byDate.slice(-TREND_DAYS);
+  const max = Math.max(...recent.map(d => d[1]), 1);
+  const W = 300, H = 150, PAD = 4, bw = (W - PAD * 2) / recent.length;
+  let svg = `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">`;
+  for (let g = 1; g <= 3; g++) {
+    const y = H - 18 - (H - 30) * g / 3;
+    svg += `<line x1="0" y1="${y}" x2="${W}" y2="${y}" stroke="#1C2128" stroke-width="1"/>`;
+  }
+  recent.forEach(([d, n], i) => {
+    const h = (H - 30) * n / max;
+    const x = PAD + i * bw;
+    svg += `<rect x="${x + 1}" y="${H - 18 - h}" width="${Math.max(bw - 2, 2)}" height="${h}" fill="${d === DATA.latest_date ? "#FFB020" : "#B87E17"}"><title>${d}：${n} 則</title></rect>`;
+  });
+  svg += `</svg>`;
+  $("trend").innerHTML = svg;
+  const first = recent[0]?.[0] || "", last = recent[recent.length - 1]?.[0] || "";
+  $("trend-meta").textContent = `${first.slice(5)} → ${last.slice(5)} · ${recent.length} active days · peak ${max}/day`;
+}
+
 function renderStats() {
   const items = DATA.items;
   $("st-total").textContent = items.length;
   $("st-latest").textContent = DATA.latest_date || "–";
-  $("st-latest-n").textContent = `當日 ${items.filter(i => i.date === DATA.latest_date).length} 則`;
+  $("st-latest-n").textContent = `+${items.filter(i => i.date === DATA.latest_date).length} items on latest day`;
   const cats = countBy(items, "category");
   const regs = countBy(items, "region");
-  if (cats.length) { $("st-topcat").textContent = cats[0][0]; $("st-topcat-n").textContent = `${cats[0][1]} 則`; }
-  if (regs.length) { $("st-topregion").textContent = regs[0][0]; $("st-topregion-n").textContent = `${regs[0][1]} 則`; }
+  if (cats.length) { $("st-topcat").textContent = cats[0][0]; $("st-topcat-n").textContent = `${cats[0][1]} items / ${(cats[0][1] / items.length * 100).toFixed(0)}%`; }
+  if (regs.length) { $("st-topregion").textContent = regs[0][0]; $("st-topregion-n").textContent = `${regs[0][1]} items / ${(regs[0][1] / items.length * 100).toFixed(0)}%`; }
   renderBars($("chart-category"), cats, "f-category");
   renderBars($("chart-region"), regs, "f-region");
 }
 
-/* ---------- Filtering & table ---------- */
+/* ---------- Filter / table ---------- */
 function currentFilter() {
   return {
     q: $("q").value.trim().toLowerCase(),
@@ -306,7 +390,6 @@ function currentFilter() {
     to: $("f-to").value,
   };
 }
-
 function applyFilter() {
   const f = currentFilter();
   matches = DATA.items.filter((it) =>
@@ -319,16 +402,44 @@ function applyFilter() {
 }
 
 function rowHTML(it) {
-  const t = titleText(it);
-  const link = it.source_url
-    ? `<a href="${it.source_url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${t}</a>`
-    : t;
-  const pw = it.paywall ? `<span class="paywall-tag">付費牆</span>` : "";
+  const pw = it.paywall ? `<span class="pw">PAYWALL</span>` : "";
   return `<td class="date">${it.date}</td>` +
-    `<td class="title">${link}</td>` +
-    `<td class="geo">${it.region || ""}${it.country ? " / " + it.country : ""}</td>` +
-    `<td class="cat">${it.category || ""}</td>` +
-    `<td class="src">${it.source || ""}${pw}</td>`;
+    `<td class="title"><div class="zh">${esc(titleText(it))}</div>` +
+    (it.signal_title_en ? `<div class="en">${esc(it.signal_title_en)}</div>` : "") + `</td>` +
+    `<td class="geo">${esc(it.region)}${it.country ? " / " + esc(it.country) : ""}</td>` +
+    `<td class="cat"><span class="tag">${esc(it.category)}</span></td>` +
+    `<td class="src">${esc(it.source)}${pw}</td>`;
+}
+
+function detailHTML(it) {
+  const chips = (arr) => (Array.isArray(arr) ? arr : []).map(t => `<span class="tagchip">${esc(t)}</span>`).join("") || `<span class="v">–</span>`;
+  return `<td colspan="5"><div class="det">
+    <div>
+      <div class="dlabel">Summary // 摘要</div>
+      <div class="summary">${esc(it.summary_zh) || "（無摘要）"}</div>
+      ${it.key_issue ? `<div class="dlabel" style="margin-top:14px">Key Issue // 關鍵議題</div><div class="ki">${esc(it.key_issue)}</div>` : ""}
+      <div class="dlabel" style="margin-top:14px">Source URL // 消息來源</div>
+      ${it.source_url
+        ? `<a class="src-url" href="${esc(it.source_url)}" target="_blank" rel="noopener">${esc(it.source_url)} ↗</a>`
+        : `<span class="v">（無來源連結）</span>`}
+      <div style="font-family:var(--mono);font-size:11px;color:var(--fg-3);margin-top:4px">${esc(sourceLabel(it))}</div>
+    </div>
+    <div>
+      <div class="dlabel">Meta</div>
+      <div class="meta-grid">
+        <span class="k">EN Title</span><span class="v en-title">${esc(it.signal_title_en) || "–"}</span>
+        <span class="k">Topic</span><span class="v">${esc(it.topic) || "–"}</span>
+        <span class="k">Sub-cat</span><span class="v">${esc(it.sub_category) || "–"}</span>
+        <span class="k">Relevance</span><span class="v" style="color:${it.business_relevance === "high" ? "var(--green)" : "var(--fg-2)"}">${esc(it.business_relevance) || "–"}</span>
+        <span class="k">Practice</span><span class="v">${it.used_for_practice === true || it.used_for_practice === "true" ? "✓ " + (esc(it.practice_date) || "done") : "not yet"}</span>
+        <span class="k">Note</span><span class="v">${esc(it.note)}</span>
+      </div>
+      <div class="dlabel" style="margin-top:14px">Stakeholders</div>
+      <div>${chips(it.stakeholders)}</div>
+      <div class="dlabel" style="margin-top:10px">Tags</div>
+      <div>${chips(it.tags)}</div>
+    </div>
+  </div></td>`;
 }
 
 function appendRows(from, to) {
@@ -343,24 +454,21 @@ function appendRows(from, to) {
   shown = Math.min(to, matches.length);
   if (shown < matches.length) {
     const more = document.createElement("tr");
-    more.innerHTML = `<td colspan="5" style="text-align:center;padding:16px">
-      <button class="btn ghost" id="btn-more">顯示更多（剩 ${matches.length - shown} 則）</button></td>`;
-    $("tbody").appendChild(more);
-    more.querySelector("#btn-more").addEventListener("click", () => {
-      more.remove();
-      appendRows(shown, shown + PAGE_SIZE);
-    });
+    more.innerHTML = `<td colspan="5" class="morebar"><button class="btn" id="btn-more">Load more · ${matches.length - shown} remaining</button></td>`;
+    tbody.appendChild(more);
+    more.querySelector("#btn-more").addEventListener("click", () => { more.remove(); appendRows(shown, shown + PAGE_SIZE); });
   }
 }
 
 function toggleDetail(tr, it) {
   const next = tr.nextElementSibling;
-  if (next && next.classList.contains("detail-row")) { next.remove(); return; }
+  if (next && next.classList.contains("detail-row")) { next.remove(); tr.classList.remove("open"); return; }
   document.querySelectorAll("tr.detail-row").forEach(r => r.remove());
+  document.querySelectorAll("tr.item-row.open").forEach(r => r.classList.remove("open"));
   const d = document.createElement("tr");
   d.className = "detail-row";
-  d.innerHTML = `<td colspan="5">${it.summary_zh || "（無摘要）"}` +
-    (it.key_issue ? `<div class="ki">🔑 ${it.key_issue}</div>` : "") + `</td>`;
+  d.innerHTML = detailHTML(it);
+  tr.classList.add("open");
   tr.after(d);
 }
 
@@ -369,10 +477,10 @@ function renderChips() {
   const box = $("active-chips");
   box.replaceChildren();
   const chips = [];
-  if (f.q) chips.push([`關鍵字：${f.q}`, () => { $("q").value = ""; }]);
-  if (f.region) chips.push([`區域：${f.region}`, () => { $("f-region").value = ""; }]);
-  if (f.category) chips.push([`分類：${f.category}`, () => { $("f-category").value = ""; }]);
-  if (f.from || f.to) chips.push([`日期：${f.from || "…"} → ${f.to || "…"}`, () => { $("f-from").value = ""; $("f-to").value = ""; }]);
+  if (f.q) chips.push([`Q: ${f.q}`, () => { $("q").value = ""; }]);
+  if (f.region) chips.push([`REGION: ${f.region}`, () => { $("f-region").value = ""; }]);
+  if (f.category) chips.push([`CAT: ${f.category}`, () => { $("f-category").value = ""; }]);
+  if (f.from || f.to) chips.push([`DATE: ${f.from || "…"} → ${f.to || "…"}`, () => { $("f-from").value = ""; $("f-to").value = ""; }]);
   for (const [label, clear] of chips) {
     const b = document.createElement("button");
     b.className = "chip";
@@ -389,20 +497,21 @@ function render() {
   $("btn-copy").disabled = matches.length === 0;
   const f = currentFilter();
   const filtered = f.q || f.region || f.category || f.from || f.to;
-  $("status").textContent = filtered
-    ? `符合條件 ${matches.length} 則（共 ${DATA.items.length} 則）`
-    : `可檢索 ${DATA.items.length} 則新聞`;
+  $("status").innerHTML = filtered
+    ? `MATCH <b>${matches.length}</b> / ${DATA.items.length} RECORDS`
+    : `READY · ${DATA.items.length} RECORDS INDEXED`;
+  $("table-count").textContent = `${matches.length} / ${DATA.items.length}`;
   renderChips();
   renderStats();
   if (matches.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="5" class="empty">沒有符合的新聞</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="5" class="empty">NO MATCHING RECORDS</td></tr>`;
     return;
   }
   appendRows(0, PAGE_SIZE);
 }
 
 /* ---------- Events ---------- */
-["q"].forEach(id => $(id).addEventListener("input", render));
+$("q").addEventListener("input", render);
 ["f-region", "f-category", "f-from", "f-to"].forEach(id => $(id).addEventListener("change", render));
 $("btn-reset").addEventListener("click", () => {
   ["q", "f-region", "f-category", "f-from", "f-to"].forEach(id => $(id).value = "");
@@ -410,17 +519,12 @@ $("btn-reset").addEventListener("click", () => {
 });
 $("btn-copy").addEventListener("click", async () => {
   const btn = $("btn-copy");
-  const list = matches.slice(0, EXPORT_CAP);
-  const md = exportMarkdown(list, $("q").value.trim());
+  const md = exportMarkdown(matches.slice(0, EXPORT_CAP), $("q").value.trim());
   try {
     await navigator.clipboard.writeText(md);
-    btn.textContent = matches.length > EXPORT_CAP
-      ? `已複製前 ${EXPORT_CAP} 則` : "已複製";
-  } catch (e) {
-    btn.textContent = "複製失敗";
-    console.error(e);
-  }
-  setTimeout(() => { btn.textContent = "複製 Markdown"; }, 1500);
+    btn.textContent = matches.length > EXPORT_CAP ? `Copied first ${EXPORT_CAP}` : "Copied ✓";
+  } catch (e) { btn.textContent = "Copy failed"; console.error(e); }
+  setTimeout(() => { btn.textContent = "Copy Markdown"; }, 1500);
 });
 
 /* ---------- Init ---------- */
@@ -437,14 +541,19 @@ fetch("data.json")
     };
     fill("f-region", countBy(d.items, "region"));
     fill("f-category", countBy(d.items, "category"));
-    $("hero-meta").textContent = `${d.count} 則新聞 · 最新回填 ${d.latest_date} · 資料更新 ${d.generated_at.replace("T", " ").slice(0, 16)}`;
+    const today = new Date().toISOString().slice(0, 10);
+    const fresh = d.latest_date === today;
+    $("hd-status").innerHTML =
+      `<span class="dot${fresh ? "" : " stale"}"></span>` +
+      `${fresh ? "LIVE" : "IDLE"} · ${d.count} RECORDS · UPDATED ${d.generated_at.replace("T", " ").slice(0, 16)}`;
     $("footer-meta").innerHTML =
-      `資料更新：${d.generated_at.replace("T", " ").slice(0, 16)} · 來源：AM-intel news_item 資料庫 · ` +
-      `每日由回填流程自動刷新`;
+      `AM-INTEL NEWS DATABASE · DATA ${d.generated_at.replace("T", " ").slice(0, 16)} · ` +
+      `SOURCE: news_item frontmatter · AUTO-REFRESH VIA DAILY BACKFILL CONTRACT`;
+    renderTrend();
     render();
   })
   .catch(e => {
-    $("hero-meta").textContent = "資料載入失敗";
+    $("hd-status").innerHTML = `<span class="dot" style="background:var(--red);box-shadow:0 0 6px var(--red)"></span>DATA LOAD FAILED`;
     $("status").textContent = `無法載入 data.json：${e.message}（請先執行 build_dashboard.py）`;
   });
 </script>

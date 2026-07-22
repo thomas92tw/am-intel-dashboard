@@ -28,9 +28,9 @@ python3 "$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents/AM-intel/sc
 
 ## 設計
 
-- 視覺：Gamma design system（navy `#021A54` + hot pink `#FF85BB`、Inter Tight、24px 圓角卡片）
-- `gamma-tokens.css` 是 `~/.claude/skills/gamma-design/colors_and_type.css` 的**副本** —
-  source of truth 在 skill 端，勿在本 repo 直接修改；skill 更新後重新複製
+- 視覺：工業風 control-room（近黑底 `#0B0D10` + safety amber `#FFB020`、Chakra Petch +
+  IBM Plex Mono + Noto Sans TC、2px 直角面板 + corner brackets + hazard stripe；2026-07-22
+  依用戶回饋自 Gamma 風改版）
 - Markdown 匯出格式遵循 `AM-intel/AGENTS.md` Markdown Export Policy（保留原始連結、
   付費牆標示 `來源名稱（付費牆）`，不使用繞過付費牆的第三方快照連結）
 
@@ -40,4 +40,3 @@ python3 "$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents/AM-intel/sc
 |---|---|
 | `index.html` | Dashboard 主頁（單檔，讀 `data.json`） |
 | `data.json` | 由 builder 產生（勿手動編輯） |
-| `gamma-tokens.css` | Gamma design tokens 副本 |
