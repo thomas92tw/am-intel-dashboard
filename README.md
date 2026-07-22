@@ -40,7 +40,8 @@ python3 "$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents/AM-intel/sc
 
 | 檔案 | 說明 |
 |---|---|
-| `index.html` | Dashboard 主頁（單檔，讀 `data.json`） |
+| `index.html` | Dashboard 主頁（Pages 版讀 `data.json`；若偵測到內嵌 `#dataset` 則離線直用） |
+| （vault）`AM-intel/dashboard.html` | builder 每次執行順帶產出的**自足離線版**（資料內嵌，雙擊即開；勿手動編輯） |
 | `data.json` | 由 builder 產生（勿手動編輯） |
 | `chart-spec.json` | 互動圖表規格（scale / encoding / interactions） |
 | `gate-status.json` | interactive-data-chart-builder Gate 1/2/3 驗證狀態 |

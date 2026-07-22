@@ -563,9 +563,7 @@ function setLanguage(lang) {
 toggle.addEventListener("click", () => setLanguage(document.body.dataset.lang === "zh" ? "en" : "zh"));
 
 /* ---------- Init ---------- */
-fetch("data.json")
-  .then(r => { if (!r.ok) throw new Error(`data.json HTTP ${r.status}`); return r.json(); })
-  .then(d => {
+function boot(d) {
     DATA = d;
     const dates = [...new Set(d.items.map(i => i.date))].sort();
     const cats = countBy(d.items, "category");
@@ -598,13 +596,22 @@ fetch("data.json")
       `Source: AM-intel news_item database · auto-refreshed after daily backfill`
     );
     render();
-  })
-  .catch(e => {
-    $("status").innerHTML = dual(
-      `無法載入 data.json：${esc(e.message)}（請先執行 build_dashboard.py）`,
-      `Failed to load data.json: ${esc(e.message)} (run build_dashboard.py first)`
-    );
-  });
+}
+/* 載入順序：1) 內嵌 dataset（vault 離線版，builder 注入）2) fetch data.json（Pages 版） */
+const inline = document.getElementById("dataset");
+if (inline) {
+  boot(JSON.parse(inline.textContent));
+} else {
+  fetch("data.json")
+    .then(r => { if (!r.ok) throw new Error(`data.json HTTP ${r.status}`); return r.json(); })
+    .then(boot)
+    .catch(e => {
+      $("status").innerHTML = dual(
+        `無法載入 data.json：${esc(e.message)}（請先執行 build_dashboard.py）`,
+        `Failed to load data.json: ${esc(e.message)} (run build_dashboard.py first)`
+      );
+    });
+}
 </script>
 </body>
 </html>
