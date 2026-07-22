@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AM-intel 新聞資料庫 Dashboard</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📰</text></svg>">
 <link rel="stylesheet" href="gamma-tokens.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -66,8 +67,8 @@
   }
   .bar-row:hover { background: var(--gamma-pink-tint); }
   .bar-row .lbl { color: var(--fg-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .bar-row .track { background: var(--neutral-100); border-radius: var(--radius-chip); height: 12px; overflow: hidden; }
-  .bar-row .fill { background: var(--gamma-pink); height: 100%; border-radius: var(--radius-chip); min-width: 3px; }
+  .bar-row .track { display: block; background: var(--neutral-100); border-radius: var(--radius-chip); height: 12px; overflow: hidden; }
+  .bar-row .fill { display: block; background: var(--gamma-pink); height: 100%; border-radius: var(--radius-chip); min-width: 3px; }
   .bar-row.active .fill { background: var(--gamma-navy); }
   .bar-row .cnt { text-align: right; color: var(--fg-3); font-family: var(--font-mono); font-size: var(--fs-12); }
 
