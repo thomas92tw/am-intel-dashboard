@@ -1,0 +1,37 @@
+{
+  "skill": "interactive-data-chart-builder",
+  "carrier": "narrow-rwd-html-report (vault/_templates/narrow-rwd)",
+  "date": "2026-07-22",
+  "gates": {
+    "gate1_cleaned_data_acceptance": {
+      "status": "PASS",
+      "evidence": "reports/data-quality-report.md",
+      "notes": "326/326 files parsed (builder hard-fails on mismatch); unique grain; 12 legacy notes lack signal_title_* (topic fallback, same rule as 新聞總索引 DataviewJS); paywall falsy treated as false"
+    },
+    "gate2_chart_recommendation_review": {
+      "status": "PASS",
+      "evidence": "reports/chart-selection-report.md",
+      "notes": "column (non-contiguous time-series, stated in caption), 2x horizontal bar (category comparison); pie/map/line rejected with reasons; linear scale from 0, no truncation, no min-width inflation"
+    },
+    "gate3_audience_narrative_review": {
+      "status": "PASS",
+      "evidence": "index.html captions are computed at runtime from live data (bilingual zh/en); they describe visible pattern + interaction only; caveats section states selection bias (curated backfill, non-contiguous days) and title-fallback limitation; no causal/advisory claims"
+    }
+  },
+  "verification": {
+    "browser": "Playwright (Chromium) against http://localhost:8765 + live GitHub Pages",
+    "data_loaded": "326 items; 20 daily columns; 8 category bars; 9 region bars",
+    "tooltip": "hover shows label + count + share% (e.g. 'AI 96 則 / items · 29.4%')",
+    "click_filter_sync": "category bar click sets select to 'AI' → 96/326 matches; toggle off restores",
+    "keyboard": "chart bars/columns are native <button> (tab-focusable, Enter fires); record rows role=button with Enter/Space expand — verified",
+    "detail_view": "expanded record shows summary, key issue (zh), full clickable source_url, meta, stakeholders/tags",
+    "bilingual": "narrow-rwd qa_narrow_html.js: toggleOk=true, englishCjkLeaks=[]; dynamic-content CJK leak scan in EN mode: 0 leaks; ZH→EN→ZH round-trip OK",
+    "rwd": "320px / 768px / 1280px: no horizontal page overflow (390px verified in prior round)",
+    "offline_packaging": "no CDN dependencies; local-first fonts with system fallbacks; charts are DOM/CSS (no external chart lib)",
+    "print": "@media print hides controls, keeps static chart state with print-color-adjust"
+  },
+  "limitations": [
+    "captions recompute from data.json at load; if data.json fails to load, charts and captions are absent (explicit error message shown)",
+    "accent #2ec4b6 on white is ~2.2:1 contrast; counts are always duplicated as text labels so no information is color-only"
+  ]
+}

@@ -28,9 +28,11 @@ python3 "$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents/AM-intel/sc
 
 ## 設計
 
-- 視覺：工業風 control-room（近黑底 `#0B0D10` + safety amber `#FFB020`、Chakra Petch +
-  IBM Plex Mono + Noto Sans TC、2px 直角面板 + corner brackets + hazard stripe；2026-07-22
-  依用戶回饋自 Gamma 風改版）
+- 視覺：**narrow-rwd 模板**（`vault/_templates/narrow-rwd/narrow-rwd-report-blog-template.html`）—
+  500px 窄欄、Bondi Mint `#2ec4b6`、ZH/EN 雙語 toggle、card-style rows、`© Thomas Tseng 2026`
+- 互動圖表：依 `interactive-data-chart-builder` skill 三 Gate 流程產製 —
+  spec 在 `chart-spec.json`，Gate 證據在 `gate-status.json` 與 `reports/`；
+  圖表說明文字由執行時從 data.json 計算（每日更新後數字不會過期）
 - Markdown 匯出格式遵循 `AM-intel/AGENTS.md` Markdown Export Policy（保留原始連結、
   付費牆標示 `來源名稱（付費牆）`，不使用繞過付費牆的第三方快照連結）
 
@@ -40,3 +42,6 @@ python3 "$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents/AM-intel/sc
 |---|---|
 | `index.html` | Dashboard 主頁（單檔，讀 `data.json`） |
 | `data.json` | 由 builder 產生（勿手動編輯） |
+| `chart-spec.json` | 互動圖表規格（scale / encoding / interactions） |
+| `gate-status.json` | interactive-data-chart-builder Gate 1/2/3 驗證狀態 |
+| `reports/` | data-quality + chart-selection 報告（Gate 證據） |
