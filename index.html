@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AM-intel 新聞資料庫 Dashboard</title>
+<link rel="stylesheet" href="gamma-tokens.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  body {
+    font-family: 'Inter Tight', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 var(--sp-5) var(--sp-14); }
+
+  /* ---------- Hero (navy) ---------- */
+  .hero {
+    background: linear-gradient(160deg, var(--gamma-navy-deep) 0%, var(--gamma-navy) 70%);
+    color: var(--fg-on-dark-1);
+    padding: var(--sp-10) 0 var(--sp-14);
+    margin-bottom: calc(-1 * var(--sp-8));
+  }
+  .hero .wrap { padding-bottom: 0; }
+  .hero .overline { color: var(--gamma-pink); }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-weight: 800; font-size: clamp(28px, 5vw, 48px);
+    line-height: 1.08; letter-spacing: -0.015em; margin: var(--sp-2) 0 var(--sp-3);
+  }
+  .hero .meta { color: var(--fg-on-dark-2); font-size: var(--fs-14); }
+
+  /* ---------- Cards ---------- */
+  .card {
+    background: var(--bg-surface);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-md);
+    padding: var(--sp-6);
+  }
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: var(--sp-4); margin-bottom: var(--sp-4);
+  }
+  .stat .overline { font-size: 11px; }
+  .stat .num {
+    font-family: var(--font-display); font-weight: 800;
+    font-size: clamp(24px, 3.4vw, 40px); line-height: 1.1;
+    color: var(--gamma-navy); margin-top: var(--sp-2);
+    letter-spacing: -0.02em;
+  }
+  .stat .num small { font-size: 0.45em; font-weight: 600; color: var(--fg-3); }
+  .stat .sub { font-size: var(--fs-13); color: var(--fg-3); margin-top: var(--sp-1); }
+
+  .charts-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: var(--sp-4); margin-bottom: var(--sp-4);
+  }
+  .chart h3 {
+    font-size: var(--fs-16); font-weight: 700; margin: 0 0 var(--sp-4);
+    color: var(--gamma-navy);
+  }
+  .bar-row {
+    display: grid; grid-template-columns: 110px 1fr 36px;
+    align-items: center; gap: var(--sp-2);
+    font-size: var(--fs-13); margin-bottom: var(--sp-2);
+    cursor: pointer; border-radius: var(--radius-sm); padding: 2px 4px;
+    transition: background var(--dur-fast) var(--ease-out);
+  }
+  .bar-row:hover { background: var(--gamma-pink-tint); }
+  .bar-row .lbl { color: var(--fg-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .bar-row .track { background: var(--neutral-100); border-radius: var(--radius-chip); height: 12px; overflow: hidden; }
+  .bar-row .fill { background: var(--gamma-pink); height: 100%; border-radius: var(--radius-chip); min-width: 3px; }
+  .bar-row.active .fill { background: var(--gamma-navy); }
+  .bar-row .cnt { text-align: right; color: var(--fg-3); font-family: var(--font-mono); font-size: var(--fs-12); }
+
+  /* ---------- Controls ---------- */
+  .controls { margin-bottom: var(--sp-4); }
+  .controls-row { display: flex; flex-wrap: wrap; gap: var(--sp-3); align-items: center; }
+  input[type="search"], select, input[type="date"] {
+    font-family: inherit; font-size: var(--fs-14); color: var(--fg-1);
+    border: 1px solid var(--border-medium); border-radius: var(--radius-input);
+    padding: 10px 14px; background: var(--bg-surface); outline: none;
+    transition: border-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+  }
+  input[type="search"] { flex: 1 1 240px; }
+  input[type="search"]:focus, select:focus, input[type="date"]:focus {
+    border-color: var(--gamma-pink); box-shadow: 0 0 0 3px var(--gamma-pink-tint);
+  }
+  select { max-width: 180px; }
+  .btn {
+    font-family: inherit; font-size: var(--fs-14); font-weight: 600;
+    background: var(--gamma-navy); color: #fff; border: none;
+    border-radius: var(--radius-button); padding: 10px 20px; cursor: pointer;
+    transition: background var(--dur-fast) var(--ease-out);
+  }
+  .btn:hover { background: var(--gamma-navy-soft); }
+  .btn:disabled { background: var(--neutral-300); cursor: not-allowed; }
+  .btn.pink { background: var(--gamma-pink); color: var(--gamma-navy); }
+  .btn.pink:hover { background: var(--gamma-pink-hover); }
+  .btn.ghost {
+    background: transparent; color: var(--fg-2);
+    border: 1px solid var(--border-medium);
+  }
+  .status { font-size: var(--fs-13); color: var(--fg-3); margin-top: var(--sp-3); }
+  .chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--gamma-pink-tint); color: var(--gamma-navy);
+    border-radius: var(--radius-chip); padding: 4px 12px;
+    font-size: var(--fs-12); font-weight: 600; margin: var(--sp-2) 6px 0 0;
+    cursor: pointer; border: none; font-family: inherit;
+  }
+  .chip:hover { background: var(--gamma-pink-soft); }
+
+  /* ---------- Table ---------- */
+  .table-card { padding: var(--sp-3) 0; overflow: hidden; }
+  .table-scroll { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: var(--fs-14); }
+  th {
+    text-align: left; font-size: var(--fs-12); font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg-3);
+    padding: var(--sp-3) var(--sp-4); border-bottom: 1px solid var(--border-light);
+    white-space: nowrap;
+  }
+  td {
+    padding: var(--sp-3) var(--sp-4);
+    border-bottom: 1px solid var(--border-light);
+    vertical-align: top;
+  }
+  tr.item-row { cursor: pointer; transition: background var(--dur-fast) var(--ease-out); }
+  tr.item-row:hover { background: var(--gamma-pink-tint); }
+  td.date { font-family: var(--font-mono); font-size: var(--fs-12); color: var(--fg-3); white-space: nowrap; }
+  td.title { min-width: 260px; font-weight: 500; color: var(--gamma-navy); }
+  td.title a { color: var(--fg-link); text-decoration: none; }
+  td.title a:hover { text-decoration: underline; color: var(--gamma-pink-hover); }
+  td.geo, td.cat, td.src { font-size: var(--fs-13); color: var(--fg-2); white-space: nowrap; }
+  .paywall-tag {
+    display: inline-block; margin-left: 6px; font-size: 11px; font-weight: 600;
+    background: var(--gamma-pink-soft); color: var(--gamma-navy);
+    border-radius: var(--radius-chip); padding: 1px 8px;
+  }
+  tr.detail-row td {
+    background: var(--neutral-050); font-size: var(--fs-14); line-height: 1.6;
+    color: var(--fg-2); padding: var(--sp-4) var(--sp-6);
+  }
+  tr.detail-row .ki { margin-top: var(--sp-2); font-size: var(--fs-13); color: var(--fg-3); }
+  .empty { text-align: center; color: var(--fg-3); padding: var(--sp-10); }
+
+  footer { text-align: center; margin-top: var(--sp-8); }
+  footer .meta a { color: var(--fg-3); }
+
+  @media (max-width: 760px) {
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .charts-grid { grid-template-columns: 1fr; }
+    select { max-width: none; flex: 1 1 40%; }
+    input[type="date"] { flex: 1 1 40%; }
+    td.title { min-width: 200px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="overline">AM-intel · News Database</div>
+    <h1>新聞資料庫 Dashboard</h1>
+    <div class="meta" id="hero-meta">載入中…</div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="stats-grid">
+    <div class="card stat"><div class="overline">總則數</div><div class="num" id="st-total">–</div><div class="sub">news_item notes</div></div>
+    <div class="card stat"><div class="overline">最新回填</div><div class="num" id="st-latest" style="font-size:clamp(18px,2.4vw,26px)">–</div><div class="sub" id="st-latest-n"></div></div>
+    <div class="card stat"><div class="overline">分類 Top</div><div class="num" id="st-topcat" style="font-size:clamp(18px,2.4vw,26px)">–</div><div class="sub" id="st-topcat-n"></div></div>
+    <div class="card stat"><div class="overline">區域 Top</div><div class="num" id="st-topregion" style="font-size:clamp(18px,2.4vw,26px)">–</div><div class="sub" id="st-topregion-n"></div></div>
+  </div>
+
+  <div class="charts-grid">
+    <div class="card chart"><h3>分類分佈</h3><div id="chart-category"></div></div>
+    <div class="card chart"><h3>區域分佈</h3><div id="chart-region"></div></div>
+  </div>
+
+  <div class="card controls">
+    <div class="controls-row">
+      <input type="search" id="q" placeholder="關鍵字，例如：馬來西亞、稀土、AI 晶片…">
+      <select id="f-region"><option value="">全部區域</option></select>
+      <select id="f-category"><option value="">全部分類</option></select>
+      <input type="date" id="f-from" title="起日">
+      <input type="date" id="f-to" title="迄日">
+      <button class="btn ghost" id="btn-reset">重設</button>
+      <button class="btn pink" id="btn-copy" disabled>複製 Markdown</button>
+    </div>
+    <div class="status" id="status"></div>
+    <div id="active-chips"></div>
+  </div>
+
+  <div class="card table-card">
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>日期</th><th>新聞</th><th>區域 / 國家</th><th>分類</th><th>來源</th></tr></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <footer>
+    <div class="meta" id="footer-meta"></div>
+  </footer>
+</div>
+
+<script>
+const EXPORT_CAP = 100;
+const PAGE_SIZE = 60;
+let DATA = { items: [] };
+let matches = [];
+let shown = 0;
+
+const $ = (id) => document.getElementById(id);
+const text = (v) => v == null ? "" : (Array.isArray(v) ? v.map(text).join(" ") : String(v));
+
+function searchable(it) {
+  return [
+    it.note, it.signal_title_zh, it.signal_title_en, it.topic,
+    it.summary_zh, it.summary_en, it.key_issue,
+    it.region, it.country, it.category, it.sub_category,
+    it.source, it.tags, it.source_tags, it.stakeholders,
+  ].map(text).join(" ").toLowerCase();
+}
+
+const titleText = (it) => it.signal_title_zh || it.topic || it.note;
+const sourceLabel = (it) => `${it.source || "原文"}${it.paywall ? "（付費牆）" : ""}`;
+const mdLink = (label, url) => url ? `[${label}](${url})` : label;
+
+/* ---------- Export (AM-intel/AGENTS.md Markdown Export Policy) ---------- */
+function exportMarkdown(list, keyword) {
+  const lines = [
+    `# 關鍵字檢索：${keyword || "（全部）"}`,
+    "",
+    `匯出時間：${new Date().toISOString().slice(0, 16).replace("T", " ")}`,
+    `結果數：${list.length}`,
+    "",
+  ];
+  for (const it of list) {
+    lines.push(`## ${titleText(it)}`);
+    lines.push("");
+    lines.push(`- 日期：${it.date}`);
+    lines.push(`- 區域 / 國家：${it.region || ""}${it.country ? " / " + it.country : ""}`);
+    lines.push(`- 分類：${it.category || ""}`);
+    lines.push(`- 來源：${mdLink(sourceLabel(it), it.source_url)}`);
+    lines.push(`- 標題：[[${titleText(it)}]]`);
+    if (it.summary_zh) lines.push(`- 摘要：${it.summary_zh}`);
+    if (it.key_issue) lines.push(`- 關鍵議題：${it.key_issue}`);
+    lines.push("");
+  }
+  return lines.join("\n");
+}
+
+/* ---------- Stats & charts ---------- */
+function countBy(items, key) {
+  const m = new Map();
+  for (const it of items) {
+    const k = it[key] || "（未填）";
+    m.set(k, (m.get(k) || 0) + 1);
+  }
+  return [...m.entries()].sort((a, b) => b[1] - a[1]);
+}
+
+function renderBars(el, pairs, filterId) {
+  el.replaceChildren();
+  const max = pairs.length ? pairs[0][1] : 1;
+  for (const [label, n] of pairs) {
+    const row = document.createElement("div");
+    row.className = "bar-row";
+    if ($(filterId).value === label) row.classList.add("active");
+    row.innerHTML =
+      `<span class="lbl" title="${label}">${label}</span>` +
+      `<span class="track"><span class="fill" style="width:${(n / max * 100).toFixed(1)}%"></span></span>` +
+      `<span class="cnt">${n}</span>`;
+    row.addEventListener("click", () => {
+      $(filterId).value = ($(filterId).value === label) ? "" : label;
+      render();
+    });
+    el.appendChild(row);
+  }
+}
+
+function renderStats() {
+  const items = DATA.items;
+  $("st-total").textContent = items.length;
+  $("st-latest").textContent = DATA.latest_date || "–";
+  $("st-latest-n").textContent = `當日 ${items.filter(i => i.date === DATA.latest_date).length} 則`;
+  const cats = countBy(items, "category");
+  const regs = countBy(items, "region");
+  if (cats.length) { $("st-topcat").textContent = cats[0][0]; $("st-topcat-n").textContent = `${cats[0][1]} 則`; }
+  if (regs.length) { $("st-topregion").textContent = regs[0][0]; $("st-topregion-n").textContent = `${regs[0][1]} 則`; }
+  renderBars($("chart-category"), cats, "f-category");
+  renderBars($("chart-region"), regs, "f-region");
+}
+
+/* ---------- Filtering & table ---------- */
+function currentFilter() {
+  return {
+    q: $("q").value.trim().toLowerCase(),
+    region: $("f-region").value,
+    category: $("f-category").value,
+    from: $("f-from").value,
+    to: $("f-to").value,
+  };
+}
+
+function applyFilter() {
+  const f = currentFilter();
+  matches = DATA.items.filter((it) =>
+    (!f.q || searchable(it).includes(f.q)) &&
+    (!f.region || it.region === f.region) &&
+    (!f.category || it.category === f.category) &&
+    (!f.from || it.date >= f.from) &&
+    (!f.to || it.date <= f.to)
+  );
+}
+
+function rowHTML(it) {
+  const t = titleText(it);
+  const link = it.source_url
+    ? `<a href="${it.source_url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${t}</a>`
+    : t;
+  const pw = it.paywall ? `<span class="paywall-tag">付費牆</span>` : "";
+  return `<td class="date">${it.date}</td>` +
+    `<td class="title">${link}</td>` +
+    `<td class="geo">${it.region || ""}${it.country ? " / " + it.country : ""}</td>` +
+    `<td class="cat">${it.category || ""}</td>` +
+    `<td class="src">${it.source || ""}${pw}</td>`;
+}
+
+function appendRows(from, to) {
+  const tbody = $("tbody");
+  for (const it of matches.slice(from, to)) {
+    const tr = document.createElement("tr");
+    tr.className = "item-row";
+    tr.innerHTML = rowHTML(it);
+    tr.addEventListener("click", () => toggleDetail(tr, it));
+    tbody.appendChild(tr);
+  }
+  shown = Math.min(to, matches.length);
+  if (shown < matches.length) {
+    const more = document.createElement("tr");
+    more.innerHTML = `<td colspan="5" style="text-align:center;padding:16px">
+      <button class="btn ghost" id="btn-more">顯示更多（剩 ${matches.length - shown} 則）</button></td>`;
+    $("tbody").appendChild(more);
+    more.querySelector("#btn-more").addEventListener("click", () => {
+      more.remove();
+      appendRows(shown, shown + PAGE_SIZE);
+    });
+  }
+}
+
+function toggleDetail(tr, it) {
+  const next = tr.nextElementSibling;
+  if (next && next.classList.contains("detail-row")) { next.remove(); return; }
+  document.querySelectorAll("tr.detail-row").forEach(r => r.remove());
+  const d = document.createElement("tr");
+  d.className = "detail-row";
+  d.innerHTML = `<td colspan="5">${it.summary_zh || "（無摘要）"}` +
+    (it.key_issue ? `<div class="ki">🔑 ${it.key_issue}</div>` : "") + `</td>`;
+  tr.after(d);
+}
+
+function renderChips() {
+  const f = currentFilter();
+  const box = $("active-chips");
+  box.replaceChildren();
+  const chips = [];
+  if (f.q) chips.push([`關鍵字：${f.q}`, () => { $("q").value = ""; }]);
+  if (f.region) chips.push([`區域：${f.region}`, () => { $("f-region").value = ""; }]);
+  if (f.category) chips.push([`分類：${f.category}`, () => { $("f-category").value = ""; }]);
+  if (f.from || f.to) chips.push([`日期：${f.from || "…"} → ${f.to || "…"}`, () => { $("f-from").value = ""; $("f-to").value = ""; }]);
+  for (const [label, clear] of chips) {
+    const b = document.createElement("button");
+    b.className = "chip";
+    b.textContent = `${label} ✕`;
+    b.addEventListener("click", () => { clear(); render(); });
+    box.appendChild(b);
+  }
+}
+
+function render() {
+  applyFilter();
+  const tbody = $("tbody");
+  tbody.replaceChildren();
+  $("btn-copy").disabled = matches.length === 0;
+  const f = currentFilter();
+  const filtered = f.q || f.region || f.category || f.from || f.to;
+  $("status").textContent = filtered
+    ? `符合條件 ${matches.length} 則（共 ${DATA.items.length} 則）`
+    : `可檢索 ${DATA.items.length} 則新聞`;
+  renderChips();
+  renderStats();
+  if (matches.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="5" class="empty">沒有符合的新聞</td></tr>`;
+    return;
+  }
+  appendRows(0, PAGE_SIZE);
+}
+
+/* ---------- Events ---------- */
+["q"].forEach(id => $(id).addEventListener("input", render));
+["f-region", "f-category", "f-from", "f-to"].forEach(id => $(id).addEventListener("change", render));
+$("btn-reset").addEventListener("click", () => {
+  ["q", "f-region", "f-category", "f-from", "f-to"].forEach(id => $(id).value = "");
+  render();
+});
+$("btn-copy").addEventListener("click", async () => {
+  const btn = $("btn-copy");
+  const list = matches.slice(0, EXPORT_CAP);
+  const md = exportMarkdown(list, $("q").value.trim());
+  try {
+    await navigator.clipboard.writeText(md);
+    btn.textContent = matches.length > EXPORT_CAP
+      ? `已複製前 ${EXPORT_CAP} 則` : "已複製";
+  } catch (e) {
+    btn.textContent = "複製失敗";
+    console.error(e);
+  }
+  setTimeout(() => { btn.textContent = "複製 Markdown"; }, 1500);
+});
+
+/* ---------- Init ---------- */
+fetch("data.json")
+  .then(r => { if (!r.ok) throw new Error(`data.json HTTP ${r.status}`); return r.json(); })
+  .then(d => {
+    DATA = d;
+    const fill = (id, pairs) => {
+      for (const [v] of pairs) {
+        const o = document.createElement("option");
+        o.value = o.textContent = v;
+        $(id).appendChild(o);
+      }
+    };
+    fill("f-region", countBy(d.items, "region"));
+    fill("f-category", countBy(d.items, "category"));
+    $("hero-meta").textContent = `${d.count} 則新聞 · 最新回填 ${d.latest_date} · 資料更新 ${d.generated_at.replace("T", " ").slice(0, 16)}`;
+    $("footer-meta").innerHTML =
+      `資料更新：${d.generated_at.replace("T", " ").slice(0, 16)} · 來源：AM-intel news_item 資料庫 · ` +
+      `每日由回填流程自動刷新`;
+    render();
+  })
+  .catch(e => {
+    $("hero-meta").textContent = "資料載入失敗";
+    $("status").textContent = `無法載入 data.json：${e.message}（請先執行 build_dashboard.py）`;
+  });
+</script>
+</body>
+</html>
