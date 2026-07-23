@@ -102,15 +102,15 @@ input:focus-visible, select:focus-visible { outline: 2px solid var(--accent); ou
 .row-geo { font-family: var(--font-mono); font-size: 11px; color: var(--muted); margin-top: 3px; }
 /* ---------- Detail: Industrial Dashboard panel ---------- */
 .detail {
-  --ind-bg: #0B0D10; --ind-panel: #12151A; --ind-line: #262B33;
-  --ind-amber: #FFB020; --ind-amber-dim: #B87E17;
-  --ind-fg1: #E8EAED; --ind-fg2: #9AA3AF; --ind-fg3: #5C6470; --ind-green: #3DD68C;
+  --ind-panel: #F7F8F9; --ind-line: #DCE0E5;
+  --ind-amber: #E8A61A; --ind-amber-dim: #A66D0E;
+  --ind-fg1: #1A1A1A; --ind-fg2: #4A5058; --ind-fg3: #8A9098; --ind-green: #1E8E5A;
   position: relative;
   margin: 6px 0 14px; padding: 18px 18px 20px;
   background: var(--ind-panel);
   background-image:
-    linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
+    linear-gradient(rgba(26,26,26,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26,26,26,0.04) 1px, transparent 1px);
   background-size: 24px 24px;
   border: 1px solid var(--ind-line);
   color: var(--ind-fg1);
@@ -122,6 +122,7 @@ input:focus-visible, select:focus-visible { outline: 2px solid var(--accent); ou
 .detail, .detail * { font-family: -apple-system, system-ui, "PingFang TC", "Noto Sans TC", sans-serif; }
 .detail .mono, .detail .dlabel, .detail .durl, .detail .dmeta, .detail .tagchip, .detail .k, .detail .v { font-family: "iA Writer Mono S", ui-monospace, SFMono-Regular, Menlo, monospace; }
 .det { display: grid; grid-template-columns: 1.5fr 1fr; gap: 16px 22px; }
+.det-foot { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--ind-line); }
 .dlabel { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ind-amber-dim); margin: 16px 0 6px; }
 .det > div > .dlabel:first-child, .det [data-lang] > .dlabel:first-child { margin-top: 0; }
 .detail .dsum { font-size: 13.5px; line-height: 1.75; color: var(--ind-fg1); }
@@ -489,15 +490,15 @@ function detailNode(it) {
         <span class="k">Sub-cat</span><span class="v">${esc(it.sub_category) || "–"}</span>
         <span class="k">Relevance</span><span class="v ${it.business_relevance === "high" ? "rel-high" : ""}">${esc(it.business_relevance) || "–"}</span>
         <span class="k">Practice</span><span class="v">${practice}</span>
-        <span class="k">Note</span><span class="v">${esc(it.note)}</span>
-      </div>
-      <div data-lang="zh">
-        <div class="dlabel">Stakeholders // 利害關係方</div>
-        <div>${chips(it.stakeholders)}</div>
-        <div class="dlabel">Tags // 標籤</div>
-        <div>${chips(it.tags)}</div>
+        <span class="k">Note</span><span class="v" title="${esc(it.note)}">${esc(it.note.split("/").pop())}</span>
       </div>
     </div>
+  </div>
+  <div class="det-foot" data-lang="zh">
+    <div class="dlabel" style="margin-top:0">Stakeholders // 利害關係方</div>
+    <div>${chips(it.stakeholders)}</div>
+    <div class="dlabel">Tags // 標籤</div>
+    <div>${chips(it.tags)}</div>
   </div>`;
   return d;
 }
