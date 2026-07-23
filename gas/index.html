@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AM-intel 新聞資料庫</title>
+  <title>每日經貿情報索引 — Thomas Tseng 精選</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%232ec4b6%22/></svg>">
   <style>
 :root {
@@ -128,7 +128,6 @@ input:focus-visible, select:focus-visible { outline: 2px solid var(--accent); ou
 .detail .mono, .detail .dlabel, .detail .durl, .detail .dmeta, .detail .tagchip, .detail .k, .detail .v { font-family: "iA Writer Mono S", ui-monospace, SFMono-Regular, Menlo, monospace; }
 .det { display: grid; grid-template-columns: 1.2fr 1fr; gap: 16px 22px; }
 .det-foot { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--ind-line); }
-.dnote { margin-top: 12px; font-size: 10.5px; overflow-wrap: anywhere; }
 .dlabel { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ind-accent-dim); margin: 16px 0 6px; }
 .det > div > .dlabel:first-child, .det [data-lang] > .dlabel:first-child { margin-top: 0; }
 .detail .dsum { font-size: 13.5px; line-height: 1.75; color: var(--ind-fg1); }
@@ -194,24 +193,24 @@ footer { margin-top: 58px; padding-top: 28px; border-top: 1px solid var(--line);
   <main class="page">
     <button class="language-toggle" type="button" data-lang-toggle aria-label="Switch to English" aria-pressed="false">EN</button>
     <header>
-      <p class="eyebrow"><span data-lang="zh">AM-INTEL / 新聞資料庫</span><span data-lang="en">AM-INTEL / News Database</span></p>
+      <p class="eyebrow"><span data-lang="zh">AM-INTEL / 每日情報</span><span data-lang="en">AM-INTEL / Daily Intelligence</span></p>
       <h1><span data-lang="zh">每日經貿情報索引</span><span data-lang="en">Daily Trade &amp; Tech Intelligence Index</span></h1>
-      <p class="curator"><span data-lang="zh">本索引為作者 <strong>Thomas Tseng</strong> 每日親自精選的經貿與科技情報訊號 — 經判讀後的選材，非全量新聞饋送。</span><span data-lang="en">Every item in this index is hand-picked daily by the author, <strong>Thomas Tseng</strong> — a curated selection of trade &amp; tech intelligence, not a raw news feed.</span></p>
+      <p class="curator"><span data-lang="zh">本索引為作者 <strong>Thomas Tseng</strong> 每日親自精選的經貿與科技情報訊號 — 經判讀後的選材，而非未經篩選的新聞總匯。</span><span data-lang="en">Every item in this index is hand-picked daily by the author, <strong>Thomas Tseng</strong> — a curated selection of trade &amp; tech intelligence, not a raw news feed.</span></p>
       <div class="meta">
         <div><span class="meta-label"><span data-lang="zh">精選作者</span><span data-lang="en">Curator</span></span><span class="meta-value">Thomas Tseng</span></div>
-        <div><span class="meta-label"><span data-lang="zh">資料更新</span><span data-lang="en">Generated</span></span><time id="m-generated">–</time></div>
-        <div><span class="meta-label"><span data-lang="zh">資料範圍</span><span data-lang="en">Date range</span></span><span id="m-range">–</span></div>
-        <div><span class="meta-label"><span data-lang="zh">資料筆數</span><span data-lang="en">Records</span></span><span id="m-count">–</span></div>
+        <div><span class="meta-label"><span data-lang="zh">資料更新</span><span data-lang="en">Updated</span></span><time id="m-generated">–</time></div>
+        <div><span class="meta-label"><span data-lang="zh">收錄期間</span><span data-lang="en">Coverage period</span></span><span id="m-range">–</span></div>
+        <div><span class="meta-label"><span data-lang="zh">收錄則數</span><span data-lang="en">Items</span></span><span id="m-count">–</span></div>
       </div>
     </header>
 
     <section>
-      <h2><span data-lang="zh">資料快照</span><span data-lang="en">Snapshot</span></h2>
+      <h2><span data-lang="zh">索引概況</span><span data-lang="en">At a Glance</span></h2>
       <div class="metrics">
         <div class="metric"><span class="metric-label"><span data-lang="zh">總則數</span><span data-lang="en">Total items</span></span><span class="metric-value" id="st-total">–</span></div>
-        <div class="metric"><span class="metric-label"><span data-lang="zh">最新回填</span><span data-lang="en">Latest backfill</span></span><span class="metric-value" id="st-latest">–</span></div>
-        <div class="metric"><span class="metric-label"><span data-lang="zh">活躍天數</span><span data-lang="en">Active days</span></span><span class="metric-value" id="st-days">–</span></div>
-        <div class="metric"><span class="metric-label"><span data-lang="zh">分類數</span><span data-lang="en">Categories</span></span><span class="metric-value" id="st-cats">–</span></div>
+        <div class="metric"><span class="metric-label"><span data-lang="zh">最新收錄</span><span data-lang="en">Latest addition</span></span><span class="metric-value" id="st-latest">–</span></div>
+        <div class="metric"><span class="metric-label"><span data-lang="zh">收錄天數</span><span data-lang="en">Days covered</span></span><span class="metric-value" id="st-days">–</span></div>
+        <div class="metric"><span class="metric-label"><span data-lang="zh">主題數</span><span data-lang="en">Topics</span></span><span class="metric-value" id="st-cats">–</span></div>
         <div class="metric"><span class="metric-label"><span data-lang="zh">區域數</span><span data-lang="en">Regions</span></span><span class="metric-value" id="st-regions">–</span></div>
         <div class="metric"><span class="metric-label"><span data-lang="zh">付費牆</span><span data-lang="en">Paywalled</span></span><span class="metric-value" id="st-paywall">–</span></div>
       </div>
@@ -220,14 +219,14 @@ footer { margin-top: 58px; padding-top: 28px; border-top: 1px solid var(--line);
     <section>
       <h2><span data-lang="zh">互動圖表</span><span data-lang="en">Interactive Charts</span></h2>
 
-      <h3><span data-lang="zh">每日回填時間軸</span><span data-lang="en">Daily Intake Timeline</span></h3>
+      <h3><span data-lang="zh">每日精選則數</span><span data-lang="en">Daily Picks Over Time</span></h3>
       <div class="chart-block">
         <div id="chart-tl" role="group" aria-label="Daily intake timeline"></div>
         <div id="tl-x" aria-hidden="true"></div>
         <p class="chart-caption" id="cap-cal"></p>
       </div>
 
-      <h3><span data-lang="zh">分類 × 區域熱力圖</span><span data-lang="en">Category × Region Matrix</span></h3>
+      <h3><span data-lang="zh">主題 × 區域分佈</span><span data-lang="en">Topics by Region</span></h3>
       <div class="chart-block">
         <div id="chart-matrix" role="group" aria-label="Category by region matrix heatmap"></div>
         <p class="chart-caption" id="cap-matrix"></p>
@@ -236,9 +235,9 @@ footer { margin-top: 58px; padding-top: 28px; border-top: 1px solid var(--line);
     </section>
 
     <section>
-      <h2><span data-lang="zh">查詢</span><span data-lang="en">Query</span></h2>
+      <h2><span data-lang="zh">搜尋與篩選</span><span data-lang="en">Search &amp; Filter</span></h2>
       <div class="qrow">
-        <input type="search" id="q" placeholder="關鍵字 keyword…" aria-label="keyword search">
+        <input type="search" id="q" placeholder="輸入關鍵字，例如：稀土、AI 晶片" aria-label="keyword search">
         <select id="f-region" aria-label="region filter"></select>
         <select id="f-category" aria-label="category filter"></select>
         <input type="date" id="f-from" aria-label="date from">
@@ -251,7 +250,7 @@ footer { margin-top: 58px; padding-top: 28px; border-top: 1px solid var(--line);
     </section>
 
     <section>
-      <h2 id="rows-title"><span data-lang="zh">最新回填</span><span data-lang="en">Latest Backfill</span></h2>
+      <h2 id="rows-title"><span data-lang="zh">最新收錄</span><span data-lang="en">Latest Picks</span></h2>
       <div class="rows" id="rows"></div>
       <div class="morebar" id="morebar"></div>
     </section>
@@ -426,6 +425,7 @@ function buildCharts() {
 function updateCharts() {
   const f = currentFilter();
   const filtered = f.q || f.region || f.category || f.from || f.to;
+  const unit = document.body.dataset.lang === "zh" ? "則" : "items";
 
   /* 時間軸（排除日期自身） */
   const cBase = DATA.items.filter(it => passesExcept(it, f, "date"));
@@ -438,16 +438,19 @@ function updateCharts() {
     const d = slot.dataset.key, n = cCount.get(d);
     slot.querySelector(".tl-bar").style.height = (n / cMax * 100).toFixed(1) + "%";
     slot.classList.toggle("active", f.from === d && f.to === d);
-    slot.dataset.tt = `${d}<br>${n} 則 / items`;
+    slot.dataset.tt = `${d}<br>${n} ${unit}`;
     slot.setAttribute("aria-label", `${d}: ${n}`);
   });
   const cTotal = [...cCount.values()].reduce((s2, n) => s2 + n, 0);
   $("cap-cal").innerHTML = cTotal === 0
-    ? dual("目前條件下無資料。", "No records under the current query.")
-    : dual(
-        `${filtered ? "目前條件下" : "全期間"}共 ${cTotal} 則；柱高 = 當日則數，最高 ${peakN} 則（${peakDate.slice(5)}）。軸上缺口 = 該日無回填。點柱可篩選該日。`,
-        `${cTotal} items ${filtered ? "under the current query" : "in total"}; bar height = items per day, peak ${peakN} (${peakDate.slice(5)}). Gaps on the axis are days with no backfill. Click a bar to filter.`
-      );
+    ? dual("這組篩選下沒有符合的新聞。", "Nothing matches the current filters.")
+    : (filtered
+      ? dual(
+          `以目前篩選來看，共 ${cTotal} 則；單日最高 ${peakN} 則（${peakDate.slice(5)}）。點柱可篩選該日。`,
+          `With these filters: ${cTotal} items; peak ${peakN} on ${peakDate.slice(5)}. Click a bar to filter that day.`)
+      : dual(
+          `全期間共 ${cTotal} 則；柱狀愈高代表當日收錄愈多，最高 ${peakN} 則（${peakDate.slice(5)}）。空白處代表當天未收錄。點柱可篩選該日。`,
+          `${cTotal} items in total. Taller bars mean more picks that day — peak ${peakN} on ${peakDate.slice(5)}; blank days had none. Click a bar to filter that day.`));
 
   /* 矩陣（排除分類+區域自身） */
   const mBase = DATA.items.filter(it => passesExcept(it, f, "category+region"));
@@ -465,17 +468,17 @@ function updateCharts() {
     c.style.color = heatFg(n, mMax);
     c.textContent = n > 0 ? n : "";
     c.classList.toggle("active", f.category === c.dataset.cat && f.region === c.dataset.reg);
-    c.dataset.tt = `${esc(c.dataset.cat)} × ${esc(c.dataset.reg)}<br>${n} 則 / items`;
+    c.dataset.tt = `${esc(c.dataset.cat)} × ${esc(c.dataset.reg)}<br>${n} ${unit}`;
     c.setAttribute("aria-label", `${c.dataset.cat} × ${c.dataset.reg}: ${n}`);
   });
   $("chart-matrix").querySelectorAll(".mx-rl").forEach(b => b.classList.toggle("active", f.category === b.dataset.cat));
   $("chart-matrix").querySelectorAll(".mx-h").forEach(b => b.classList.toggle("active", f.region === b.dataset.reg));
   const [tCat, tReg] = topK.split("|");
   $("cap-matrix").innerHTML = mBase.length === 0
-    ? dual("目前條件下無資料。", "No records under the current query.")
+    ? dual("這組篩選下沒有符合的新聞。", "Nothing matches the current filters.")
     : dual(
-        `${filtered ? `目前條件 ${mBase.length} 則中` : "全庫"}交叉最高：${tCat} × ${tReg}（${topN} 則）。點格同時篩選分類與區域；點列 / 欄標題可單獨篩選。`,
-        `Hottest cell ${filtered ? `among the ${mBase.length} matching items` : "overall"}: ${tCat} × ${tReg} (${topN}). Click a cell to filter both dimensions; click a row / column header to filter one.`
+        `${filtered ? `以目前篩選來看（共 ${mBase.length} 則），` : "整體"}最集中的組合：${tCat} × ${tReg}（${topN} 則）。點任一格可同時篩選主題與區域；點列或欄標題可單獨篩選。`,
+        `${filtered ? `With these filters (${mBase.length} items), the` : "The"} busiest pairing: ${tCat} × ${tReg} (${topN} items). Click a cell to focus on that topic-region pair, or a row / column header for just one.`
       );
 }
 
@@ -534,14 +537,12 @@ function detailNode(it) {
   d.className = "detail";
   const chips = (arr) => (Array.isArray(arr) ? arr : []).map(t => `<span class="tagchip">${esc(t)}</span>`).join("") || `<span class="v">–</span>`;
   const L = (en, zh) => dual(`${en} // ${zh}`, en);  /* 工業版複合標籤；EN 模式僅英文（no-CJK 契約） */
-  const practice = (it.used_for_practice === true || it.used_for_practice === "true")
-    ? "✓ " + (esc(it.practice_date) || "done") : "not yet";
   d.innerHTML = `<div class="det">
     <div>
       <div class="dlabel">${L("Summary", "摘要")}</div>
-      <div class="dsum">${dual(esc(it.summary_zh) || "（無摘要）", esc(it.summary_en) || "(no summary)")}</div>
+      <div class="dsum">${dual(esc(it.summary_zh) || "本則未附摘要", esc(it.summary_en) || "No summary available")}</div>
       ${it.key_issue ? `<div data-lang="zh"><div class="dlabel">Key Issue // 關鍵議題</div><div class="dki">${esc(it.key_issue)}</div></div>` : ""}
-      <div class="dlabel">${L("Source URL", "消息來源")}</div>
+      <div class="dlabel">${L("Original Source", "消息來源")}</div>
       ${it.source_url
         ? `<div class="durl"><a href="${esc(it.source_url)}" target="_blank" rel="noopener">${esc(it.source_url)} ↗</a></div>`
         : `<div class="durl">–</div>`}
@@ -552,9 +553,8 @@ function detailNode(it) {
       <div class="meta-grid">
         <span class="k">EN Title</span><span class="v">${esc(it.signal_title_en) || "–"}</span>
         <span class="k">Topic</span><span class="v">${esc(it.topic) || "–"}</span>
-        <span class="k">Sub-cat</span><span class="v">${esc(it.sub_category) || "–"}</span>
+        <span class="k">Sub-category</span><span class="v">${esc(it.sub_category) || "–"}</span>
         <span class="k">Relevance</span><span class="v ${it.business_relevance === "high" ? "rel-high" : ""}">${esc(it.business_relevance) || "–"}</span>
-        <span class="k">Practice</span><span class="v">${practice}</span>
       </div>
     </div>
   </div>
@@ -565,7 +565,6 @@ function detailNode(it) {
       <div class="dlabel">Tags // 標籤</div>
       <div>${chips(it.tags)}</div>
     </div>
-    <div class="dmeta dnote" title="${esc(it.note)}">NOTE&nbsp;&nbsp;${esc(it.note.split("/").pop())}</div>
   </div>`;
   return d;
 }
@@ -626,15 +625,15 @@ function render() {
   $("btn-copy").disabled = matches.length === 0;
   $("rows-title").innerHTML = filtered
     ? dual("檢索結果", "Records")
-    : dual("最新回填", "Latest Backfill");
+    : dual("最新收錄", "Latest Picks");
   $("status").innerHTML = filtered
-    ? dual(`符合 ${matches.length} 則（共 ${DATA.items.length} 則）`, `${matches.length} of ${DATA.items.length} records match`)
-    : dual(`未輸入條件 — 顯示最新 ${matches.length} 則；輸入關鍵字或篩選以檢索全部 ${DATA.items.length} 則`,
-           `No query — showing the latest ${matches.length}; type a keyword or filter to search all ${DATA.items.length}`);
+    ? dual(`符合 ${matches.length} 則（共 ${DATA.items.length} 則）`, `${matches.length} of ${DATA.items.length} items match`)
+    : dual(`先為您顯示最新 ${matches.length} 則 — 輸入關鍵字或選擇篩選，即可瀏覽全部 ${DATA.items.length} 則`,
+           `Showing the ${matches.length} most recent picks — type a keyword or use the filters to browse all ${DATA.items.length}`);
   renderChips();
   renderCharts();
   if (matches.length === 0) {
-    $("rows").innerHTML = `<div class="empty">${dual("沒有符合的新聞", "No matching records")}</div>`;
+    $("rows").innerHTML = `<div class="empty">${dual("沒有符合的新聞", "No matching items")}</div>`;
     $("morebar").replaceChildren();
     return;
   }
@@ -652,7 +651,7 @@ $("btn-copy").addEventListener("click", async () => {
   const btn = $("btn-copy");
   const f = currentFilter();
   const isFiltered = f.q || f.region || f.category || f.from || f.to;
-  const label = f.q || (isFiltered ? "（條件檢索）" : "（最新回填）");
+  const label = f.q || (isFiltered ? "（篩選結果）" : "（最新收錄）");
   const md = exportMarkdown(matches.slice(0, EXPORT_CAP), label);
   try {
     await navigator.clipboard.writeText(md);
@@ -665,7 +664,7 @@ $("btn-copy").addEventListener("click", async () => {
 
 /* ---------- Language toggle (template standard) ---------- */
 const toggle = document.querySelector("[data-lang-toggle]");
-const titles = { zh: "AM-intel 新聞資料庫", en: "AM-intel News Database" };
+const titles = { zh: "每日經貿情報索引 — Thomas Tseng 精選", en: "Daily Trade & Tech Intelligence Index — Curated by Thomas Tseng" };
 function setLanguage(lang) {
   const next = lang === "en" ? "en" : "zh";
   document.documentElement.lang = next === "zh" ? "zh-Hant" : "en";
@@ -674,6 +673,8 @@ function setLanguage(lang) {
   toggle.textContent = next === "zh" ? "EN" : "ZH";
   toggle.setAttribute("aria-label", next === "zh" ? "Switch to English" : "Switch to Traditional Chinese");
   toggle.setAttribute("aria-pressed", next === "en" ? "true" : "false");
+  $("q").placeholder = next === "zh" ? "輸入關鍵字，例如：稀土、AI 晶片" : "Search — e.g. rare earth, AI chips";
+  if (DATA.items.length) updateCharts();
 }
 toggle.addEventListener("click", () => setLanguage(document.body.dataset.lang === "zh" ? "en" : "zh"));
 
@@ -697,7 +698,7 @@ function boot(d) {
       }
     };
     fillSel("f-region", "全部區域", "All regions", regs);
-    fillSel("f-category", "全部分類", "All categories", cats);
+    fillSel("f-category", "全部主題", "All topics", cats);
     $("m-generated").textContent = d.generated_at.replace("T", " ").slice(0, 16);
     $("m-range").textContent = `${dates[0]} → ${dates[dates.length - 1]}`;
     $("m-count").textContent = d.count;
@@ -708,8 +709,8 @@ function boot(d) {
     $("st-regions").textContent = regs.length;
     $("st-paywall").textContent = d.items.filter(i => i.paywall).length;
     $("footer-meta").innerHTML = dual(
-      `精選編纂：Thomas Tseng · 資料來源：AM-intel news_item 資料庫 · 每日回填後自動更新`,
-      `Curated by Thomas Tseng · Source: AM-intel news_item database · auto-refreshed after daily backfill`
+      `精選編纂：Thomas Tseng · 資料來源：AM-intel 每日情報選輯 · 每日精選後自動更新`,
+      `Curated by Thomas Tseng · Source: the AM-intel daily intelligence collection · updated with each day's selection`
     );
     render();
 }
