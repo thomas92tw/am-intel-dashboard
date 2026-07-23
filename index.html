@@ -119,15 +119,23 @@ input:focus-visible, select:focus-visible { outline: 2px solid var(--accent); ou
 .detail::before, .detail::after { content: ""; position: absolute; width: 10px; height: 10px; pointer-events: none; }
 .detail::before { top: -1px; left: -1px; border-top: 2px solid var(--ind-amber); border-left: 2px solid var(--ind-amber); }
 .detail::after { bottom: -1px; right: -1px; border-bottom: 2px solid var(--ind-amber); border-right: 2px solid var(--ind-amber); }
-.dlabel { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ind-amber); margin: 16px 0 5px; }
-.detail > .dlabel:first-child, .detail > [data-lang] > .dlabel:first-child { margin-top: 0; }
-.detail .dsum { font-size: 14px; line-height: 1.7; max-width: 480px; color: var(--ind-fg1); }
-.detail .durl { font-family: var(--font-mono); font-size: 11.5px; overflow-wrap: anywhere; line-height: 1.6; }
+.detail, .detail * { font-family: -apple-system, system-ui, "PingFang TC", "Noto Sans TC", sans-serif; }
+.detail .mono, .detail .dlabel, .detail .durl, .detail .dmeta, .detail .tagchip, .detail .k, .detail .v { font-family: "iA Writer Mono S", ui-monospace, SFMono-Regular, Menlo, monospace; }
+.det { display: grid; grid-template-columns: 1.5fr 1fr; gap: 16px 22px; }
+.dlabel { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ind-amber-dim); margin: 16px 0 6px; }
+.det > div > .dlabel:first-child, .det [data-lang] > .dlabel:first-child { margin-top: 0; }
+.detail .dsum { font-size: 13.5px; line-height: 1.75; color: var(--ind-fg1); }
+.detail .dki { font-size: 12.5px; line-height: 1.65; color: var(--ind-fg2); }
+.detail .durl { font-size: 11.5px; overflow-wrap: anywhere; line-height: 1.6; }
 .detail .durl a { color: var(--ind-amber); text-decoration: none; border-bottom: 1px solid var(--ind-amber-dim); }
 .detail .durl a:hover { border-bottom-color: var(--ind-amber); }
-.detail .dmeta { font-family: var(--font-mono); font-size: 11.5px; color: var(--ind-fg2); line-height: 1.75; overflow-wrap: anywhere; }
+.detail .dmeta { font-size: 11px; color: var(--ind-fg3); }
+.detail .meta-grid { display: grid; grid-template-columns: auto 1fr; gap: 7px 12px; font-size: 11.5px; }
+.detail .k { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ind-fg3); padding-top: 2px; white-space: nowrap; }
+.detail .v { color: var(--ind-fg2); font-size: 11.5px; line-height: 1.6; overflow-wrap: anywhere; }
 .detail .rel-high { color: var(--ind-green); }
-.detail .tagchip { display: inline-block; font-family: var(--font-mono); font-size: 10.5px; color: var(--ind-fg2); border: 1px solid var(--ind-line); border-radius: 2px; padding: 2px 8px; margin: 0 6px 6px 0; }
+.detail .tagchip { display: inline-block; font-size: 10.5px; color: var(--ind-fg2); border: 1px solid var(--ind-line); border-radius: 2px; padding: 2px 8px; margin: 0 6px 6px 0; }
+@media (max-width: 480px) { .det { grid-template-columns: 1fr; } }
 .morebar { text-align: center; padding: 18px 0 0; }
 .empty { font-family: var(--font-mono); font-size: 12px; color: var(--muted); padding: 24px 0; }
 
@@ -458,22 +466,39 @@ function rowNode(it) {
 function detailNode(it) {
   const d = document.createElement("div");
   d.className = "detail";
-  const chips = (arr) => (Array.isArray(arr) ? arr : []).map(t => `<span class="tagchip">${esc(t)}</span>`).join("") || "–";
-  d.innerHTML =
-    `<div class="dlabel">${dual("摘要", "Summary")}</div>` +
-    `<div class="dsum">${dual(esc(it.summary_zh) || "（無摘要）", esc(it.summary_en) || esc(it.summary_zh) || "(no summary)")}</div>` +
-    (it.key_issue ? `<div data-lang="zh"><div class="dlabel">關鍵議題</div><div class="dsum">${esc(it.key_issue)}</div></div>` : "") +
-    `<div class="dlabel">${dual("消息來源", "Source")}</div>` +
-    (it.source_url
-      ? `<div class="durl"><a href="${esc(it.source_url)}" target="_blank" rel="noopener">${esc(it.source_url)}</a></div>`
-      : `<div class="durl muted">–</div>`) +
-    `<div class="dmeta">${dual(esc(sourceLabelZh(it)), esc(it.source) + (it.paywall ? " (paywall)" : ""))}</div>` +
-    `<div class="dlabel">${dual("附註", "Meta")}</div>` +
-    `<div class="dmeta">topic: ${esc(it.topic) || "–"}<br>sub-category: ${esc(it.sub_category) || "–"}<br>relevance: <span class="${it.business_relevance === "high" ? "rel-high" : ""}">${esc(it.business_relevance) || "–"}</span><br>note: ${esc(it.note)}</div>` +
-    `<div data-lang="zh">` +
-    `<div class="dlabel">利害關係方</div><div>${chips(it.stakeholders)}</div>` +
-    `<div class="dlabel">標籤</div><div>${chips(it.tags)}</div>` +
-    `</div>`;
+  const chips = (arr) => (Array.isArray(arr) ? arr : []).map(t => `<span class="tagchip">${esc(t)}</span>`).join("") || `<span class="v">–</span>`;
+  const L = (en, zh) => dual(`${en} // ${zh}`, en);  /* 工業版複合標籤；EN 模式僅英文（no-CJK 契約） */
+  const practice = (it.used_for_practice === true || it.used_for_practice === "true")
+    ? "✓ " + (esc(it.practice_date) || "done") : "not yet";
+  d.innerHTML = `<div class="det">
+    <div>
+      <div class="dlabel">${L("Summary", "摘要")}</div>
+      <div class="dsum">${dual(esc(it.summary_zh) || "（無摘要）", esc(it.summary_en) || "(no summary)")}</div>
+      ${it.key_issue ? `<div data-lang="zh"><div class="dlabel">Key Issue // 關鍵議題</div><div class="dki">${esc(it.key_issue)}</div></div>` : ""}
+      <div class="dlabel">${L("Source URL", "消息來源")}</div>
+      ${it.source_url
+        ? `<div class="durl"><a href="${esc(it.source_url)}" target="_blank" rel="noopener">${esc(it.source_url)} ↗</a></div>`
+        : `<div class="durl">–</div>`}
+      <div class="dmeta" style="margin-top:4px">${dual(esc(sourceLabelZh(it)), esc(it.source) + (it.paywall ? " (paywall)" : ""))}</div>
+    </div>
+    <div>
+      <div class="dlabel">Meta</div>
+      <div class="meta-grid">
+        <span class="k">EN Title</span><span class="v">${esc(it.signal_title_en) || "–"}</span>
+        <span class="k">Topic</span><span class="v">${esc(it.topic) || "–"}</span>
+        <span class="k">Sub-cat</span><span class="v">${esc(it.sub_category) || "–"}</span>
+        <span class="k">Relevance</span><span class="v ${it.business_relevance === "high" ? "rel-high" : ""}">${esc(it.business_relevance) || "–"}</span>
+        <span class="k">Practice</span><span class="v">${practice}</span>
+        <span class="k">Note</span><span class="v">${esc(it.note)}</span>
+      </div>
+      <div data-lang="zh">
+        <div class="dlabel">Stakeholders // 利害關係方</div>
+        <div>${chips(it.stakeholders)}</div>
+        <div class="dlabel">Tags // 標籤</div>
+        <div>${chips(it.tags)}</div>
+      </div>
+    </div>
+  </div>`;
   return d;
 }
 
