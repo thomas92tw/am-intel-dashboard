@@ -258,7 +258,6 @@ footer { margin-top: 58px; padding-top: 28px; border-top: 1px solid var(--line);
 
     <footer>
       &copy; Thomas Tseng 2026
-      <div class="foot-note muted" id="footer-meta"></div>
     </footer>
   </main>
   <div id="tip" role="status" aria-hidden="true"></div>
@@ -708,10 +707,6 @@ function boot(d) {
     $("st-cats").textContent = cats.length;
     $("st-regions").textContent = regs.length;
     $("st-paywall").textContent = d.items.filter(i => i.paywall).length;
-    $("footer-meta").innerHTML = dual(
-      `精選編纂：Thomas Tseng · 資料來源：AM-intel 每日情報選輯 · 每日精選後自動更新`,
-      `Curated by Thomas Tseng · Source: the AM-intel daily intelligence collection · updated with each day's selection`
-    );
     render();
 }
 /* 載入順序：1) 內嵌 dataset（vault 離線版，builder 注入）2) fetch data.json（Pages 版） */
