@@ -15,7 +15,8 @@
     },
     "gate3_audience_narrative_review": {
       "status": "PASS",
-      "evidence": "index.html captions are computed at runtime from live data (bilingual zh/en); they describe visible pattern + interaction only; caveats section states selection bias (curated backfill, non-contiguous days) and title-fallback limitation; no causal/advisory claims"
+      "evidence": "index.html captions are computed at runtime from live data (bilingual zh/en); they describe visible pattern + interaction only; caveats section states selection bias (curated backfill, non-contiguous days) and title-fallback limitation; no causal/advisory claims",
+      "notes": "2026-07-23: on-page Caveats section removed at owner's direction for public presentation; limitations remain documented in reports/ and this file; interaction semantics stay visible in chart captions"
     }
   },
   "verification": {
