@@ -51,23 +51,29 @@ a:hover { text-decoration-color: var(--text); }
 /* ---------- Charts ---------- */
 .chart-block { margin: 20px 0 26px; }
 .chart-caption { color: var(--muted); font-family: var(--font-mono); font-size: 11px; line-height: 1.55; margin-top: 8px; }
-/* daily columns */
-.cols { display: flex; align-items: flex-end; gap: 3px; height: 120px; border-bottom: 1px solid var(--line); }
-.col { flex: 1 1 0; background: var(--accent); cursor: pointer; border: 0; padding: 0; min-height: 0; transition: height 560ms cubic-bezier(0.2, 0.8, 0.2, 1), background 180ms ease; }
-.col:hover { background: #26a99d; }
-.col.active { background: var(--text); }
-.col:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
-.cols-x { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 10px; color: var(--muted); margin-top: 4px; }
-/* bar rows */
-.crow { display: grid; grid-template-columns: 118px 1fr 34px; align-items: center; gap: 10px; padding: 5px 0; cursor: pointer; border: 0; background: none; width: 100%; text-align: left; font-family: inherit; }
-.crow:hover .crow-label { color: var(--text); }
-.crow:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
-.crow-label { font-size: 13px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.crow.active .crow-label { color: var(--text); font-weight: 700; }
-.crow-track { display: block; height: 10px; background: var(--accent-soft); }
-.crow-fill { display: block; height: 100%; background: var(--accent); transition: width 640ms cubic-bezier(0.2, 0.8, 0.2, 1); }
-.crow.active .crow-fill { background: var(--text); }
-.crow-count { font-family: var(--font-mono); font-size: 11px; color: var(--muted); text-align: right; }
+/* calendar heatmap（週 × 星期格網） */
+.cal-body { display: flex; gap: 6px; }
+#cal-wd { display: grid; grid-template-rows: repeat(7, 1fr); font-family: var(--font-mono); font-size: 9px; color: var(--muted); text-align: right; row-gap: 3px; width: 16px; }
+#cal-wd span { line-height: 1; align-self: center; }
+#chart-cal { display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, 1fr); gap: 3px; flex: 1; }
+.cal-cell { aspect-ratio: 1; width: 100%; border: 0; padding: 0; cursor: pointer; background: var(--accent-soft); transition: background 320ms ease, transform 120ms ease; }
+.cal-cell:hover { transform: scale(1.18); }
+.cal-cell:focus-visible { outline: 2px solid var(--text); outline-offset: 1px; }
+.cal-cell.active { outline: 2px solid var(--text); }
+.cal-cell.void { visibility: hidden; }
+#cal-months { display: grid; grid-auto-flow: column; gap: 3px; margin-left: 22px; font-family: var(--font-mono); font-size: 9px; color: var(--muted); margin-bottom: 4px; }
+#cal-months span { overflow: visible; white-space: nowrap; }
+/* matrix heatmap（分類 × 區域） */
+#chart-matrix { display: grid; gap: 3px; }
+.mx-h, .mx-rl { border: 0; background: none; padding: 2px 1px; cursor: pointer; font-family: var(--font-mono); color: var(--muted); }
+.mx-h { font-size: 9px; text-align: center; letter-spacing: 0.02em; }
+.mx-rl { font-size: 11px; text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mx-h:hover, .mx-rl:hover { color: var(--text); }
+.mx-h.active, .mx-rl.active { color: var(--text); font-weight: 700; }
+.mx-h:focus-visible, .mx-rl:focus-visible, .mx-cell:focus-visible { outline: 2px solid var(--text); outline-offset: 1px; }
+.mx-cell { border: 0; padding: 0; min-height: 30px; cursor: pointer; font-family: var(--font-mono); font-size: 10px; display: flex; align-items: center; justify-content: center; transition: background 320ms ease; }
+.mx-cell.active { outline: 2px solid var(--text); }
+.mx-corner { pointer-events: none; }
 /* tooltip */
 #tip { position: fixed; z-index: 50; pointer-events: none; background: var(--text); color: #fff; font-family: var(--font-mono); font-size: 11px; line-height: 1.5; padding: 6px 9px; max-width: 260px; display: none; }
 
@@ -213,23 +219,21 @@ footer { margin-top: 58px; padding-top: 28px; border-top: 1px solid var(--line);
     <section>
       <h2><span data-lang="zh">互動圖表</span><span data-lang="en">Interactive Charts</span></h2>
 
-      <h3><span data-lang="zh">每日回填量</span><span data-lang="en">Daily Intake</span></h3>
+      <h3><span data-lang="zh">每日回填熱力圖</span><span data-lang="en">Daily Intake Calendar</span></h3>
       <div class="chart-block">
-        <div class="cols" id="chart-daily" role="group" aria-label="Daily intake column chart"></div>
-        <div class="cols-x"><span id="daily-x0"></span><span id="daily-x1"></span></div>
-        <p class="chart-caption" id="cap-daily"></p>
+        <div id="cal-months" aria-hidden="true"></div>
+        <div class="cal-body">
+          <div id="cal-wd" aria-hidden="true"></div>
+          <div id="chart-cal" role="group" aria-label="Daily intake calendar heatmap"></div>
+        </div>
+        <p class="chart-caption" id="cap-cal"></p>
       </div>
 
-      <h3><span data-lang="zh">分類分佈</span><span data-lang="en">Category Distribution</span></h3>
+      <h3><span data-lang="zh">分類 × 區域熱力圖</span><span data-lang="en">Category × Region Matrix</span></h3>
       <div class="chart-block">
-        <div id="chart-category" role="group" aria-label="Category bar chart"></div>
-        <p class="chart-caption" id="cap-category"></p>
-      </div>
-
-      <h3><span data-lang="zh">區域分佈</span><span data-lang="en">Region Distribution</span></h3>
-      <div class="chart-block">
-        <div id="chart-region" role="group" aria-label="Region bar chart"></div>
-        <p class="chart-caption" id="cap-region"></p>
+        <div id="chart-matrix" role="group" aria-label="Category by region matrix heatmap"></div>
+        <p class="chart-caption" id="cap-matrix"></p>
+        <p class="chart-caption" id="mx-legend"></p>
       </div>
     </section>
 
@@ -258,11 +262,11 @@ footer { margin-top: 58px; padding-top: 28px; border-top: 1px solid var(--line);
       <h2><span data-lang="zh">限制</span><span data-lang="en">Caveats</span></h2>
       <ul data-lang="zh">
         <li>本頁資料為 daily-intel 每日精選回填，非全量新聞；每日回填日不連續。</li>
-        <li>分佈圖隨查詢條件即時變動；為保留切換脈絡，各圖排除「自身維度」的篩選（例：分類圖回應關鍵字＋區域＋日期），選中項以高亮表示。列順序固定依整體數量排列。</li>
+        <li>熱力圖隨查詢條件即時變動，顏色深淺 = 則數；為保留切換脈絡，月曆圖排除日期自身、分類×區域矩陣排除該兩維自身的篩選，選中項以外框高亮。近白格 = 該組合為零。</li>
       </ul>
       <ul data-lang="en">
         <li>Items are daily-intel curated backfills, not exhaustive news coverage; backfill days are non-contiguous.</li>
-        <li>Distribution charts update live with the query; each chart excludes its own dimension's filter (e.g. the category chart responds to keyword + region + date) so switching stays possible, with the active selection highlighted. Row order is fixed by overall count.</li>
+        <li>Heatmaps update live with the query; color intensity = item count. The calendar excludes the date filter and the category × region matrix excludes those two dimensions' own filters so switching stays possible; the active selection is outlined. Near-white cells are true zeros.</li>
       </ul>
     </section>
 
@@ -276,7 +280,6 @@ footer { margin-top: 58px; padding-top: 28px; border-top: 1px solid var(--line);
 <script>
 const EXPORT_CAP = 100;
 const PAGE_SIZE = 40;
-const TREND_DAYS = 20;
 let DATA = { items: [] };
 let matches = [];
 let shown = 0;
@@ -339,125 +342,174 @@ function showTip(e, html) {
 }
 function hideTip() { tip.style.display = "none"; }
 
-/* ---------- Charts: build once, cross-filter live update ----------
-   各圖排除「自身維度」的篩選條件（faceted exploration 語義）：
-   分類圖回應 關鍵字+區域+日期；區域圖回應 關鍵字+分類+日期；
-   每日圖回應 關鍵字+區域+分類。選中項以 .active 高亮。 */
-let DAILY_KEYS = [], CAT_KEYS = [], REGION_KEYS = [];
+/* ---------- Charts: heatmaps, build once + cross-filter live update ----------
+   月曆熱力圖排除「日期」條件；分類×區域矩陣排除「分類+區域」條件。
+   深淺 = 則數強度；點擊 = 篩選；選中以外框高亮。 */
+let CAT_KEYS = [], REGION_KEYS = [], CAL_DATES = [], chartsBuilt = false;
+const REG_ABBR = { "East Asia": "EA", "Americas": "AM", "Indo-Pacific": "IP", "Europe": "EU", "United States": "US", "Southeast Asia": "SEA", "Global": "GL", "China": "CN", "Northeast Asia": "NEA" };
+const abbr = (r) => REG_ABBR[r] || r.slice(0, 3).toUpperCase();
 
 function passesExcept(it, f, skip) {
   return (!f.q || it._s.includes(f.q)) &&
-    (skip === "region"   || !f.region   || it.region === f.region) &&
-    (skip === "category" || !f.category || it.category === f.category) &&
-    (skip === "date"     || ((!f.from || it.date >= f.from) && (!f.to || it.date <= f.to)));
+    (skip.includes("region")   || !f.region   || it.region === f.region) &&
+    (skip.includes("category") || !f.category || it.category === f.category) &&
+    (skip.includes("date")     || ((!f.from || it.date >= f.from) && (!f.to || it.date <= f.to)));
 }
 
+/* 強度色：深薄荷 #0F7568 疊加透明度；零值近白（真零不誇大） */
+const heatBg = (n, max) => n === 0
+  ? "rgba(15,117,104,0.05)"
+  : `rgba(15,117,104,${(0.14 + 0.86 * n / max).toFixed(2)})`;
+const heatFg = (n, max) => (n > 0 && n / max > 0.45) ? "#fff" : "#1a1a1a";
+
+const ymd = (dt) => `${dt.getFullYear()}-${String(dt.getMonth() + 1).padStart(2, "0")}-${String(dt.getDate()).padStart(2, "0")}`;
+const parseD = (s) => new Date(+s.slice(0, 4), +s.slice(5, 7) - 1, +s.slice(8, 10), 12);
+
 function buildCharts() {
-  DAILY_KEYS = countBy(DATA.items, "date").map(p => p[0]).sort().slice(-TREND_DAYS);
   CAT_KEYS = countBy(DATA.items, "category").map(p => p[0]);
   REGION_KEYS = countBy(DATA.items, "region").map(p => p[0]);
+  const dates = DATA.items.map(i => i.date).sort();
+  const minD = parseD(dates[0]), maxD = parseD(dates[dates.length - 1]);
+  const start = new Date(minD); start.setDate(start.getDate() - ((start.getDay() + 6) % 7)); /* 對齊週一 */
 
-  const daily = $("chart-daily");
-  let ci = 0;
-  for (const d of DAILY_KEYS) {
-    const b = document.createElement("button");
-    b.className = "col"; b.type = "button";
-    b.style.height = "0%";
-    b.style.transitionDelay = (ci++ * 22) + "ms";
-    b.dataset.key = d;
-    b.addEventListener("mousemove", (e) => showTip(e, b.dataset.tt));
-    b.addEventListener("mouseleave", hideTip);
-    b.addEventListener("click", () => {
-      const on = $("f-from").value === d && $("f-to").value === d;
-      $("f-from").value = on ? "" : d;
-      $("f-to").value = on ? "" : d;
-      render();
-    });
-    daily.appendChild(b);
+  /* --- 月曆 --- */
+  const cal = $("chart-cal"), months = $("cal-months");
+  const wd = $("cal-wd");
+  ["一", "", "三", "", "五", "", "日"].forEach((zh, i) => {
+    const sp = document.createElement("span");
+    sp.innerHTML = dual(zh, ["M", "", "W", "", "F", "", "S"][i]);
+    wd.appendChild(sp);
+  });
+  let weeks = 0, lastMonth = -1;
+  for (let mon = new Date(start); mon <= maxD; mon.setDate(mon.getDate() + 7)) {
+    weeks++;
+    const mLabel = document.createElement("span");
+    if (mon.getMonth() !== lastMonth) {
+      lastMonth = mon.getMonth();
+      mLabel.innerHTML = dual(`${lastMonth + 1}月`, mon.toLocaleString("en", { month: "short" }));
+    }
+    months.appendChild(mLabel);
+    for (let r = 0; r < 7; r++) {
+      const day = new Date(mon); day.setDate(day.getDate() + r);
+      const key = ymd(day);
+      const inRange = day >= minD && day <= maxD;
+      const c = document.createElement(inRange ? "button" : "div");
+      c.className = "cal-cell" + (inRange ? "" : " void");
+      if (inRange) {
+        c.type = "button";
+        c.dataset.key = key;
+        CAL_DATES.push(key);
+        c.addEventListener("mousemove", (e) => showTip(e, c.dataset.tt));
+        c.addEventListener("mouseleave", hideTip);
+        c.addEventListener("click", () => {
+          const on = $("f-from").value === key && $("f-to").value === key;
+          $("f-from").value = on ? "" : key;
+          $("f-to").value = on ? "" : key;
+          render();
+        });
+      }
+      cal.appendChild(c);
+    }
   }
-  $("daily-x0").textContent = DAILY_KEYS[0]?.slice(5) || "";
-  $("daily-x1").textContent = DAILY_KEYS[DAILY_KEYS.length - 1]?.slice(5) || "";
+  cal.style.gridTemplateColumns = `repeat(${weeks}, 1fr)`;
+  months.style.gridTemplateColumns = `repeat(${weeks}, 1fr)`;
 
-  const mkRows = (elId, keys, filterId) => {
-    const el = $(elId);
-    let bi = 0;
-    for (const label of keys) {
-      const b = document.createElement("button");
-      b.type = "button"; b.className = "crow";
-      b.dataset.key = label;
-      b.innerHTML =
-        `<span class="crow-label">${esc(label)}</span>` +
-        `<span class="crow-track"><span class="crow-fill" style="width:0%;transition-delay:${bi++ * 45}ms"></span></span>` +
-        `<span class="crow-count">0</span>`;
-      b.addEventListener("mousemove", (e) => showTip(e, b.dataset.tt));
-      b.addEventListener("mouseleave", hideTip);
-      b.addEventListener("click", () => {
-        $(filterId).value = ($(filterId).value === label) ? "" : label;
+  /* --- 矩陣 --- */
+  const mx = $("chart-matrix");
+  mx.style.gridTemplateColumns = `88px repeat(${REGION_KEYS.length}, 1fr)`;
+  const corner = document.createElement("div");
+  corner.className = "mx-corner";
+  mx.appendChild(corner);
+  for (const reg of REGION_KEYS) {
+    const h = document.createElement("button");
+    h.type = "button"; h.className = "mx-h";
+    h.textContent = abbr(reg); h.title = reg; h.dataset.reg = reg;
+    h.addEventListener("click", () => { $("f-region").value = ($("f-region").value === reg) ? "" : reg; render(); });
+    mx.appendChild(h);
+  }
+  for (const cat of CAT_KEYS) {
+    const rl = document.createElement("button");
+    rl.type = "button"; rl.className = "mx-rl";
+    rl.textContent = cat; rl.title = cat; rl.dataset.cat = cat;
+    rl.addEventListener("click", () => { $("f-category").value = ($("f-category").value === cat) ? "" : cat; render(); });
+    mx.appendChild(rl);
+    for (const reg of REGION_KEYS) {
+      const c = document.createElement("button");
+      c.type = "button"; c.className = "mx-cell";
+      c.dataset.cat = cat; c.dataset.reg = reg;
+      c.addEventListener("mousemove", (e) => showTip(e, c.dataset.tt));
+      c.addEventListener("mouseleave", hideTip);
+      c.addEventListener("click", () => {
+        const both = $("f-category").value === cat && $("f-region").value === reg;
+        $("f-category").value = both ? "" : cat;
+        $("f-region").value = both ? "" : reg;
         render();
       });
-      el.appendChild(b);
+      mx.appendChild(c);
     }
-  };
-  mkRows("chart-category", CAT_KEYS, "f-category");
-  mkRows("chart-region", REGION_KEYS, "f-region");
+  }
+  $("mx-legend").textContent = REGION_KEYS.map(r => `${abbr(r)}=${r}`).join(" · ");
 }
 
 function updateCharts() {
   const f = currentFilter();
   const filtered = f.q || f.region || f.category || f.from || f.to;
 
-  /* daily（排除日期自身） */
-  const dBase = DATA.items.filter(it => passesExcept(it, f, "date"));
-  const dCount = new Map(DAILY_KEYS.map(k => [k, 0]));
-  for (const it of dBase) if (dCount.has(it.date)) dCount.set(it.date, dCount.get(it.date) + 1);
-  const dMax = Math.max(...dCount.values(), 1);
-  $("chart-daily").querySelectorAll(".col").forEach(b => {
-    const d = b.dataset.key, n = dCount.get(d);
-    b.style.height = (n / dMax * 100).toFixed(1) + "%";
-    b.classList.toggle("active", f.from === d && f.to === d);
-    b.dataset.tt = `${d}<br>${n} 則 / items`;
-    b.setAttribute("aria-label", `${d}: ${n}`);
+  /* 月曆（排除日期自身） */
+  const cBase = DATA.items.filter(it => passesExcept(it, f, "date"));
+  const cCount = new Map(CAL_DATES.map(k => [k, 0]));
+  for (const it of cBase) if (cCount.has(it.date)) cCount.set(it.date, cCount.get(it.date) + 1);
+  const cMax = Math.max(...cCount.values(), 1);
+  let peakDate = "", peakN = 0;
+  for (const [k, n] of cCount) if (n > peakN) { peakN = n; peakDate = k; }
+  $("chart-cal").querySelectorAll(".cal-cell:not(.void)").forEach(c => {
+    const d = c.dataset.key, n = cCount.get(d);
+    c.style.background = heatBg(n, cMax);
+    c.classList.toggle("active", f.from === d && f.to === d);
+    c.dataset.tt = `${d}<br>${n} 則 / items`;
+    c.setAttribute("aria-label", `${d}: ${n}`);
   });
-  const dTotal = [...dCount.values()].reduce((s, n) => s + n, 0);
-  $("cap-daily").innerHTML = dual(
-    filtered
-      ? `目前條件下，近 ${DAILY_KEYS.length} 個活躍日共 ${dTotal} 則，單日最高 ${dMax} 則。點擊柱狀可篩選該日。`
-      : `近 ${DAILY_KEYS.length} 個活躍回填日共 ${dTotal} 則，單日最高 ${dMax} 則。日期不連續（僅顯示有回填的日子）；點擊柱狀可篩選該日。`,
-    filtered
-      ? `Under the current query: ${dTotal} items across ${DAILY_KEYS.length} active days, peak ${dMax}/day. Click a column to filter that day.`
-      : `${dTotal} items across the last ${DAILY_KEYS.length} active backfill days; peak ${dMax}/day. Dates are non-contiguous; click a column to filter that day.`
-  );
+  const cTotal = [...cCount.values()].reduce((s, n) => s + n, 0);
+  $("cap-cal").innerHTML = cTotal === 0
+    ? dual("目前條件下無資料。", "No records under the current query.")
+    : dual(
+        `${filtered ? "目前條件下" : "全期間"}共 ${cTotal} 則；顏色深淺 = 當日則數，最高 ${peakN} 則（${peakDate.slice(5)}）。近白格 = 該日無回填。點格可篩選該日。`,
+        `${cTotal} items ${filtered ? "under the current query" : "in total"}; darker = more items, peak ${peakN} (${peakDate.slice(5)}). Near-white = no backfill that day. Click a cell to filter.`
+      );
 
-  /* bar charts（各排除自身維度） */
-  const updBars = (elId, capId, keys, field, skip, filterId, zhName, enName) => {
-    const base = DATA.items.filter(it => passesExcept(it, f, skip));
-    const count = new Map(keys.map(k => [k, 0]));
-    for (const it of base) if (count.has(it[field])) count.set(it[field], count.get(it[field]) + 1);
-    const max = Math.max(...count.values(), 1);
-    const total = base.length || 1;
-    let top = keys[0], topN = -1;
-    for (const k of keys) if (count.get(k) > topN) { top = k; topN = count.get(k); }
-    $(elId).querySelectorAll(".crow").forEach(b => {
-      const k = b.dataset.key, n = count.get(k);
-      b.querySelector(".crow-fill").style.width = (n / max * 100).toFixed(1) + "%";
-      b.querySelector(".crow-count").textContent = n;
-      b.classList.toggle("active", $(filterId).value === k);
-      b.dataset.tt = `${esc(k)}<br>${n} 則 / items · ${(n / total * 100).toFixed(1)}%`;
-      b.setAttribute("aria-label", `${k}: ${n}`);
-    });
-    $(capId).innerHTML = base.length === 0
-      ? dual("目前條件下無資料。", "No records under the current query.")
-      : dual(
-          `${filtered ? `目前條件 ${base.length} 則中` : `${keys.length} 個${zhName}中`} ${top} 最多（${topN} 則、${(topN / total * 100).toFixed(0)}%）。點擊列可篩選。`,
-          `${top} leads ${filtered ? `the ${base.length} matching items` : `${keys.length} ${enName}`} (${topN} items, ${(topN / total * 100).toFixed(0)}%). Click a bar to filter.`
-        );
-  };
-  updBars("chart-category", "cap-category", CAT_KEYS, "category", "category", "f-category", "分類", "categories");
-  updBars("chart-region", "cap-region", REGION_KEYS, "region", "region", "f-region", "區域", "regions");
+  /* 矩陣（排除分類+區域自身） */
+  const mBase = DATA.items.filter(it => passesExcept(it, f, "category+region"));
+  const mCount = new Map();
+  for (const it of mBase) {
+    const k = it.category + "|" + it.region;
+    mCount.set(k, (mCount.get(k) || 0) + 1);
+  }
+  const mMax = Math.max(...mCount.values(), 1);
+  let topK = "", topN = 0;
+  for (const [k, n] of mCount) if (n > topN) { topN = n; topK = k; }
+  $("chart-matrix").querySelectorAll(".mx-cell").forEach(c => {
+    const n = mCount.get(c.dataset.cat + "|" + c.dataset.reg) || 0;
+    c.style.background = heatBg(n, mMax);
+    c.style.color = heatFg(n, mMax);
+    c.textContent = n > 0 ? n : "";
+    c.classList.toggle("active", f.category === c.dataset.cat && f.region === c.dataset.reg);
+    c.dataset.tt = `${esc(c.dataset.cat)} × ${esc(c.dataset.reg)}<br>${n} 則 / items`;
+    c.setAttribute("aria-label", `${c.dataset.cat} × ${c.dataset.reg}: ${n}`);
+  });
+  $("chart-matrix").querySelectorAll(".mx-rl").forEach(b => b.classList.toggle("active", f.category === b.dataset.cat));
+  $("chart-matrix").querySelectorAll(".mx-h").forEach(b => b.classList.toggle("active", f.region === b.dataset.reg));
+  const [tCat, tReg] = topK.split("|");
+  $("cap-matrix").innerHTML = mBase.length === 0
+    ? dual("目前條件下無資料。", "No records under the current query.")
+    : dual(
+        `${filtered ? `目前條件 ${mBase.length} 則中` : "全庫"}交叉最高：${tCat} × ${tReg}（${topN} 則）。點格同時篩選分類與區域；點列 / 欄標題可單獨篩選。`,
+        `Hottest cell ${filtered ? `among the ${mBase.length} matching items` : "overall"}: ${tCat} × ${tReg} (${topN}). Click a cell to filter both dimensions; click a row / column header to filter one.`
+      );
 }
 
 function renderCharts() {
-  if (!DAILY_KEYS.length) {
+  if (!chartsBuilt) {
+    chartsBuilt = true;
     buildCharts();
     requestAnimationFrame(() => requestAnimationFrame(updateCharts));
     return;

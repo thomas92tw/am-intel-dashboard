@@ -8,57 +8,47 @@
   },
   "charts": [
     {
-      "id": "daily-intake",
-      "shape": "time-series",
-      "type": "column",
+      "id": "daily-intake-calendar",
+      "shape": "time-series intensity",
+      "type": "calendar heatmap (weeks x weekday grid, GitHub-contribution style)",
+      "replaced": "daily-intake column chart (2026-07-23) — calendar communicates non-contiguous backfill days more honestly: a near-white cell IS the absence",
       "encoding": {
-        "x": { "field": "date", "note": "last 20 ACTIVE days only; non-contiguous dates, stated in caption" },
-        "y": { "field": "count(*) per date", "scale": { "type": "linear", "domainMin": 0, "proportional": true } }
+        "x": "ISO week (Monday-aligned), full range from first to latest backfill date",
+        "y": "weekday (Mon top)",
+        "color": {
+          "scale": "linear opacity of deep mint #0F7568 over white; alpha 0.14 + 0.86 * n/max; true zero = 0.05 near-white"
+        }
       },
-      "sort": "date ascending",
       "interactions": [
-        "hover/focus tooltip: date + count",
-        "click/Enter: toggle date filter (from = to = clicked day)",
-        "keyboard: native <button> per column, tab-focusable"
+        "hover/focus tooltip date + count",
+        "click/Enter toggles single-day date filter",
+        "native <button> cells, keyboard focusable"
       ],
-      "zero_negative_policy": "counts are >= 1 by construction (only active days plotted); absence of a date column means no backfill that day, stated in caption"
+      "cross_filter": "excludes the date filter; responds to keyword + region + category"
     },
     {
-      "id": "category-distribution",
-      "shape": "category comparison",
-      "type": "horizontal bar",
+      "id": "category-region-matrix",
+      "shape": "matrix comparison (two categorical dimensions x count)",
+      "type": "matrix heatmap",
+      "replaced": "the two 1D horizontal bar charts (category, region) — their cross-tab is the native heatmap case; 1D distributions alone were rejected for heatmap (a single color strip carries less than a bar)",
       "encoding": {
-        "y": { "field": "category" },
-        "x": { "field": "count(*) per category", "scale": { "type": "linear", "domainMin": 0, "proportional": true, "max": "largest category" } }
+        "rows": "category (fixed order by overall count)",
+        "columns": "region (abbreviated headers EA/AM/IP/EU/US/SEA/GL/CN/NEA, legend below, full name in tooltip/title)",
+        "color": "same mint intensity scale; count shown as text in non-zero cells (dark text on light cells, white on dark)"
       },
-      "sort": "count descending",
       "interactions": [
-        "hover/focus tooltip: category + count + share %",
-        "click/Enter: toggle category filter (syncs select + highlight)",
-        "keyboard: native <button> per bar"
-      ]
-    },
-    {
-      "id": "region-distribution",
-      "shape": "category comparison",
-      "type": "horizontal bar",
-      "encoding": {
-        "y": { "field": "region" },
-        "x": { "field": "count(*) per region", "scale": { "type": "linear", "domainMin": 0, "proportional": true, "max": "largest region" } }
-      },
-      "sort": "count descending",
-      "interactions": [
-        "hover/focus tooltip: region + count + share %",
-        "click/Enter: toggle region filter (syncs select + highlight)",
-        "keyboard: native <button> per bar"
+        "hover/focus tooltip category x region + count",
+        "cell click toggles BOTH category and region filters",
+        "row-label click toggles category only; column-header click toggles region only",
+        "active cell/row/column outlined or bolded"
       ],
-      "map_rejected_reason": "region values mix granularities (continent-scale regions alongside United States / China); a map would imply unsupported geographic precision"
+      "cross_filter": "excludes category + region filters; responds to keyword + date"
     }
   ],
   "cross_filter": {
-    "semantics": "charts update live with the query (2026-07-23); each chart excludes ITS OWN dimension's filter so switching remains possible — category chart responds to keyword+region+date, region chart to keyword+category+date, daily chart to keyword+region+category; active selection shown as highlight, not as a collapsed single-bar chart",
-    "row_order": "fixed by overall (whole-database) count so bars animate in place instead of reordering",
-    "zero_values": "true zero renders zero-length fill with count 0 visible as text; empty result set states '目前條件下無資料' in the caption",
+    "semantics": "heatmaps update live with the query (2026-07-23 heatmap redesign); the calendar excludes the date filter; the category x region matrix excludes those two dimensions' own filters; active selections shown as outline/bold, never as a collapsed chart",
+    "row_order": "matrix rows/columns fixed by overall count so cells change intensity in place",
+    "zero_values": "true zero = near-white cell with no number (calendar: absence of backfill; matrix: empty cross-tab combination); empty result set stated in caption",
     "scale": "per-chart linear max over the chart's current base subset"
   },
   "captions": "computed at runtime from live data (bilingual zh/en) so numbers never go stale after daily refresh; under an active query captions restate the subset size; captions describe visible pattern only, no causal or advisory claims",
