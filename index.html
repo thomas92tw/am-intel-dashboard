@@ -51,18 +51,16 @@ a:hover { text-decoration-color: var(--text); }
 /* ---------- Charts ---------- */
 .chart-block { margin: 20px 0 26px; }
 .chart-caption { color: var(--muted); font-family: var(--font-mono); font-size: 11px; line-height: 1.55; margin-top: 8px; }
-/* calendar heatmap（週 × 星期格網） */
-.cal-body { display: flex; gap: 6px; }
-#cal-wd { display: grid; grid-template-rows: repeat(7, 1fr); font-family: var(--font-mono); font-size: 9px; color: var(--muted); text-align: right; row-gap: 3px; width: 16px; }
-#cal-wd span { line-height: 1; align-self: center; }
-#chart-cal { display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, 1fr); gap: 3px; flex: 1; }
-.cal-cell { aspect-ratio: 1; width: 100%; border: 0; padding: 0; cursor: pointer; background: var(--accent-soft); transition: background 320ms ease, transform 120ms ease; }
-.cal-cell:hover { transform: scale(1.18); }
-.cal-cell:focus-visible { outline: 2px solid var(--text); outline-offset: 1px; }
-.cal-cell.active { outline: 2px solid var(--text); }
-.cal-cell.void { visibility: hidden; }
-#cal-months { display: grid; grid-auto-flow: column; gap: 3px; margin-left: 22px; font-family: var(--font-mono); font-size: 9px; color: var(--muted); margin-bottom: 4px; }
-#cal-months span { overflow: visible; white-space: nowrap; }
+/* daily timeline（連續時間軸細柱；空日 = 真實缺口，仍可 hover） */
+#chart-tl { display: grid; gap: 1px; height: 110px; align-items: stretch; border-bottom: 1px solid var(--line); }
+.tl-slot { position: relative; border: 0; padding: 0; margin: 0; background: transparent; cursor: pointer; display: flex; align-items: flex-end; transition: background 150ms ease; }
+.tl-slot:hover { background: var(--accent-soft); }
+.tl-slot:focus-visible { outline: 2px solid var(--text); outline-offset: 1px; }
+.tl-bar { display: block; width: 100%; background: var(--accent); transition: height 560ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+.tl-slot.active { background: var(--accent-soft); }
+.tl-slot.active .tl-bar { background: var(--text); }
+#tl-x { display: grid; gap: 1px; font-family: var(--font-mono); font-size: 9px; color: var(--muted); margin-top: 4px; }
+#tl-x span { overflow: visible; white-space: nowrap; }
 /* matrix heatmap（分類 × 區域） */
 #chart-matrix { display: grid; gap: 3px; }
 .mx-h, .mx-rl { border: 0; background: none; padding: 2px 1px; cursor: pointer; font-family: var(--font-mono); color: var(--muted); }
@@ -219,13 +217,10 @@ footer { margin-top: 58px; padding-top: 28px; border-top: 1px solid var(--line);
     <section>
       <h2><span data-lang="zh">互動圖表</span><span data-lang="en">Interactive Charts</span></h2>
 
-      <h3><span data-lang="zh">每日回填熱力圖</span><span data-lang="en">Daily Intake Calendar</span></h3>
+      <h3><span data-lang="zh">每日回填時間軸</span><span data-lang="en">Daily Intake Timeline</span></h3>
       <div class="chart-block">
-        <div id="cal-months" aria-hidden="true"></div>
-        <div class="cal-body">
-          <div id="cal-wd" aria-hidden="true"></div>
-          <div id="chart-cal" role="group" aria-label="Daily intake calendar heatmap"></div>
-        </div>
+        <div id="chart-tl" role="group" aria-label="Daily intake timeline"></div>
+        <div id="tl-x" aria-hidden="true"></div>
         <p class="chart-caption" id="cap-cal"></p>
       </div>
 
@@ -262,11 +257,11 @@ footer { margin-top: 58px; padding-top: 28px; border-top: 1px solid var(--line);
       <h2><span data-lang="zh">限制</span><span data-lang="en">Caveats</span></h2>
       <ul data-lang="zh">
         <li>本頁資料為 daily-intel 每日精選回填，非全量新聞；每日回填日不連續。</li>
-        <li>熱力圖隨查詢條件即時變動，顏色深淺 = 則數；為保留切換脈絡，月曆圖排除日期自身、分類×區域矩陣排除該兩維自身的篩選，選中項以外框高亮。近白格 = 該組合為零。</li>
+        <li>熱力圖隨查詢條件即時變動，顏色深淺 = 則數；為保留切換脈絡，時間軸排除日期自身、分類×區域矩陣排除該兩維自身的篩選，選中項高亮。時間軸缺口與矩陣近白格 = 真零。</li>
       </ul>
       <ul data-lang="en">
         <li>Items are daily-intel curated backfills, not exhaustive news coverage; backfill days are non-contiguous.</li>
-        <li>Heatmaps update live with the query; color intensity = item count. The calendar excludes the date filter and the category × region matrix excludes those two dimensions' own filters so switching stays possible; the active selection is outlined. Near-white cells are true zeros.</li>
+        <li>Heatmaps update live with the query; color intensity = item count. The timeline excludes the date filter and the category × region matrix excludes those two dimensions' own filters so switching stays possible; the active selection is highlighted. Timeline gaps and near-white matrix cells are true zeros.</li>
       </ul>
     </section>
 
@@ -370,49 +365,34 @@ function buildCharts() {
   REGION_KEYS = countBy(DATA.items, "region").map(p => p[0]);
   const dates = DATA.items.map(i => i.date).sort();
   const minD = parseD(dates[0]), maxD = parseD(dates[dates.length - 1]);
-  const start = new Date(minD); start.setDate(start.getDate() - ((start.getDay() + 6) % 7)); /* 對齊週一 */
 
-  /* --- 月曆 --- */
-  const cal = $("chart-cal"), months = $("cal-months");
-  const wd = $("cal-wd");
-  ["一", "", "三", "", "五", "", "日"].forEach((zh, i) => {
-    const sp = document.createElement("span");
-    sp.innerHTML = dual(zh, ["M", "", "W", "", "F", "", "S"][i]);
-    wd.appendChild(sp);
-  });
-  let weeks = 0, lastMonth = -1;
-  for (let mon = new Date(start); mon <= maxD; mon.setDate(mon.getDate() + 7)) {
-    weeks++;
-    const mLabel = document.createElement("span");
-    if (mon.getMonth() !== lastMonth) {
-      lastMonth = mon.getMonth();
-      mLabel.innerHTML = dual(`${lastMonth + 1}月`, mon.toLocaleString("en", { month: "short" }));
+  /* --- 時間軸（連續日期，含空日缺口） --- */
+  const tl = $("chart-tl"), tlx = $("tl-x");
+  let lastMonth = -1;
+  for (let d = new Date(minD); d <= maxD; d.setDate(d.getDate() + 1)) {
+    const key = ymd(d);
+    CAL_DATES.push(key);
+    const slot = document.createElement("button");
+    slot.type = "button"; slot.className = "tl-slot"; slot.dataset.key = key;
+    slot.innerHTML = '<span class="tl-bar" style="height:0%"></span>';
+    slot.addEventListener("mousemove", (e) => showTip(e, slot.dataset.tt));
+    slot.addEventListener("mouseleave", hideTip);
+    slot.addEventListener("click", () => {
+      const on = $("f-from").value === key && $("f-to").value === key;
+      $("f-from").value = on ? "" : key;
+      $("f-to").value = on ? "" : key;
+      render();
+    });
+    tl.appendChild(slot);
+    const lbl = document.createElement("span");
+    if (d.getMonth() !== lastMonth) {
+      lastMonth = d.getMonth();
+      lbl.innerHTML = dual(`${lastMonth + 1}月`, d.toLocaleString("en", { month: "short" }));
     }
-    months.appendChild(mLabel);
-    for (let r = 0; r < 7; r++) {
-      const day = new Date(mon); day.setDate(day.getDate() + r);
-      const key = ymd(day);
-      const inRange = day >= minD && day <= maxD;
-      const c = document.createElement(inRange ? "button" : "div");
-      c.className = "cal-cell" + (inRange ? "" : " void");
-      if (inRange) {
-        c.type = "button";
-        c.dataset.key = key;
-        CAL_DATES.push(key);
-        c.addEventListener("mousemove", (e) => showTip(e, c.dataset.tt));
-        c.addEventListener("mouseleave", hideTip);
-        c.addEventListener("click", () => {
-          const on = $("f-from").value === key && $("f-to").value === key;
-          $("f-from").value = on ? "" : key;
-          $("f-to").value = on ? "" : key;
-          render();
-        });
-      }
-      cal.appendChild(c);
-    }
+    tlx.appendChild(lbl);
   }
-  cal.style.gridTemplateColumns = `repeat(${weeks}, 1fr)`;
-  months.style.gridTemplateColumns = `repeat(${weeks}, 1fr)`;
+  tl.style.gridTemplateColumns = `repeat(${CAL_DATES.length}, 1fr)`;
+  tlx.style.gridTemplateColumns = `repeat(${CAL_DATES.length}, 1fr)`;
 
   /* --- 矩陣 --- */
   const mx = $("chart-matrix");
@@ -455,26 +435,26 @@ function updateCharts() {
   const f = currentFilter();
   const filtered = f.q || f.region || f.category || f.from || f.to;
 
-  /* 月曆（排除日期自身） */
+  /* 時間軸（排除日期自身） */
   const cBase = DATA.items.filter(it => passesExcept(it, f, "date"));
   const cCount = new Map(CAL_DATES.map(k => [k, 0]));
   for (const it of cBase) if (cCount.has(it.date)) cCount.set(it.date, cCount.get(it.date) + 1);
   const cMax = Math.max(...cCount.values(), 1);
   let peakDate = "", peakN = 0;
   for (const [k, n] of cCount) if (n > peakN) { peakN = n; peakDate = k; }
-  $("chart-cal").querySelectorAll(".cal-cell:not(.void)").forEach(c => {
-    const d = c.dataset.key, n = cCount.get(d);
-    c.style.background = heatBg(n, cMax);
-    c.classList.toggle("active", f.from === d && f.to === d);
-    c.dataset.tt = `${d}<br>${n} 則 / items`;
-    c.setAttribute("aria-label", `${d}: ${n}`);
+  $("chart-tl").querySelectorAll(".tl-slot").forEach(slot => {
+    const d = slot.dataset.key, n = cCount.get(d);
+    slot.querySelector(".tl-bar").style.height = (n / cMax * 100).toFixed(1) + "%";
+    slot.classList.toggle("active", f.from === d && f.to === d);
+    slot.dataset.tt = `${d}<br>${n} 則 / items`;
+    slot.setAttribute("aria-label", `${d}: ${n}`);
   });
-  const cTotal = [...cCount.values()].reduce((s, n) => s + n, 0);
+  const cTotal = [...cCount.values()].reduce((s2, n) => s2 + n, 0);
   $("cap-cal").innerHTML = cTotal === 0
     ? dual("目前條件下無資料。", "No records under the current query.")
     : dual(
-        `${filtered ? "目前條件下" : "全期間"}共 ${cTotal} 則；顏色深淺 = 當日則數，最高 ${peakN} 則（${peakDate.slice(5)}）。近白格 = 該日無回填。點格可篩選該日。`,
-        `${cTotal} items ${filtered ? "under the current query" : "in total"}; darker = more items, peak ${peakN} (${peakDate.slice(5)}). Near-white = no backfill that day. Click a cell to filter.`
+        `${filtered ? "目前條件下" : "全期間"}共 ${cTotal} 則；柱高 = 當日則數，最高 ${peakN} 則（${peakDate.slice(5)}）。軸上缺口 = 該日無回填。點柱可篩選該日。`,
+        `${cTotal} items ${filtered ? "under the current query" : "in total"}; bar height = items per day, peak ${peakN} (${peakDate.slice(5)}). Gaps on the axis are days with no backfill. Click a bar to filter.`
       );
 
   /* 矩陣（排除分類+區域自身） */

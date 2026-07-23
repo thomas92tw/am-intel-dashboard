@@ -8,21 +8,26 @@
   },
   "charts": [
     {
-      "id": "daily-intake-calendar",
-      "shape": "time-series intensity",
-      "type": "calendar heatmap (weeks x weekday grid, GitHub-contribution style)",
-      "replaced": "daily-intake column chart (2026-07-23) — calendar communicates non-contiguous backfill days more honestly: a near-white cell IS the absence",
+      "id": "daily-intake-timeline",
+      "shape": "time-series",
+      "type": "thin-column chart on a CONTINUOUS date axis (every day from first to latest backfill gets a slot; zero days remain as visible gaps)",
+      "history": "column(active-days-only) -> calendar heatmap (2026-07-23 am) -> rejected after user review: at a 9-week span calendar cells become oversized color tiles and color encodes magnitude worse than length -> continuous-axis timeline (2026-07-23)",
       "encoding": {
-        "x": "ISO week (Monday-aligned), full range from first to latest backfill date",
-        "y": "weekday (Mon top)",
-        "color": {
-          "scale": "linear opacity of deep mint #0F7568 over white; alpha 0.14 + 0.86 * n/max; true zero = 0.05 near-white"
+        "x": "date, continuous, one slot per day (58 at review time)",
+        "y": {
+          "field": "count(*) per day",
+          "scale": {
+            "type": "linear",
+            "domainMin": 0,
+            "proportional": true
+          }
         }
       },
       "interactions": [
-        "hover/focus tooltip date + count",
+        "hover any slot (including zero days) shows date + count",
         "click/Enter toggles single-day date filter",
-        "native <button> cells, keyboard focusable"
+        "native <button> slots, keyboard focusable",
+        "month tick labels on the axis"
       ],
       "cross_filter": "excludes the date filter; responds to keyword + region + category"
     },
@@ -46,9 +51,9 @@
     }
   ],
   "cross_filter": {
-    "semantics": "heatmaps update live with the query (2026-07-23 heatmap redesign); the calendar excludes the date filter; the category x region matrix excludes those two dimensions' own filters; active selections shown as outline/bold, never as a collapsed chart",
+    "semantics": "charts update live with the query; the timeline excludes the date filter; the category x region matrix excludes those two dimensions' own filters; active selections highlighted, never collapsed",
     "row_order": "matrix rows/columns fixed by overall count so cells change intensity in place",
-    "zero_values": "true zero = near-white cell with no number (calendar: absence of backfill; matrix: empty cross-tab combination); empty result set stated in caption",
+    "zero_values": "timeline: zero day = empty slot on the continuous axis (still hoverable, reports 0); matrix: true zero = near-white cell with no number; empty result set stated in caption",
     "scale": "per-chart linear max over the chart's current base subset"
   },
   "captions": "computed at runtime from live data (bilingual zh/en) so numbers never go stale after daily refresh; under an active query captions restate the subset size; captions describe visible pattern only, no causal or advisory claims",
