@@ -258,11 +258,11 @@ footer { margin-top: 58px; padding-top: 28px; border-top: 1px solid var(--line);
       <h2><span data-lang="zh">限制</span><span data-lang="en">Caveats</span></h2>
       <ul data-lang="zh">
         <li>本頁資料為 daily-intel 每日精選回填，非全量新聞；每日回填日不連續。</li>
-        <li>分佈圖描述整體資料庫組成，不隨查詢條件變動；篩選狀態以高亮表示。</li>
+        <li>分佈圖隨查詢條件即時變動；為保留切換脈絡，各圖排除「自身維度」的篩選（例：分類圖回應關鍵字＋區域＋日期），選中項以高亮表示。列順序固定依整體數量排列。</li>
       </ul>
       <ul data-lang="en">
         <li>Items are daily-intel curated backfills, not exhaustive news coverage; backfill days are non-contiguous.</li>
-        <li>Distribution charts describe the whole database and do not change with the query; the active filter is highlighted.</li>
+        <li>Distribution charts update live with the query; each chart excludes its own dimension's filter (e.g. the category chart responds to keyword + region + date) so switching stays possible, with the active selection highlighted. Row order is fixed by overall count.</li>
       </ul>
     </section>
 
@@ -339,92 +339,130 @@ function showTip(e, html) {
 }
 function hideTip() { tip.style.display = "none"; }
 
-/* ---------- Charts ---------- */
-function renderDaily() {
-  const byDate = countBy(DATA.items, "date").sort((a, b) => a[0].localeCompare(b[0]));
-  const recent = byDate.slice(-TREND_DAYS);
-  const max = Math.max(...recent.map(d => d[1]), 1);
-  const el = $("chart-daily");
-  el.replaceChildren();
-  const f = currentFilter();
+/* ---------- Charts: build once, cross-filter live update ----------
+   各圖排除「自身維度」的篩選條件（faceted exploration 語義）：
+   分類圖回應 關鍵字+區域+日期；區域圖回應 關鍵字+分類+日期；
+   每日圖回應 關鍵字+區域+分類。選中項以 .active 高亮。 */
+let DAILY_KEYS = [], CAT_KEYS = [], REGION_KEYS = [];
+
+function passesExcept(it, f, skip) {
+  return (!f.q || it._s.includes(f.q)) &&
+    (skip === "region"   || !f.region   || it.region === f.region) &&
+    (skip === "category" || !f.category || it.category === f.category) &&
+    (skip === "date"     || ((!f.from || it.date >= f.from) && (!f.to || it.date <= f.to)));
+}
+
+function buildCharts() {
+  DAILY_KEYS = countBy(DATA.items, "date").map(p => p[0]).sort().slice(-TREND_DAYS);
+  CAT_KEYS = countBy(DATA.items, "category").map(p => p[0]);
+  REGION_KEYS = countBy(DATA.items, "region").map(p => p[0]);
+
+  const daily = $("chart-daily");
   let ci = 0;
-  for (const [d, n] of recent) {
+  for (const d of DAILY_KEYS) {
     const b = document.createElement("button");
-    b.className = "col" + (f.from === d && f.to === d ? " active" : "");
-    b.type = "button";
+    b.className = "col"; b.type = "button";
     b.style.height = "0%";
     b.style.transitionDelay = (ci++ * 22) + "ms";
-    b.dataset.h = (n / max * 100).toFixed(1) + "%";
-    b.setAttribute("aria-label", `${d}: ${n}`);
-    const tt = `${d}<br>${n} 則 / items`;
-    b.addEventListener("mousemove", (e) => showTip(e, tt));
+    b.dataset.key = d;
+    b.addEventListener("mousemove", (e) => showTip(e, b.dataset.tt));
     b.addEventListener("mouseleave", hideTip);
-    b.addEventListener("focus", () => { tip.innerHTML = tt; });
     b.addEventListener("click", () => {
       const on = $("f-from").value === d && $("f-to").value === d;
       $("f-from").value = on ? "" : d;
       $("f-to").value = on ? "" : d;
       render();
     });
-    el.appendChild(b);
+    daily.appendChild(b);
   }
-  requestAnimationFrame(() => requestAnimationFrame(() => {
-    el.querySelectorAll(".col").forEach(c => { c.style.height = c.dataset.h; });
-  }));
-  $("daily-x0").textContent = recent[0]?.[0].slice(5) || "";
-  $("daily-x1").textContent = recent[recent.length - 1]?.[0].slice(5) || "";
-  const total = recent.reduce((s, d) => s + d[1], 0);
-  $("cap-daily").innerHTML = dual(
-    `近 ${recent.length} 個活躍回填日共 ${total} 則，單日最高 ${max} 則。日期不連續（僅顯示有回填的日子）；點擊柱狀可篩選該日。`,
-    `${total} items across the last ${recent.length} active backfill days; peak ${max}/day. Dates are non-contiguous (only backfill days shown); click a column to filter that day.`
-  );
+  $("daily-x0").textContent = DAILY_KEYS[0]?.slice(5) || "";
+  $("daily-x1").textContent = DAILY_KEYS[DAILY_KEYS.length - 1]?.slice(5) || "";
+
+  const mkRows = (elId, keys, filterId) => {
+    const el = $(elId);
+    let bi = 0;
+    for (const label of keys) {
+      const b = document.createElement("button");
+      b.type = "button"; b.className = "crow";
+      b.dataset.key = label;
+      b.innerHTML =
+        `<span class="crow-label">${esc(label)}</span>` +
+        `<span class="crow-track"><span class="crow-fill" style="width:0%;transition-delay:${bi++ * 45}ms"></span></span>` +
+        `<span class="crow-count">0</span>`;
+      b.addEventListener("mousemove", (e) => showTip(e, b.dataset.tt));
+      b.addEventListener("mouseleave", hideTip);
+      b.addEventListener("click", () => {
+        $(filterId).value = ($(filterId).value === label) ? "" : label;
+        render();
+      });
+      el.appendChild(b);
+    }
+  };
+  mkRows("chart-category", CAT_KEYS, "f-category");
+  mkRows("chart-region", REGION_KEYS, "f-region");
 }
 
-function renderBars(elId, capId, pairs, filterId, capFn) {
-  const el = $(elId);
-  el.replaceChildren();
-  const max = pairs.length ? pairs[0][1] : 1;
-  const total = DATA.items.length || 1;
-  let bi = 0;
-  for (const [label, n] of pairs) {
-    const b = document.createElement("button");
-    b.type = "button";
-    b.className = "crow" + ($(filterId).value === label ? " active" : "");
-    b.setAttribute("aria-label", `${label}: ${n}`);
-    b.innerHTML =
-      `<span class="crow-label">${esc(label)}</span>` +
-      `<span class="crow-track"><span class="crow-fill" style="width:0%;transition-delay:${bi++ * 45}ms" data-w="${(n / max * 100).toFixed(1)}%"></span></span>` +
-      `<span class="crow-count">${n}</span>`;
-    const tt = `${esc(label)}<br>${n} 則 / items · ${(n / total * 100).toFixed(1)}%`;
-    b.addEventListener("mousemove", (e) => showTip(e, tt));
-    b.addEventListener("mouseleave", hideTip);
-    b.addEventListener("click", () => {
-      $(filterId).value = ($(filterId).value === label) ? "" : label;
-      render();
+function updateCharts() {
+  const f = currentFilter();
+  const filtered = f.q || f.region || f.category || f.from || f.to;
+
+  /* daily（排除日期自身） */
+  const dBase = DATA.items.filter(it => passesExcept(it, f, "date"));
+  const dCount = new Map(DAILY_KEYS.map(k => [k, 0]));
+  for (const it of dBase) if (dCount.has(it.date)) dCount.set(it.date, dCount.get(it.date) + 1);
+  const dMax = Math.max(...dCount.values(), 1);
+  $("chart-daily").querySelectorAll(".col").forEach(b => {
+    const d = b.dataset.key, n = dCount.get(d);
+    b.style.height = (n / dMax * 100).toFixed(1) + "%";
+    b.classList.toggle("active", f.from === d && f.to === d);
+    b.dataset.tt = `${d}<br>${n} 則 / items`;
+    b.setAttribute("aria-label", `${d}: ${n}`);
+  });
+  const dTotal = [...dCount.values()].reduce((s, n) => s + n, 0);
+  $("cap-daily").innerHTML = dual(
+    filtered
+      ? `目前條件下，近 ${DAILY_KEYS.length} 個活躍日共 ${dTotal} 則，單日最高 ${dMax} 則。點擊柱狀可篩選該日。`
+      : `近 ${DAILY_KEYS.length} 個活躍回填日共 ${dTotal} 則，單日最高 ${dMax} 則。日期不連續（僅顯示有回填的日子）；點擊柱狀可篩選該日。`,
+    filtered
+      ? `Under the current query: ${dTotal} items across ${DAILY_KEYS.length} active days, peak ${dMax}/day. Click a column to filter that day.`
+      : `${dTotal} items across the last ${DAILY_KEYS.length} active backfill days; peak ${dMax}/day. Dates are non-contiguous; click a column to filter that day.`
+  );
+
+  /* bar charts（各排除自身維度） */
+  const updBars = (elId, capId, keys, field, skip, filterId, zhName, enName) => {
+    const base = DATA.items.filter(it => passesExcept(it, f, skip));
+    const count = new Map(keys.map(k => [k, 0]));
+    for (const it of base) if (count.has(it[field])) count.set(it[field], count.get(it[field]) + 1);
+    const max = Math.max(...count.values(), 1);
+    const total = base.length || 1;
+    let top = keys[0], topN = -1;
+    for (const k of keys) if (count.get(k) > topN) { top = k; topN = count.get(k); }
+    $(elId).querySelectorAll(".crow").forEach(b => {
+      const k = b.dataset.key, n = count.get(k);
+      b.querySelector(".crow-fill").style.width = (n / max * 100).toFixed(1) + "%";
+      b.querySelector(".crow-count").textContent = n;
+      b.classList.toggle("active", $(filterId).value === k);
+      b.dataset.tt = `${esc(k)}<br>${n} 則 / items · ${(n / total * 100).toFixed(1)}%`;
+      b.setAttribute("aria-label", `${k}: ${n}`);
     });
-    el.appendChild(b);
-  }
-  requestAnimationFrame(() => requestAnimationFrame(() => {
-    el.querySelectorAll(".crow-fill").forEach(f => { f.style.width = f.dataset.w; });
-  }));
-  if (pairs.length) {
-    const [l0, n0] = pairs[0];
-    $(capId).innerHTML = capFn(l0, n0, (n0 / total * 100).toFixed(0), pairs.length);
-  }
+    $(capId).innerHTML = base.length === 0
+      ? dual("目前條件下無資料。", "No records under the current query.")
+      : dual(
+          `${filtered ? `目前條件 ${base.length} 則中` : `${keys.length} 個${zhName}中`} ${top} 最多（${topN} 則、${(topN / total * 100).toFixed(0)}%）。點擊列可篩選。`,
+          `${top} leads ${filtered ? `the ${base.length} matching items` : `${keys.length} ${enName}`} (${topN} items, ${(topN / total * 100).toFixed(0)}%). Click a bar to filter.`
+        );
+  };
+  updBars("chart-category", "cap-category", CAT_KEYS, "category", "category", "f-category", "分類", "categories");
+  updBars("chart-region", "cap-region", REGION_KEYS, "region", "region", "f-region", "區域", "regions");
 }
 
 function renderCharts() {
-  renderDaily();
-  renderBars("chart-category", "cap-category", countBy(DATA.items, "category"), "f-category",
-    (l, n, p, k) => dual(
-      `${k} 個分類中 ${l} 最多（${n} 則、${p}%）。點擊列可篩選該分類。`,
-      `${l} is the largest of ${k} categories (${n} items, ${p}%). Click a bar to filter.`
-    ));
-  renderBars("chart-region", "cap-region", countBy(DATA.items, "region"), "f-region",
-    (l, n, p, k) => dual(
-      `${k} 個區域中 ${l} 最多（${n} 則、${p}%）。點擊列可篩選該區域。`,
-      `${l} leads ${k} regions (${n} items, ${p}%). Click a bar to filter.`
-    ));
+  if (!DAILY_KEYS.length) {
+    buildCharts();
+    requestAnimationFrame(() => requestAnimationFrame(updateCharts));
+    return;
+  }
+  updateCharts();
 }
 
 /* ---------- Filter ---------- */
@@ -440,7 +478,7 @@ function currentFilter() {
 function applyFilter() {
   const f = currentFilter();
   matches = DATA.items.filter((it) =>
-    (!f.q || searchable(it).includes(f.q)) &&
+    (!f.q || it._s.includes(f.q)) &&
     (!f.region || it.region === f.region) &&
     (!f.category || it.category === f.category) &&
     (!f.from || it.date >= f.from) &&
@@ -618,6 +656,7 @@ toggle.addEventListener("click", () => setLanguage(document.body.dataset.lang ==
 /* ---------- Init ---------- */
 function boot(d) {
     DATA = d;
+    DATA.items.forEach(it => { it._s = searchable(it); });
     const dates = [...new Set(d.items.map(i => i.date))].sort();
     const cats = countBy(d.items, "category");
     const regs = countBy(d.items, "region");

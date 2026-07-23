@@ -11,7 +11,7 @@
     "gate2_chart_recommendation_review": {
       "status": "PASS",
       "evidence": "reports/chart-selection-report.md",
-      "notes": "column (non-contiguous time-series, stated in caption), 2x horizontal bar (category comparison); pie/map/line rejected with reasons; linear scale from 0, no truncation, no min-width inflation"
+      "notes": "column (non-contiguous time-series, stated in caption), 2x horizontal bar (category comparison); pie/map/line rejected with reasons; linear scale from 0, no truncation, no min-width inflation. 2026-07-23: charts became cross-filter live — each chart excludes its own dimension's filter (faceted semantics documented in chart-spec.json cross_filter); fixed row order prevents misleading reorder animation; true zeros render zero-length with count text"
     },
     "gate3_audience_narrative_review": {
       "status": "PASS",

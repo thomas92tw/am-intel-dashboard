@@ -55,7 +55,13 @@
       "map_rejected_reason": "region values mix granularities (continent-scale regions alongside United States / China); a map would imply unsupported geographic precision"
     }
   ],
-  "captions": "computed at runtime from live data (bilingual zh/en) so numbers never go stale after daily refresh; captions describe visible pattern only, no causal or advisory claims",
+  "cross_filter": {
+    "semantics": "charts update live with the query (2026-07-23); each chart excludes ITS OWN dimension's filter so switching remains possible — category chart responds to keyword+region+date, region chart to keyword+category+date, daily chart to keyword+region+category; active selection shown as highlight, not as a collapsed single-bar chart",
+    "row_order": "fixed by overall (whole-database) count so bars animate in place instead of reordering",
+    "zero_values": "true zero renders zero-length fill with count 0 visible as text; empty result set states '目前條件下無資料' in the caption",
+    "scale": "per-chart linear max over the chart's current base subset"
+  },
+  "captions": "computed at runtime from live data (bilingual zh/en) so numbers never go stale after daily refresh; under an active query captions restate the subset size; captions describe visible pattern only, no causal or advisory claims",
   "carrier": {
     "template": "vault/_templates/narrow-rwd/narrow-rwd-report-blog-template.html",
     "column": "min(500px, 100vw - 36px)",
