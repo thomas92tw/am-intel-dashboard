@@ -4,6 +4,10 @@ AM-intel 新聞資料庫（`news_item/` 每則一筆 Markdown note）的靜態 H
 
 **https://thomas92tw.github.io/am-intel-dashboard/**
 
+對外分享版（Google Apps Script，讀取同一份 Pages data.json，資料永遠同步、不需每日推送）：
+
+**https://script.google.com/macros/s/AKfycbz2nREYzoWtvPI5nHy9GLqFNKymBCYhCPir6-YLx9bZcJEj-BWYMn73u0mgOALdcnu7/exec**
+
 ## 架構
 
 ```
@@ -25,6 +29,13 @@ python3 "$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents/AM-intel/sc
 ```
 
 前置需求（每台機器一次性）：clone 本 repo 到 `~/Projects/am-intel-dashboard` + `gh auth login`。
+
+## GAS 版維護
+
+- `gas/` = Apps Script 專案（Code.gs + appsscript.json + index.html 副本）
+- **資料每日自動同步**（頁面 client-side fetch Pages data.json，CORS 已開），GAS 端零維護
+- **UI 改版時**才需要：`cp index.html gas/index.html && cd gas && clasp push -f && clasp deploy --deploymentId AKfycbz2nREYzoWtvPI5nHy9GLqFNKymBCYhCPir6-YLx9bZcJEj-BWYMn73u0mgOALdcnu7`
+- ⚠️ **GAS 序列陷阱**：HtmlService 會改寫頁面內（含 script 註解）的「協定+雙斜線+網域」URL 樣式，使載入器拋 Invalid token — script 區的絕對 URL 必須用片段 join 組裝（見 index.html 內註解）
 
 ## 設計
 
