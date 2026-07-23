@@ -1,8 +1,249 @@
 {
- "generated_at": "2026-07-23T10:33+08:00",
- "count": 326,
- "latest_date": "2026-07-22",
+ "generated_at": "2026-07-23T12:19+08:00",
+ "count": 332,
+ "latest_date": "2026-07-23",
  "items": [
+  {
+   "date": "2026-07-23",
+   "signal_title_zh": "韓國把 AI 外交與南美關鍵礦物准入綁成同一條戰略",
+   "signal_title_en": "Seoul links AI diplomacy with South American mineral access",
+   "topic": "South Korean AI diplomacy and South American resource partnerships",
+   "region": "East Asia",
+   "country": "South Korea / United States / Brazil / Chile / Argentina",
+   "category": "Geopolitics",
+   "sub_category": "AI alliances and critical minerals",
+   "source": "Reuters via Yahoo",
+   "source_url": "https://currently.att.yahoo.com/att/south-koreas-lee-visit-south-082757299.html",
+   "source_file": "20260723.md",
+   "paywall": false,
+   "business_relevance": "high",
+   "used_for_practice": false,
+   "practice_date": "",
+   "summary_zh": "韓國總統將先會晤美國主要 AI 企業高層與創投機構，再訪問巴西、智利與阿根廷，推進貿易、能源、糧食與關鍵礦物合作。首爾正把算力夥伴關係與資源多元化視為同一套產業戰略，而非分離的外交路線。",
+   "summary_en": "South Korea's president will meet leading U.S. AI executives and venture investors before visiting Brazil, Chile and Argentina to advance trade, energy, food and critical-mineral cooperation. Seoul is treating compute partnerships and resource diversification as one integrated industrial strategy.",
+   "key_issue": "韓國把 AI 外交與南美關鍵礦物准入綁成同一條戰略，將如何影響東亞產業競爭與資源安全？",
+   "tags": [
+    "news",
+    "geopolitics",
+    "east-asia",
+    "韓國AI外交",
+    "南美貿易",
+    "關鍵礦物"
+   ],
+   "source_tags": [
+    "韓國AI外交",
+    "南美貿易",
+    "關鍵礦物"
+   ],
+   "stakeholders": [
+    "韓國政府",
+    "Samsung",
+    "SK Group",
+    "Hyundai",
+    "美國 AI 企業"
+   ],
+   "note": "2026-07-23/2026-07-23-06-seoul-links-ai-diplomacy-with-south-american-mineral-access.md"
+  },
+  {
+   "date": "2026-07-23",
+   "signal_title_zh": "中東兩大航運瓶頸同時升溫，Brent 一度突破 95 美元",
+   "signal_title_en": "Two Middle East chokepoints push oil above $95",
+   "topic": "Oil and shipping disruption risk across Hormuz and Bab el-Mandeb",
+   "region": "Global",
+   "country": "Middle East / Asia",
+   "category": "Energy",
+   "sub_category": "Oil logistics and maritime chokepoints",
+   "source": "Reuters via Euronext",
+   "source_url": "https://live.euronext.com/en/financial-news/oil-climbs-over-3-near-six-week-high-conflict-threatens-key-oil-transit-routes",
+   "source_file": "20260723.md",
+   "paywall": false,
+   "business_relevance": "high",
+   "used_for_practice": false,
+   "practice_date": "",
+   "summary_zh": "隨著衝突同時威脅荷莫茲海峽與曼德海峽，且部分沙烏地相關油輪航線受阻，Brent 一度突破每桶 95 美元。當兩條關鍵走廊同時變得不穩，亞洲進口商還要承擔更高運費、保險與庫存緩衝成本。",
+   "summary_en": "Brent rose above $95 as conflict threatened both the Strait of Hormuz and Bab el-Mandeb and some Saudi-related tanker routes were disrupted. When two key corridors become risky at once, Asian importers face higher freight, insurance and inventory-buffer costs.",
+   "key_issue": "中東兩大航運瓶頸同時升溫、Brent 一度突破 95 美元，將如何影響全球與亞洲能源成本？",
+   "tags": [
+    "news",
+    "energy",
+    "global",
+    "荷莫茲海峽",
+    "曼德海峽",
+    "亞洲能源成本"
+   ],
+   "source_tags": [
+    "荷莫茲海峽",
+    "曼德海峽",
+    "亞洲能源成本"
+   ],
+   "stakeholders": [
+    "亞洲原油進口商",
+    "航運公司",
+    "能源密集製造業",
+    "保險公司"
+   ],
+   "note": "2026-07-23/2026-07-23-05-two-middle-east-chokepoints-push-oil-above-95.md"
+  },
+  {
+   "date": "2026-07-23",
+   "signal_title_zh": "中國國家隊托底科技股，政策重點轉向阻止信心衝擊",
+   "signal_title_en": "China's national team contains a tech-led confidence shock",
+   "topic": "State-backed stock purchases after a technology-led selloff",
+   "region": "East Asia",
+   "country": "China",
+   "category": "Economy",
+   "sub_category": "Market stabilization and domestic confidence",
+   "source": "Axios",
+   "source_url": "https://www.axios.com/2026/07/22/china-stocks-exports-consumers",
+   "source_file": "20260723.md",
+   "paywall": false,
+   "business_relevance": "high",
+   "used_for_practice": false,
+   "practice_date": "",
+   "summary_zh": "中國國家支持的基金在科技股拋售後公布約 90 億美元買股行動，協助股市連續第二天上漲。這次干預顯示，在內需仍弱、出口依賴仍高之際，政策優先事項正轉向穩住金融市場信心。",
+   "summary_en": "Chinese state-backed funds reported roughly $9 billion in share purchases after a technology-led selloff, helping produce a second day of gains. The intervention shows a policy priority to stabilize financial confidence while domestic demand remains weak and export dependence stays high.",
+   "key_issue": "中國國家隊托底科技股、阻止信心衝擊，將如何影響東亞市場風險與企業融資判斷？",
+   "tags": [
+    "news",
+    "economy",
+    "east-asia",
+    "中國國家隊",
+    "科技股托市",
+    "內需信心"
+   ],
+   "source_tags": [
+    "中國國家隊",
+    "科技股托市",
+    "內需信心"
+   ],
+   "stakeholders": [
+    "中國國家隊基金",
+    "中國證券投資者",
+    "中國科技企業",
+    "中國政策制定者"
+   ],
+   "note": "2026-07-23/2026-07-23-04-china-s-national-team-contains-a-tech-led-confidence-shock.md"
+  },
+  {
+   "date": "2026-07-23",
+   "signal_title_zh": "Amazon 收窄 AGI 投資組合，但 AI 戰略地位未變",
+   "signal_title_en": "Amazon narrows its AGI portfolio despite keeping AI strategic",
+   "topic": "Amazon AGI team restructuring",
+   "region": "Americas",
+   "country": "United States",
+   "category": "AI",
+   "sub_category": "AI organization and portfolio management",
+   "source": "Reuters via The Star",
+   "source_url": "https://www.thestar.com.my/tech/tech-news/2026/07/22/amazon-cuts-jobs-in-its-artificial-general-intelligence-group",
+   "source_file": "20260723.md",
+   "paywall": false,
+   "business_relevance": "high",
+   "used_for_practice": false,
+   "practice_date": "",
+   "summary_zh": "Amazon 在重新整合模型、晶片與量子運算領導架構後，裁減部分 AGI 團隊職位。這並不代表退出 AI，而是顯示即使是超大規模雲端業者，也在修剪探索型團隊，把資源集中到客戶效益更明確的項目。",
+   "summary_en": "Amazon cut roles in parts of its AGI group after consolidating model, silicon and quantum work under a new leadership structure. The move shows that even hyperscalers are pruning exploratory teams and concentrating resources on initiatives with clearer customer impact.",
+   "key_issue": "Amazon 收窄 AGI 投資組合但維持 AI 戰略地位，將如何影響美國 AI 人才與產品競爭？",
+   "tags": [
+    "news",
+    "ai",
+    "americas",
+    "Amazon AGI",
+    "AI組織重整",
+    "資源集中"
+   ],
+   "source_tags": [
+    "Amazon AGI",
+    "AI組織重整",
+    "資源集中"
+   ],
+   "stakeholders": [
+    "Amazon",
+    "AWS",
+    "Amazon AGI 團隊",
+    "AI 人才市場"
+   ],
+   "note": "2026-07-23/2026-07-23-03-amazon-narrows-its-agi-portfolio-despite-keeping-ai-strategic.md"
+  },
+  {
+   "date": "2026-07-23",
+   "signal_title_zh": "AI 基礎設施支出排擠 IBM 其他企業交易",
+   "signal_title_en": "AI infrastructure spending crowds out IBM's other enterprise deals",
+   "topic": "Enterprise budget rotation toward AI infrastructure",
+   "region": "Global",
+   "country": "United States",
+   "category": "Economy",
+   "sub_category": "AI capital expenditure",
+   "source": "Reuters via Investing.com",
+   "source_url": "https://m.investing.com/news/stock-market-news/ibm-cuts-yearly-revenue-growth-forecast-as-customers-prioritize-ai-infrastructure-spending-4806875",
+   "source_file": "20260723.md",
+   "paywall": false,
+   "business_relevance": "high",
+   "used_for_practice": false,
+   "practice_date": "",
+   "summary_zh": "IBM 下修全年營收成長預測，原因是客戶把支出轉向 AI 資料中心設備，並延後大型軟體、主機與資本支出交易。這顯示 AI 導入正成為企業內部的預算配置競賽，而不只是新增的一層科技支出。",
+   "summary_en": "IBM cut its annual revenue-growth forecast after customers redirected spending toward AI-focused data-center equipment and delayed large software, mainframe and capital-expenditure deals. AI adoption is becoming a budget-allocation contest inside enterprises, not simply incremental technology spending.",
+   "key_issue": "AI 基礎設施支出排擠 IBM 其他企業交易將如何改變全球企業科技預算與供應商策略？",
+   "tags": [
+    "news",
+    "economy",
+    "global",
+    "AI資本支出",
+    "企業預算",
+    "IBM"
+   ],
+   "source_tags": [
+    "AI資本支出",
+    "企業預算",
+    "IBM"
+   ],
+   "stakeholders": [
+    "IBM",
+    "企業資訊長",
+    "資料中心設備供應商",
+    "企業軟體供應商"
+   ],
+   "note": "2026-07-23/2026-07-23-02-ai-infrastructure-spending-crowds-out-ibm-s-other-enterprise-deals.md"
+  },
+  {
+   "date": "2026-07-23",
+   "signal_title_zh": "北美以臨時協議換取喘息，USMCA 核心爭議延至 2027",
+   "signal_title_en": "North America trades certainty for interim USMCA deals",
+   "topic": "Interim North American trade arrangements and delayed USMCA renegotiation",
+   "region": "Americas",
+   "country": "United States / Canada / Mexico",
+   "category": "Trade",
+   "sub_category": "USMCA and automotive rules of origin",
+   "source": "Reuters",
+   "source_url": "https://www.reuters.com/world/americas/us-trade-chief-greer-aiming-interim-arrangements-usmca-by-year-end-2026-07-22/",
+   "source_file": "20260723.md",
+   "paywall": false,
+   "business_relevance": "high",
+   "used_for_practice": false,
+   "practice_date": "",
+   "summary_zh": "美國貿易代表表示，華府希望年底前分別與加拿大、墨西哥達成臨時安排，但汽車原產地規則等棘手 USMCA 議題將延至 2027 年。企業可能獲得短期營運緩衝，卻仍缺乏長週期供應鏈投資所需的制度確定性。",
+   "summary_en": "The U.S. trade chief said Washington aims to reach interim arrangements with Canada and Mexico by year-end while deferring harder USMCA questions, including automotive rules of origin, to 2027. Companies may gain a short-term operating bridge but still lack durable certainty for long-cycle supply-chain investment.",
+   "key_issue": "北美以臨時協議換取喘息，USMCA 核心爭議延至 2027 將如何影響美洲供應鏈與投資策略？",
+   "tags": [
+    "news",
+    "trade",
+    "americas",
+    "USMCA",
+    "北美汽車",
+    "貿易不確定性"
+   ],
+   "source_tags": [
+    "USMCA",
+    "北美汽車",
+    "貿易不確定性"
+   ],
+   "stakeholders": [
+    "USTR",
+    "加拿大政府",
+    "墨西哥政府",
+    "北美汽車製造商"
+   ],
+   "note": "2026-07-23/2026-07-23-01-north-america-trades-certainty-for-interim-usmca-deals.md"
+  },
   {
    "date": "2026-07-22",
    "signal_title_zh": "ASEAN 面臨上升中的能源與海上風險溢價",
