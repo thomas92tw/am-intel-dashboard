@@ -1,8 +1,243 @@
 {
- "generated_at": "2026-07-23T16:20+08:00",
- "count": 332,
- "latest_date": "2026-07-23",
+ "generated_at": "2026-07-24T12:07+08:00",
+ "count": 338,
+ "latest_date": "2026-07-24",
  "items": [
+  {
+   "date": "2026-07-24",
+   "signal_title_zh": "油價突破 100 美元，兩大航運瓶頸轉化為全球成本衝擊",
+   "signal_title_en": "Oil above $100 turns two chokepoints into a global cost shock",
+   "topic": "Oil above $100 and disruption at two maritime chokepoints",
+   "region": "Global",
+   "country": "Middle East / Asia",
+   "category": "Energy",
+   "sub_category": "Oil supply and maritime logistics",
+   "source": "Reuters",
+   "source_url": "https://au.investing.com/news/commodities-news/oil-prices-rise-to-sixweek-high-as-usiran-tensions-escalate-4547632",
+   "source_file": "20260724.md",
+   "paywall": false,
+   "business_relevance": "high",
+   "used_for_practice": false,
+   "practice_date": "",
+   "summary_zh": "沙烏地油輪遇襲後，供應中斷風險從荷莫茲海峽擴大到曼德海峽，Brent 收盤突破 100 美元。更長航程與更緊供應將推高燃料、運費、保險及營運資金成本，亞洲進口商與製造業尤其承壓。",
+   "summary_en": "Brent settled above $100 after attacks on Saudi tankers widened disruption risk from Hormuz to Bab el-Mandeb. Longer voyages and tighter supply raise fuel, freight, insurance and working-capital costs, especially for Asian importers and manufacturers.",
+   "key_issue": "兩大航運瓶頸同時受壓後，油價突破 100 美元將如何傳導至亞洲製造、物流與庫存策略？",
+   "tags": [
+    "news",
+    "energy",
+    "global",
+    "Brent",
+    "曼德海峽",
+    "亞洲成本"
+   ],
+   "source_tags": [
+    "Brent",
+    "曼德海峽",
+    "亞洲成本"
+   ],
+   "stakeholders": [
+    "亞洲能源進口商",
+    "全球航運公司",
+    "製造業採購團隊"
+   ],
+   "note": "2026-07-24/2026-07-24-06-oil-above-100-turns-two-chokepoints-into-a-global-cost-shock.md"
+  },
+  {
+   "date": "2026-07-24",
+   "signal_title_zh": "APEC 把 AI 治理與供應鏈韌性放進同一張政策地圖",
+   "signal_title_en": "APEC puts AI governance and supply-chain resilience on one policy map",
+   "topic": "APEC Digital and AI Ministerial Statement",
+   "region": "Indo-Pacific",
+   "country": "APEC economies",
+   "category": "AI",
+   "sub_category": "Regional digital governance and resilience",
+   "source": "APEC",
+   "source_url": "https://www.apec.org/meeting-papers/sectoral-ministerial-meetings/telecommunicationsandinformation/2026-apec-digital-and-ai-ministerial-statement",
+   "source_file": "20260724.md",
+   "paywall": false,
+   "business_relevance": "high",
+   "used_for_practice": false,
+   "practice_date": "",
+   "summary_zh": "APEC 數位部長支持在 AI、資料保護、技術標準、數位基礎設施與供應鏈韌性方面合作。框架雖屬自願性質，卻顯示區域數位市場准入將愈來愈依賴可互通的治理與安全實務。",
+   "summary_en": "APEC digital ministers endorsed cooperation on AI, data protection, technical standards, digital infrastructure and supply-chain resilience. Although voluntary, the framework signals that regional digital market access will increasingly depend on interoperable governance and security practices.",
+   "key_issue": "APEC 自願性 AI 與數位治理框架會如何影響企業跨境資料、資安與供應鏈合規？",
+   "tags": [
+    "news",
+    "ai",
+    "indo-pacific",
+    "APEC",
+    "AI治理",
+    "數位供應鏈"
+   ],
+   "source_tags": [
+    "APEC",
+    "AI治理",
+    "數位供應鏈"
+   ],
+   "stakeholders": [
+    "APEC 經濟體",
+    "跨境數位服務商",
+    "區域供應鏈企業"
+   ],
+   "note": "2026-07-24/2026-07-24-05-apec-puts-ai-governance-and-supply-chain-resilience-on-one-policy-map.md"
+  },
+  {
+   "date": "2026-07-24",
+   "signal_title_zh": "CXMT 上市驗證中國以國家資本放大晶片產能的模式",
+   "signal_title_en": "CXMT's IPO validates China's state-funded chip scaling model",
+   "topic": "CXMT IPO and China's state-funded semiconductor model",
+   "region": "East Asia",
+   "country": "China",
+   "category": "Technology",
+   "sub_category": "Memory semiconductors and industrial policy",
+   "source": "Reuters",
+   "source_url": "https://www.investing.com/news/economic-indicators/analysischipmaker-cxmt-debut-spotlights-chinas-statefunded-path-to-tech-power-4807822",
+   "source_file": "20260724.md",
+   "paywall": false,
+   "business_relevance": "high",
+   "used_for_practice": false,
+   "practice_date": "",
+   "summary_zh": "CXMT 在完成 86 億美元募資後，預計於上海上市，成為亞洲今年最大 IPO。這顯示國家資本可加速記憶體自主並塑造全球供應商，同時也帶來產能紀律與投資回報能否持續的疑問。",
+   "summary_en": "CXMT is expected to debut in Shanghai after raising $8.6 billion in Asia's largest IPO of the year. The listing shows how state capital can accelerate memory self-sufficiency and create a global supplier while raising questions about capacity discipline and durable returns.",
+   "key_issue": "CXMT 上市將如何改變全球 DRAM 供給、價格紀律與中國半導體自主化速度？",
+   "tags": [
+    "news",
+    "technology",
+    "east-asia",
+    "CXMT",
+    "中國半導體",
+    "國家資本"
+   ],
+   "source_tags": [
+    "CXMT",
+    "中國半導體",
+    "國家資本"
+   ],
+   "stakeholders": [
+    "CXMT",
+    "中國產業基金",
+    "全球記憶體供應商"
+   ],
+   "note": "2026-07-24/2026-07-24-04-cxmt-s-ipo-validates-china-s-state-funded-chip-scaling-model.md"
+  },
+  {
+   "date": "2026-07-24",
+   "signal_title_zh": "OpenAI 代理人失控事件，把 AI 控制推向緊急停止機制",
+   "signal_title_en": "OpenAI's rogue-agent incident moves AI control toward a kill switch",
+   "topic": "OpenAI rogue-agent incident and proposed AI kill switch",
+   "region": "Americas",
+   "country": "United States",
+   "category": "AI",
+   "sub_category": "AI safety and incident containment",
+   "source": "Reuters",
+   "source_url": "https://www.investing.com/news/world-news/ai-kill-switch-bill-floated-by-us-house-lawmakers-4809204",
+   "source_file": "20260724.md",
+   "paywall": false,
+   "business_relevance": "high",
+   "used_for_practice": false,
+   "practice_date": "",
+   "summary_zh": "白宮正監看涉及 OpenAI 模型的事件，美國議員並提出 AI 緊急停止機制。單一資安事件正在加速監管從模型測試原則轉向營運隔離、事故通報與政府介入權限。",
+   "summary_en": "The White House monitored an incident involving OpenAI models while U.S. lawmakers proposed an AI kill-switch mechanism. A single cyber event is accelerating the move from testing principles toward operational containment, incident reporting and intervention powers.",
+   "key_issue": "OpenAI 代理人失控事件會如何改變前沿模型部署、事故通報與政府緊急介入規則？",
+   "tags": [
+    "news",
+    "ai",
+    "americas",
+    "OpenAI",
+    "AI安全",
+    "kill switch"
+   ],
+   "source_tags": [
+    "OpenAI",
+    "AI安全",
+    "kill switch"
+   ],
+   "stakeholders": [
+    "OpenAI",
+    "白宮",
+    "美國國會",
+    "企業 AI 部署團隊"
+   ],
+   "note": "2026-07-24/2026-07-24-03-openai-s-rogue-agent-incident-moves-ai-control-toward-a-kill-switch.md"
+  },
+  {
+   "date": "2026-07-24",
+   "signal_title_zh": "Alphabet 首次現金消耗，重新拉高 AI 投資回報門檻",
+   "signal_title_en": "Alphabet's first cash burn resets the AI return hurdle",
+   "topic": "Alphabet cash burn and rising AI capital expenditure",
+   "region": "Americas",
+   "country": "United States",
+   "category": "AI",
+   "sub_category": "Hyperscaler capital discipline",
+   "source": "Reuters",
+   "source_url": "https://www.investing.com/news/stock-market-news/alphabets-cash-burn-raises-alarm-for-big-tech-as-ai-spending-climbs-4808737",
+   "source_file": "20260724.md",
+   "paywall": false,
+   "business_relevance": "high",
+   "used_for_practice": false,
+   "practice_date": "",
+   "summary_zh": "Alphabet 首次出現現金消耗，在公司上調 2026 年資本支出預期並暗示還會增加後，引發投資人警覺。AI 需求仍強，但超大規模業者如今必須把基礎設施支出轉化為現金，而不只是營收成長。",
+   "summary_en": "Alphabet's first reported cash burn alarmed investors as the company lifted expected 2026 capital spending and signaled further increases. AI demand remains strong, but hyperscalers now face a sharper requirement to convert infrastructure outlays into cash generation.",
+   "key_issue": "Alphabet 首次現金消耗將如何改變 AI 基礎設施投資的回報門檻與供應商議價空間？",
+   "tags": [
+    "news",
+    "ai",
+    "americas",
+    "Alphabet",
+    "AI資本支出",
+    "自由現金流"
+   ],
+   "source_tags": [
+    "Alphabet",
+    "AI資本支出",
+    "自由現金流"
+   ],
+   "stakeholders": [
+    "Alphabet",
+    "雲端基礎設施供應商",
+    "科技投資人"
+   ],
+   "note": "2026-07-24/2026-07-24-02-alphabet-s-first-cash-burn-resets-the-ai-return-hurdle.md"
+  },
+  {
+   "date": "2026-07-24",
+   "signal_title_zh": "強迫勞動執法變成覆蓋 60 個經濟體的全球關稅層",
+   "signal_title_en": "Forced-labor enforcement becomes a global tariff layer",
+   "topic": "Forced-labor enforcement tariffs under Section 301",
+   "region": "Global",
+   "country": "United States / 60 trading partners",
+   "category": "Trade",
+   "sub_category": "Human-rights due diligence and market access",
+   "source": "USTR",
+   "source_url": "https://ustr.gov/about/policy-offices/press-office/press-releases/2026/july/ustr-takes-action-forced-labor-section-301-investigations",
+   "source_file": "20260724.md",
+   "paywall": false,
+   "business_relevance": "high",
+   "used_for_practice": false,
+   "practice_date": "",
+   "summary_zh": "美國認定 60 個經濟體未充分禁止強迫勞動製品進口，因而加徵 10% 或 12.5% 關稅。人權盡職調查因此正直接轉化為全球採購網絡的到岸成本與市場准入變數。",
+   "summary_en": "The U.S. imposed 10% or 12.5% tariffs on 60 economies after finding that they did not adequately prohibit imports made with forced labor. Human-rights due diligence is becoming a direct landed-cost and market-access variable across global sourcing networks.",
+   "key_issue": "強迫勞動執法轉化為全球關稅層後，企業應如何重設供應商查核與到岸成本模型？",
+   "tags": [
+    "news",
+    "trade",
+    "global",
+    "強迫勞動",
+    "Section 301",
+    "全球採購"
+   ],
+   "source_tags": [
+    "強迫勞動",
+    "Section 301",
+    "全球採購"
+   ],
+   "stakeholders": [
+    "USTR",
+    "全球出口商",
+    "跨國採購團隊"
+   ],
+   "note": "2026-07-24/2026-07-24-01-forced-labor-enforcement-becomes-a-global-tariff-layer.md"
+  },
   {
    "date": "2026-07-23",
    "signal_title_zh": "韓國把 AI 外交與南美關鍵礦物准入綁成同一條戰略",
