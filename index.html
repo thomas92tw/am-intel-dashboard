@@ -131,9 +131,7 @@ input:focus-visible, select:focus-visible { outline: 2px solid var(--accent); ou
 .detail > .dlabel:first-child { margin-top: 0; }
 .detail .dsum { font-size: 13.5px; line-height: 1.75; color: var(--ind-fg1); }
 .detail .den-title { font-size: 11px; line-height: 1.5; color: var(--ind-fg3); margin-top: 8px; }
-.detail .dkey { display: block; margin-top: 14px; padding: 12px 14px 13px; background: rgba(46,196,182,0.09); border-left: 3px solid var(--ind-accent); color: inherit; text-decoration: none; transition: background 150ms ease, border-color 150ms ease; }
-.detail a.dkey:hover { background: rgba(46,196,182,0.18); border-left-color: var(--ind-accent-dim); }
-.detail a.dkey:focus-visible { outline: 2px solid var(--ind-accent-dim); outline-offset: 2px; }
+.detail .dkey { display: block; margin-top: 14px; padding: 12px 14px 13px; background: rgba(46,196,182,0.09); border-left: 3px solid var(--ind-accent); }
 .detail .dkey .dlabel { margin: 0 0 5px; }
 .detail .dki { display: block; font-size: 12.5px; line-height: 1.65; color: var(--ind-fg2); }
 .detail .dstrip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--ind-line); }
@@ -542,12 +540,9 @@ function detailNode(it) {
   const chips = (arr) => (Array.isArray(arr) ? arr : []).map(t => `<span class="tagchip">${esc(t)}</span>`).join("") || `<span class="v">–</span>`;
   const L = (en, zh) => dual(`${en} // ${zh}`, en);  /* 工業版複合標籤；EN 模式僅英文（no-CJK 契約） */
   const url = esc(it.source_url);
-  /* Key Issue 本身即原文超連結（取代舊的原始 URL 區塊）；Source 欄保留連結，
-     確保 EN 模式與缺 key_issue 的項目仍有原文入口 */
+  /* Key Issue 為純 callout（不帶連結）；原文超連結統一由 Source 欄承擔 */
   const keyBlock = it.key_issue
-    ? `<div data-lang="zh">${it.source_url
-        ? `<a class="dkey" href="${url}" target="_blank" rel="noopener"><span class="dlabel">Key Issue // 關鍵議題 ↗</span><span class="dki">${esc(it.key_issue)}</span></a>`
-        : `<div class="dkey"><span class="dlabel">Key Issue // 關鍵議題</span><span class="dki">${esc(it.key_issue)}</span></div>`}</div>`
+    ? `<div data-lang="zh"><div class="dkey"><span class="dlabel">Key Issue // 關鍵議題</span><span class="dki">${esc(it.key_issue)}</span></div></div>`
     : "";
   const srcText = dual(esc(sourceLabelZh(it)), esc(it.source) + (it.paywall ? " (paywall)" : ""));
   d.innerHTML = `
