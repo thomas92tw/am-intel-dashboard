@@ -1,8 +1,247 @@
 {
- "generated_at": "2026-07-24T19:11+08:00",
- "count": 263,
- "latest_date": "2026-07-24",
+ "generated_at": "2026-07-25T12:07+08:00",
+ "count": 269,
+ "latest_date": "2026-07-25",
  "items": [
+  {
+   "date": "2026-07-25",
+   "signal_title_zh": "南海強制行動跑在 ASEAN 外交之前",
+   "signal_title_en": "South China Sea coercion outpaces ASEAN diplomacy",
+   "topic": "Water-cannon confrontation during ASEAN meetings",
+   "region": "Southeast Asia",
+   "country": "Philippines / China",
+   "category": "Geopolitics",
+   "sub_category": "South China Sea maritime security",
+   "source": "Associated Press",
+   "source_url": "https://apnews.com/article/66eccdf9a171a1acd7bd1d8b13aeb1e3",
+   "source_file": "20260725.md",
+   "paywall": false,
+   "business_relevance": "high",
+   "used_for_practice": false,
+   "practice_date": "",
+   "summary_zh": "中國海警在馬尼拉高階會議期間對兩艘菲律賓漁業公務船使用水砲，為一週內第三次衝突。反覆事件提高重要貿易航道的保險、航線與應變規劃風險。",
+   "summary_en": "Chinese coast guard ships used water cannons against two Philippine fisheries vessels during high-level meetings in Manila, the third confrontation that week. Repeated incidents raise insurance, routing and contingency-planning risk along a critical trade corridor.",
+   "key_issue": "南海衝突頻率上升時，企業應如何調整航運保險、替代航線與危機應變門檻？",
+   "tags": [
+    "news",
+    "geopolitics",
+    "southeast-asia",
+    "南海",
+    "菲律賓",
+    "ASEAN"
+   ],
+   "source_tags": [
+    "南海",
+    "菲律賓",
+    "ASEAN"
+   ],
+   "stakeholders": [
+    "菲律賓",
+    "中國海警",
+    "ASEAN",
+    "區域航運業者"
+   ],
+   "note": "2026-07-25/2026-07-25-06-south-china-sea-coercion-outpaces-asean-diplomacy.md"
+  },
+  {
+   "date": "2026-07-25",
+   "signal_title_zh": "歐元區製造業提供脆弱的成長逆向訊號",
+   "signal_title_en": "Eurozone manufacturing provides a fragile growth counter-signal",
+   "topic": "Eurozone July flash PMI recovery",
+   "region": "Europe",
+   "country": "Eurozone",
+   "category": "Economy",
+   "sub_category": "Manufacturing recovery and external demand",
+   "source": "S&P Global via Investing.com",
+   "source_url": "https://www.investing.com/news/economic-indicators/eurozone-business-activity-returns-to-growth-in-july-4810652",
+   "source_file": "20260725.md",
+   "paywall": false,
+   "business_relevance": "medium",
+   "used_for_practice": false,
+   "practice_date": "",
+   "summary_zh": "歐元區綜合 PMI 升至 51.9，製造業產出創 52 個月高點，新訂單也恢復成長；但出口仍萎縮，且調查大致早於最新油價飆升。",
+   "summary_en": "The eurozone composite PMI rose to 51.9 and manufacturing output reached a 52-month high as new orders returned to growth. Exports still contracted, however, and the survey largely predates the latest oil-price surge.",
+   "key_issue": "歐元區製造復甦能否承受出口疲弱與新一輪能源成本上升？",
+   "tags": [
+    "news",
+    "economy",
+    "europe",
+    "歐元區PMI",
+    "製造復甦",
+    "能源風險"
+   ],
+   "source_tags": [
+    "歐元區PMI",
+    "製造復甦",
+    "能源風險"
+   ],
+   "stakeholders": [
+    "歐元區製造商",
+    "歐洲央行",
+    "出口企業",
+    "能源密集產業"
+   ],
+   "note": "2026-07-25/2026-07-25-05-eurozone-manufacturing-provides-a-fragile-growth-counter-signal.md"
+  },
+  {
+   "date": "2026-07-25",
+   "signal_title_zh": "Intel 復甦把 AI 瓶頸從加速器擴大至 CPU 與晶圓產能",
+   "signal_title_en": "Intel's turnaround broadens the AI bottleneck beyond accelerators",
+   "topic": "Intel turnaround and AI-driven CPU and foundry demand",
+   "region": "Americas",
+   "country": "United States",
+   "category": "Technology",
+   "sub_category": "Data-center CPUs and domestic semiconductor capacity",
+   "source": "Reuters",
+   "source_url": "https://www.investing.com/news/stock-market-news/intel-rises-as-strong-forecasts-signal-ai-boost-for-turnaround-4811049",
+   "source_file": "20260725.md",
+   "paywall": false,
+   "business_relevance": "high",
+   "used_for_practice": false,
+   "practice_date": "",
+   "summary_zh": "Intel 在資料中心 CPU 訂單超過產能、晶圓代工需求改善之際，把資本支出計畫提高至 200 億美元。AI 基礎設施價值正擴散至通用運算、封裝與美國製造產能。",
+   "summary_en": "Intel raised its capital-spending plan to $20 billion as data-center CPU orders ran ahead of capacity and foundry demand improved. AI infrastructure value is spreading into general compute, packaging and U.S. manufacturing capacity.",
+   "key_issue": "Intel 的需求回升能否把 AI 基礎設施價值從加速器持續擴散至 CPU、封裝與晶圓代工？",
+   "tags": [
+    "news",
+    "technology",
+    "americas",
+    "Intel",
+    "資料中心CPU",
+    "美國製造"
+   ],
+   "source_tags": [
+    "Intel",
+    "資料中心CPU",
+    "美國製造"
+   ],
+   "stakeholders": [
+    "Intel",
+    "美國政府",
+    "資料中心業者",
+    "晶圓代工客戶"
+   ],
+   "note": "2026-07-25/2026-07-25-04-intel-s-turnaround-broadens-the-ai-bottleneck-beyond-accelerators.md"
+  },
+  {
+   "date": "2026-07-25",
+   "signal_title_zh": "韓國記憶體供應商把 AI 需求轉化為對美戰略長約",
+   "signal_title_en": "Korean memory suppliers convert AI demand into strategic U.S. contracts",
+   "topic": "Long-term Korean memory supply contracts with U.S. technology companies",
+   "region": "East Asia",
+   "country": "South Korea / United States",
+   "category": "Technology",
+   "sub_category": "AI memory supply and bilateral investment",
+   "source": "Reuters",
+   "source_url": "https://www.investing.com/news/stock-market-news/samsung-sk-hynix-to-announce-major-chip-deals-with-us-tech-companies-seoul-says-4811796",
+   "source_file": "20260725.md",
+   "paywall": false,
+   "business_relevance": "high",
+   "used_for_practice": false,
+   "practice_date": "",
+   "summary_zh": "首爾表示 Samsung 與 SK Hynix 將公布與美國科技公司的大型長期供應合約，並伴隨 AI 資料中心戰略投資。這些安排可能鎖定需求並深化雙邊半導體集團。",
+   "summary_en": "Seoul said Samsung and SK Hynix would announce large long-term supply deals with U.S. technology companies alongside strategic AI data-center investment. The agreements could lock in demand and deepen a bilateral semiconductor bloc.",
+   "key_issue": "長期記憶體合約將如何改變 HBM 產能配置、定價與客戶集中風險？",
+   "tags": [
+    "news",
+    "technology",
+    "east-asia",
+    "HBM",
+    "韓美科技",
+    "長期供應"
+   ],
+   "source_tags": [
+    "HBM",
+    "韓美科技",
+    "長期供應"
+   ],
+   "stakeholders": [
+    "Samsung Electronics",
+    "SK Hynix",
+    "美國科技公司",
+    "韓國政府"
+   ],
+   "note": "2026-07-25/2026-07-25-03-korean-memory-suppliers-convert-ai-demand-into-strategic-us-contracts.md"
+  },
+  {
+   "date": "2026-07-25",
+   "signal_title_zh": "AI 制裁威脅其原本要保護的安全對話",
+   "signal_title_en": "AI sanctions threaten the safety dialogue they are meant to protect",
+   "topic": "AI model provenance sanctions and bilateral safety dialogue",
+   "region": "East Asia",
+   "country": "China / United States",
+   "category": "AI",
+   "sub_category": "Model distillation, export controls and safety governance",
+   "source": "Reuters",
+   "source_url": "https://www.investing.com/news/stock-market-news/analysisas-ai-grows-more-powerful-a-uschina-feud-threatens-safety-efforts-4810603",
+   "source_file": "20260725.md",
+   "paywall": false,
+   "business_relevance": "high",
+   "used_for_practice": false,
+   "practice_date": "",
+   "summary_zh": "美國指控 Moonshot 的 Kimi K3 蒸餾自 Anthropic 的 Fable 5，並浮現制裁可能。模型來源正成為出口管制議題，但懲罰措施也可能削弱雙邊測試標準與危機溝通。",
+   "summary_en": "U.S. allegations that Moonshot distilled Kimi K3 from Anthropic's Fable 5 raised the prospect of sanctions. Model provenance is becoming an export-control issue, but punitive measures may weaken bilateral testing standards and crisis communication.",
+   "key_issue": "企業應如何證明模型來源合規，同時維持跨境 AI 安全測試與事故溝通？",
+   "tags": [
+    "news",
+    "ai",
+    "east-asia",
+    "AI安全",
+    "模型蒸餾",
+    "美中科技"
+   ],
+   "source_tags": [
+    "AI安全",
+    "模型蒸餾",
+    "美中科技"
+   ],
+   "stakeholders": [
+    "Moonshot AI",
+    "Anthropic",
+    "美國財政部",
+    "AI安全機構"
+   ],
+   "note": "2026-07-25/2026-07-25-02-ai-sanctions-threaten-the-safety-dialogue-they-are-meant-to-protect.md"
+  },
+  {
+   "date": "2026-07-25",
+   "signal_title_zh": "強迫勞動關稅立即進入司法耐久度測試",
+   "signal_title_en": "Forced-labor tariffs enter an immediate legal durability test",
+   "topic": "Legal challenge to forced-labor tariffs",
+   "region": "Americas",
+   "country": "United States",
+   "category": "Trade",
+   "sub_category": "Section 301 litigation and import compliance",
+   "source": "Reuters",
+   "source_url": "https://www.investing.com/news/world-news/us-small-businesses-file-lawsuit-challenging-trumps-new-forced-labor-tariffs-4812386",
+   "source_file": "20260725.md",
+   "paywall": false,
+   "business_relevance": "high",
+   "used_for_practice": false,
+   "practice_date": "",
+   "summary_zh": "兩家美國小企業挑戰針對 60 個貿易夥伴的新關稅，主張各國個別認定不足。進口商因此不只要估算關稅成本，也需納入禁制令、退稅與政策逆轉情境。",
+   "summary_en": "Two U.S. small businesses challenged the new tariffs on 60 trading partners, arguing that country-specific findings are insufficient. Importers must model tariff costs alongside injunction, refund and policy-reversal scenarios.",
+   "key_issue": "司法挑戰將如何影響企業的關稅提列、進口時點與潛在退稅策略？",
+   "tags": [
+    "news",
+    "trade",
+    "americas",
+    "Section 301",
+    "司法挑戰",
+    "進口合規"
+   ],
+   "source_tags": [
+    "Section 301",
+    "司法挑戰",
+    "進口合規"
+   ],
+   "stakeholders": [
+    "美國進口商",
+    "USTR",
+    "美國國際貿易法院"
+   ],
+   "note": "2026-07-25/2026-07-25-01-forced-labor-tariffs-enter-an-immediate-legal-durability-test.md"
+  },
   {
    "date": "2026-07-24",
    "signal_title_zh": "油價突破 100 美元，兩大航運瓶頸轉化為全球成本衝擊",
