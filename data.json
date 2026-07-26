@@ -1,8 +1,206 @@
 {
- "generated_at": "2026-07-25T12:07+08:00",
- "count": 269,
- "latest_date": "2026-07-25",
+ "generated_at": "2026-07-26T12:06+08:00",
+ "count": 274,
+ "latest_date": "2026-07-26",
  "items": [
+  {
+   "date": "2026-07-26",
+   "signal_title_zh": "能源戰事延伸至原本用來繞開荷莫茲的航線",
+   "signal_title_en": "The energy war reaches the route meant to bypass Hormuz",
+   "topic": "Iran war spreads to Red Sea and Caspian routes",
+   "region": "Middle East",
+   "country": "Saudi Arabia / Iran / Yemen",
+   "category": "Energy",
+   "sub_category": "Oil infrastructure and shipping-route risk",
+   "source": "Reuters",
+   "source_url": "https://www.investing.com/news/commodities-news/iran-war-spreads-to-red-sea-and-caspian-gulf-quiet-as-us-forgoes-strikes-4812822",
+   "source_file": "20260726.md",
+   "paywall": false,
+   "business_relevance": "high",
+   "used_for_practice": false,
+   "practice_date": "",
+   "summary_zh": "胡塞武裝攻擊吉贊與延布附近的沙烏地石油設施，戰事也延伸至裏海。延布是繞開荷莫茲的重要紅海出口，因此航線分散正面臨相關性更高的中斷風險。",
+   "summary_en": "Houthi attacks targeted Saudi oil sites near Jizan and Yanbu, while the conflict also reached the Caspian Sea. Yanbu is a key Red Sea outlet for oil bypassing Hormuz, so route diversification now faces correlated disruption.",
+   "key_issue": "當荷莫茲與紅海替代航線同時受威脅，企業應如何重設能源庫存與運輸備援門檻？",
+   "tags": [
+    "news",
+    "energy",
+    "middle-east",
+    "紅海",
+    "荷莫茲",
+    "能源航線"
+   ],
+   "source_tags": [
+    "紅海",
+    "荷莫茲",
+    "能源航線"
+   ],
+   "stakeholders": [
+    "Saudi Aramco",
+    "胡塞武裝",
+    "能源進口國",
+    "油輪業者"
+   ],
+   "note": "2026-07-26/2026-07-26-05-the-energy-war-reaches-the-route-meant-to-bypass-hormuz.md"
+  },
+  {
+   "date": "2026-07-26",
+   "signal_title_zh": "印度的豁免使關稅架構轉化為產業策略",
+   "signal_title_en": "India's exemptions turn tariff architecture into sector strategy",
+   "topic": "India-U.S. tariff exemptions and trade negotiations",
+   "region": "Indo-Pacific",
+   "country": "India / United States",
+   "category": "Trade",
+   "sub_category": "Product exemptions and textile exposure",
+   "source": "Reuters",
+   "source_url": "https://www.investing.com/news/world-news/india-to-keep-engaging-with-us-on-trade-deal-after-new-tariff-measures-4812786",
+   "source_file": "20260726.md",
+   "paywall": false,
+   "business_relevance": "high",
+   "used_for_practice": false,
+   "practice_date": "",
+   "summary_zh": "約 45% 的印度對美出口因豁免不受新稅影響，其餘 55% 則承擔 10% 加一般稅率。紡織品仍有曝險，但藥品、智慧手機、鋼鋁與汽車零件取得較大談判空間。",
+   "summary_en": "About 45% of Indian exports are outside the new tariff through exemptions, while the remaining 55% faces 10% plus normal duties. Textiles remain exposed, but pharmaceuticals, smartphones, steel, aluminium and auto parts gain negotiating room.",
+   "key_issue": "企業應如何依產品豁免重新配置印度對美出口組合與談判優先順序？",
+   "tags": [
+    "news",
+    "trade",
+    "indo-pacific",
+    "印美貿易",
+    "產品豁免",
+    "紡織業"
+   ],
+   "source_tags": [
+    "印美貿易",
+    "產品豁免",
+    "紡織業"
+   ],
+   "stakeholders": [
+    "印度商工部",
+    "USTR",
+    "印度紡織業",
+    "製藥與電子業"
+   ],
+   "note": "2026-07-26/2026-07-26-04-indias-exemptions-turn-tariff-architecture-into-sector-strategy.md"
+  },
+  {
+   "date": "2026-07-26",
+   "signal_title_zh": "澳洲測試盟友關係能否重啟關稅豁免",
+   "signal_title_en": "Australia tests whether alliance ties can reopen tariff exemptions",
+   "topic": "Australia challenges new U.S. tariff",
+   "region": "Indo-Pacific",
+   "country": "Australia / United States",
+   "category": "Trade",
+   "sub_category": "Modern-slavery enforcement and tariff diplomacy",
+   "source": "Reuters",
+   "source_url": "https://www.investing.com/news/world-news/australia-to-raise-concerns-over-new-tariffs-with-trump-pm-albanese-says-4812827",
+   "source_file": "20260726.md",
+   "paywall": false,
+   "business_relevance": "high",
+   "used_for_practice": false,
+   "practice_date": "",
+   "summary_zh": "坎培拉將挑戰 12.5% 關稅，並強調更嚴格的現代奴役執法。出口商不應假設盟友身分可凌駕新法制，但合規證據可能成為談判籌碼。",
+   "summary_en": "Canberra will challenge the 12.5% duty and point to stronger modern-slavery enforcement. Exporters should not assume alliance status overrides the new statutory framework, but compliance evidence may become bargaining capital.",
+   "key_issue": "澳洲能否把供應鏈合規證據轉化為豁免，而非只依賴盟友關係？",
+   "tags": [
+    "news",
+    "trade",
+    "indo-pacific",
+    "澳洲",
+    "美國關稅",
+    "現代奴役"
+   ],
+   "source_tags": [
+    "澳洲",
+    "美國關稅",
+    "現代奴役"
+   ],
+   "stakeholders": [
+    "澳洲政府",
+    "USTR",
+    "澳洲出口商"
+   ],
+   "note": "2026-07-26/2026-07-26-03-australia-tests-whether-alliance-ties-can-reopen-tariff-exemptions.md"
+  },
+  {
+   "date": "2026-07-26",
+   "signal_title_zh": "三星為 Broadcom 打包完整客製 AI 晶片堆疊",
+   "signal_title_en": "Samsung packages the full custom-AI chip stack for Broadcom",
+   "topic": "Samsung-Broadcom integrated AI semiconductor partnership",
+   "region": "East Asia",
+   "country": "South Korea / United States",
+   "category": "Technology",
+   "sub_category": "ASIC, foundry, HBM and advanced packaging",
+   "source": "Reuters",
+   "source_url": "https://www.investing.com/news/stock-market-news/samsung-elec-wins-200-billion-broadcom-ai-chip-partnership-boosting-foundry-push-4812757",
+   "source_file": "20260726.md",
+   "paywall": false,
+   "business_relevance": "high",
+   "used_for_practice": false,
+   "practice_date": "",
+   "summary_zh": "雙方規劃至 2030 年超過 2,000 億美元的合作，涵蓋 ASIC、次 2 奈米晶圓代工、HBM 與先進封裝。完整能力組合可提高三星產能利用率，並降低客戶分別管理多家供應商的需求。",
+   "summary_en": "The companies envision more than $200 billion of cooperation through 2030 across ASICs, sub-2-nanometre foundry, HBM and advanced packaging. The breadth could raise Samsung utilisation and reduce customer dependence on separate suppliers.",
+   "key_issue": "整合式 AI 晶片供應方案能否協助三星縮小與台積電的晶圓代工差距？",
+   "tags": [
+    "news",
+    "technology",
+    "east-asia",
+    "Broadcom",
+    "Samsung",
+    "客製AI晶片"
+   ],
+   "source_tags": [
+    "Broadcom",
+    "Samsung",
+    "客製AI晶片"
+   ],
+   "stakeholders": [
+    "Samsung Electronics",
+    "Broadcom",
+    "AI資料中心業者",
+    "TSMC"
+   ],
+   "note": "2026-07-26/2026-07-26-02-samsung-packages-the-full-custom-ai-chip-stack-for-broadcom.md"
+  },
+  {
+   "date": "2026-07-26",
+   "signal_title_zh": "美國關稅從即興措施轉向持久政策堆疊",
+   "signal_title_en": "U.S. tariffs shift from improvisation to a durable policy stack",
+   "topic": "Durable U.S. tariff framework",
+   "region": "Americas",
+   "country": "United States",
+   "category": "Trade",
+   "sub_category": "Section 301 and strategic-sector investigations",
+   "source": "Reuters",
+   "source_url": "https://www.investing.com/news/economic-indicators/this-wave-of-trump-tariffs-is-likely-here-to-stay-more-are-coming-4812764",
+   "source_file": "20260726.md",
+   "paywall": false,
+   "business_relevance": "high",
+   "used_for_practice": false,
+   "practice_date": "",
+   "summary_zh": "華府正以 Section 301、產能過剩及國安調查，取代遭推翻的緊急關稅。10%～15% 基準稅率可能更可預測，但產業疊加措施與臨時宣布仍使規劃風險偏高。",
+   "summary_en": "Washington is replacing struck-down emergency tariffs with Section 301, excess-capacity and national-security investigations. A 10–15% baseline may become more predictable, but sector overlays and spontaneous measures keep planning risk high.",
+   "key_issue": "企業應如何把基準關稅、產業調查、訴訟與潛在退稅拆成不同規劃情境？",
+   "tags": [
+    "news",
+    "trade",
+    "americas",
+    "Section 301",
+    "關稅制度化",
+    "產能調查"
+   ],
+   "source_tags": [
+    "Section 301",
+    "關稅制度化",
+    "產能調查"
+   ],
+   "stakeholders": [
+    "USTR",
+    "美國進口商",
+    "全球出口商"
+   ],
+   "note": "2026-07-26/2026-07-26-01-us-tariffs-shift-from-improvisation-to-a-durable-policy-stack.md"
+  },
   {
    "date": "2026-07-25",
    "signal_title_zh": "南海強制行動跑在 ASEAN 外交之前",
