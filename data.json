@@ -1,8 +1,168 @@
 {
- "generated_at": "2026-07-26T12:06+08:00",
- "count": 274,
- "latest_date": "2026-07-26",
+ "generated_at": "2026-07-27T12:04+08:00",
+ "count": 278,
+ "latest_date": "2026-07-27",
  "items": [
+  {
+   "date": "2026-07-27",
+   "signal_title_zh": "油價重新定價快於實體航運正常化",
+   "signal_title_en": "Oil reprices faster than physical shipping normalizes",
+   "topic": "Oil price decline and slow shipping recovery",
+   "region": "Global",
+   "country": "Global / Strait of Hormuz / Red Sea",
+   "category": "Energy",
+   "sub_category": "Oil pricing and maritime logistics",
+   "source": "Reuters",
+   "source_url": "https://ca.marketscreener.com/news/oil-slips-5-after-us-iran-pause-fighting-over-weekend-ce7f51dcd88dff27",
+   "source_file": "20260727.md",
+   "paywall": false,
+   "business_relevance": "high",
+   "used_for_practice": false,
+   "practice_date": "",
+   "summary_zh": "Brent 原油下跌約 5% 至約 92 美元，但週末每日通過荷莫茲的商品船不足十艘，紅海航運也持續受威脅。採購部門不應把現貨價格下跌等同於航線運能恢復。",
+   "summary_en": "Brent fell about 5% to roughly $92, yet fewer than ten commodity vessels per day crossed Hormuz over the weekend and Red Sea traffic remained threatened. Procurement should not equate a lower spot price with restored route capacity.",
+   "key_issue": "企業應以哪些船舶流量與保險指標判斷能源物流真正恢復，而不只看油價？",
+   "tags": [
+    "news",
+    "energy",
+    "global",
+    "油價",
+    "航運復原",
+    "戰爭溢價"
+   ],
+   "source_tags": [
+    "油價",
+    "航運復原",
+    "戰爭溢價"
+   ],
+   "stakeholders": [
+    "能源進口商",
+    "油輪業者",
+    "煉油商",
+    "保險業者"
+   ],
+   "note": "2026-07-27/2026-07-27-04-oil-reprices-faster-than-physical-shipping-normalizes.md"
+  },
+  {
+   "date": "2026-07-27",
+   "signal_title_zh": "美伊暫停攻擊是互惠但戰術性的停火",
+   "signal_title_en": "The U.S.–Iran pause is a reciprocal tactical truce",
+   "topic": "Reciprocal pause in U.S.-Iran attacks",
+   "region": "Middle East",
+   "country": "Iran / United States",
+   "category": "Geopolitics",
+   "sub_category": "Tactical de-escalation and energy security",
+   "source": "Reuters",
+   "source_url": "https://www.investing.com/news/commodities-news/iran-will-halt-attacks-as-long-as-us-maintains-pause-iranian-source-says-after-trump-calls-off-strikes-4812898",
+   "source_file": "20260727.md",
+   "paywall": false,
+   "business_relevance": "high",
+   "used_for_practice": false,
+   "practice_date": "",
+   "summary_zh": "伊朗表示，只要美國維持暫停攻擊，伊方也會停火；但雙方仍互不信任，升級能力也未消失。企業應把這段平靜期視為調整規劃的窗口，而非持久和解。",
+   "summary_en": "Iran said it would halt attacks while the U.S. pause holds, but both sides remain sceptical and escalation capacity is intact. Firms should treat the lull as a planning window, not a durable settlement.",
+   "key_issue": "企業應在戰術停火期間優先恢復哪些營運，又應保留哪些高風險備援？",
+   "tags": [
+    "news",
+    "geopolitics",
+    "middle-east",
+    "美伊衝突",
+    "戰術停火",
+    "荷莫茲"
+   ],
+   "source_tags": [
+    "美伊衝突",
+    "戰術停火",
+    "荷莫茲"
+   ],
+   "stakeholders": [
+    "美國政府",
+    "伊朗政府",
+    "海灣國家",
+    "航運與能源企業"
+   ],
+   "note": "2026-07-27/2026-07-27-03-the-us-iran-pause-is-a-reciprocal-tactical-truce.md"
+  },
+  {
+   "date": "2026-07-27",
+   "signal_title_zh": "巴西警告關稅將使整合供應鏈改道",
+   "signal_title_en": "Brazil warns tariffs will reroute integrated supply chains",
+   "topic": "Brazil response to new U.S. tariffs",
+   "region": "Americas",
+   "country": "Brazil / United States",
+   "category": "Trade",
+   "sub_category": "Tariffs and procurement substitution",
+   "source": "Reuters",
+   "source_url": "https://www.investing.com/news/economic-indicators/lula-calls-new-us-tariffs-a-mistake-in-washington-post-oped-4812899",
+   "source_file": "20260727.md",
+   "paywall": false,
+   "business_relevance": "high",
+   "used_for_practice": false,
+   "practice_date": "",
+   "summary_zh": "Lula 表示，美國新課徵的 12.5%～37.5% 關稅將提高美國消費者成本，並促使巴西企業轉向其他供應商。反制可能透過採購替代出現，而不只表現在報復性關稅。",
+   "summary_en": "Lula said new U.S. duties of 12.5%–37.5% would raise U.S. consumer costs and push Brazilian companies toward other suppliers. Retaliation may therefore emerge through procurement substitution rather than only tariffs.",
+   "key_issue": "美國與巴西企業應如何辨識雙邊供應鏈中最先被替代的採購節點？",
+   "tags": [
+    "news",
+    "trade",
+    "americas",
+    "巴西",
+    "美國關稅",
+    "供應鏈改道"
+   ],
+   "source_tags": [
+    "巴西",
+    "美國關稅",
+    "供應鏈改道"
+   ],
+   "stakeholders": [
+    "巴西政府",
+    "USTR",
+    "巴西出口商",
+    "美國供應商與消費者"
+   ],
+   "note": "2026-07-27/2026-07-27-02-brazil-warns-tariffs-will-reroute-integrated-supply-chains.md"
+  },
+  {
+   "date": "2026-07-27",
+   "signal_title_zh": "中國獲利復甦仍高度依賴出口",
+   "signal_title_en": "China’s profit recovery remains export-dependent",
+   "topic": "China industrial profit growth and uneven recovery",
+   "region": "East Asia",
+   "country": "China",
+   "category": "Economy",
+   "sub_category": "Industrial profits, exports and domestic demand",
+   "source": "Reuters",
+   "source_url": "https://www.investing.com/news/economic-indicators/chinas-industrial-profit-growth-moderates-amid-patchy-recovery-4812940",
+   "source_file": "20260727.md",
+   "paywall": false,
+   "business_relevance": "high",
+   "used_for_practice": false,
+   "practice_date": "",
+   "summary_zh": "工業獲利年增率由 5 月的 21.1% 放緩至 6 月的 15.1%，上半年則成長 18.7%。汽車業獲利下滑與內需疲弱，顯示出口商正支撐雙速復甦。",
+   "summary_en": "Industrial profit growth slowed to 15.1% in June from 21.1% in May, while first-half profits rose 18.7%. Falling auto profits and weak domestic demand show that exporters are carrying a two-speed recovery.",
+   "key_issue": "企業應如何評估中國出口韌性掩蓋內需疲弱所形成的需求與政策風險？",
+   "tags": [
+    "news",
+    "economy",
+    "east-asia",
+    "中國工業獲利",
+    "出口依賴",
+    "內需"
+   ],
+   "source_tags": [
+    "中國工業獲利",
+    "出口依賴",
+    "內需"
+   ],
+   "stakeholders": [
+    "中國製造商",
+    "出口商",
+    "汽車業",
+    "中國政策制定者"
+   ],
+   "note": "2026-07-27/2026-07-27-01-chinas-profit-recovery-remains-export-dependent.md"
+  },
   {
    "date": "2026-07-26",
    "signal_title_zh": "能源戰事延伸至原本用來繞開荷莫茲的航線",
