@@ -1,8 +1,208 @@
 {
- "generated_at": "2026-07-27T12:04+08:00",
- "count": 278,
- "latest_date": "2026-07-27",
+ "generated_at": "2026-07-28T12:05+08:00",
+ "count": 283,
+ "latest_date": "2026-07-28",
  "items": [
+  {
+   "date": "2026-07-28",
+   "signal_title_zh": "Section 301 正成為持久的多議題關稅平台",
+   "signal_title_en": "Section 301 is becoming a durable multi-issue tariff platform",
+   "topic": "Expansion of U.S. Section 301 tariff policy",
+   "region": "Americas",
+   "country": "United States / Global",
+   "category": "Trade",
+   "sub_category": "Forced labor, industrial overcapacity and legal durability",
+   "source": "Reuters",
+   "source_url": "https://www.investing.com/news/economy-news/ustrs-greer-says-trumps-latest-tariffs-wont-have-an-economic-impact-4815286",
+   "source_file": "20260728.md",
+   "paywall": false,
+   "business_relevance": "high",
+   "used_for_practice": false,
+   "practice_date": "",
+   "summary_zh": "USTR 表示目前強迫勞動關稅涵蓋 99.4% 的美國進口，並準備對 16 個夥伴的產能過剩展開另一項調查。法源較耐久，不代表累積的採購與合規成本消失。",
+   "summary_en": "USTR says current forced-labor duties cover 99.4% of U.S. imports and is preparing another investigation into excess capacity across 16 partners. Legal durability does not remove cumulative sourcing and compliance costs.",
+   "key_issue": "企業應如何把 Section 301 的多議題調查轉化為產品、來源國與供應商層級的關稅情境？",
+   "tags": [
+    "news",
+    "trade",
+    "americas",
+    "Section 301",
+    "強迫勞動",
+    "產能過剩"
+   ],
+   "source_tags": [
+    "Section 301",
+    "強迫勞動",
+    "產能過剩"
+   ],
+   "stakeholders": [
+    "USTR",
+    "美國進口商",
+    "全球出口商",
+    "供應鏈合規團隊"
+   ],
+   "note": "2026-07-28/2026-07-28-05-section-301-is-becoming-a-durable-multi-issue-tariff-platform.md"
+  },
+  {
+   "date": "2026-07-28",
+   "signal_title_zh": "印尼央行交接提高政策可信度的價格",
+   "signal_title_en": "Indonesia’s central-bank transition raises the price of policy credibility",
+   "topic": "Bank Indonesia leadership transition and policy independence",
+   "region": "Southeast Asia",
+   "country": "Indonesia",
+   "category": "Economy",
+   "sub_category": "Central-bank credibility and currency risk",
+   "source": "Reuters",
+   "source_url": "https://www.investing.com/news/economy-news/indonesia-faces-test-of-central-bank-independence-after-governors-shock-exit-4813275",
+   "source_file": "20260728.md",
+   "paywall": false,
+   "business_relevance": "high",
+   "used_for_practice": false,
+   "practice_date": "",
+   "summary_zh": "在印尼盾接近歷史低點、今年跌逾 7% 之際，央行總裁突然辭職，使繼任者決定成為央行獨立性的測試。交接期間匯率與主權風險溢價可能維持高檔。",
+   "summary_en": "The governor’s abrupt resignation, with the rupiah near record lows and down more than 7% this year, makes the successor decision a test of central-bank independence. Currency and sovereign risk premia may remain elevated through the transition.",
+   "key_issue": "在央行領導層交接期間，企業應如何調整印尼盾避險、融資期限與投資門檻？",
+   "tags": [
+    "news",
+    "economy",
+    "southeast-asia",
+    "印尼央行",
+    "政策可信度",
+    "印尼盾"
+   ],
+   "source_tags": [
+    "印尼央行",
+    "政策可信度",
+    "印尼盾"
+   ],
+   "stakeholders": [
+    "印尼政府",
+    "Bank Indonesia",
+    "外國投資人",
+    "印尼進出口企業"
+   ],
+   "note": "2026-07-28/2026-07-28-04-indonesias-central-bank-transition-raises-the-price-of-policy-credibility.md"
+  },
+  {
+   "date": "2026-07-28",
+   "signal_title_zh": "Agent 安全正從事故應變轉向共同控制",
+   "signal_title_en": "Agent security is moving from incident response to shared controls",
+   "topic": "Industry alliance for open AI agent security",
+   "region": "Global",
+   "country": "Global / United States",
+   "category": "AI",
+   "sub_category": "Agent controls, testing and cybersecurity",
+   "source": "Reuters",
+   "source_url": "https://www.investing.com/news/stock-market-news/nvidia-forms-industry-alliance-for-open-ai-security-after-hugging-face-hack-4813376",
+   "source_file": "20260728.md",
+   "paywall": false,
+   "business_relevance": "high",
+   "used_for_practice": false,
+   "practice_date": "",
+   "summary_zh": "Nvidia、Adobe、CrowdStrike、Hugging Face 與 Dell 在自主 agent 入侵事件後成立開放 AI 安全聯盟。共同的控制框架、測試與稽核工具正成為基礎設施層，而非選配合規項目。",
+   "summary_en": "Nvidia, Adobe, CrowdStrike, Hugging Face and Dell formed an open AI-security alliance after an autonomous-agent breach. Shared harnesses, testing and audit tools are becoming part of the infrastructure layer rather than optional compliance.",
+   "key_issue": "企業部署自主 agent 前，應把哪些行為控制、追蹤與停用能力設為共同最低標準？",
+   "tags": [
+    "news",
+    "ai",
+    "global",
+    "AI agent 安全",
+    "開放模型",
+    "共同控制"
+   ],
+   "source_tags": [
+    "AI agent 安全",
+    "開放模型",
+    "共同控制"
+   ],
+   "stakeholders": [
+    "AI 模型供應商",
+    "資安業者",
+    "企業 AI 採用者",
+    "監管機關"
+   ],
+   "note": "2026-07-28/2026-07-28-03-agent-security-moves-from-incident-response-to-shared-controls.md"
+  },
+  {
+   "date": "2026-07-28",
+   "signal_title_zh": "AI 資本支出正支撐美國設備投資",
+   "signal_title_en": "AI capex is carrying U.S. equipment investment",
+   "topic": "AI-driven U.S. capital goods investment",
+   "region": "Americas",
+   "country": "United States",
+   "category": "Economy",
+   "sub_category": "Business equipment spending and manufacturing",
+   "source": "Reuters",
+   "source_url": "https://www.investing.com/news/economic-indicators/us-core-capital-goods-orders-increase-strongly-in-june-4814170",
+   "source_file": "20260728.md",
+   "paywall": false,
+   "business_relevance": "high",
+   "used_for_practice": false,
+   "practice_date": "",
+   "summary_zh": "美國 6 月核心資本財訂單成長 0.9%，出貨成長 1.9%，由電腦、電子與電氣設備領漲。AI 支出正在緩衝戰爭與關稅衝擊，卻也讓通膨判斷更複雜。",
+   "summary_en": "U.S. core capital-goods orders rose 0.9% and shipments 1.9% in June, led by computers, electronics and electrical equipment. AI spending is cushioning manufacturing from war and tariff shocks, but also complicating the inflation outlook.",
+   "key_issue": "企業應如何判斷 AI 資本支出是廣泛生產力週期，還是集中於少數設備類別的短期支撐？",
+   "tags": [
+    "news",
+    "economy",
+    "americas",
+    "美國資本支出",
+    "AI 投資",
+    "製造業"
+   ],
+   "source_tags": [
+    "美國資本支出",
+    "AI 投資",
+    "製造業"
+   ],
+   "stakeholders": [
+    "美國製造商",
+    "資料中心業者",
+    "設備供應商",
+    "聯準會"
+   ],
+   "note": "2026-07-28/2026-07-28-02-ai-capex-is-carrying-us-equipment-investment.md"
+  },
+  {
+   "date": "2026-07-28",
+   "signal_title_zh": "AI 需求不再保證晶片股估值",
+   "signal_title_en": "AI demand no longer guarantees chip-stock valuation",
+   "topic": "Asian semiconductor selloff and AI financing risk",
+   "region": "East Asia",
+   "country": "South Korea / Japan / China",
+   "category": "Technology",
+   "sub_category": "Semiconductors, AI capex and market valuation",
+   "source": "Reuters",
+   "source_url": "https://www.investing.com/news/stock-market-news/ai-anxiety-sparks-tech-rout-broad-selloff-in-asian-markets-4815405",
+   "source_file": "20260728.md",
+   "paywall": false,
+   "business_relevance": "high",
+   "used_for_practice": false,
+   "practice_date": "",
+   "summary_zh": "韓國 KOSPI 觸發熔斷，三星與 SK 海力士大幅下跌。AI 基礎設施融資疑慮與中國半導體進展，正迫使投資人區分終端需求成長與供應商報酬。",
+   "summary_en": "Korea’s KOSPI triggered a circuit breaker as Samsung and SK Hynix fell sharply. Financing concerns around AI infrastructure and China’s semiconductor progress are forcing investors to separate end-demand growth from supplier returns.",
+   "key_issue": "企業應如何區分 AI 終端需求成長、供應商獲利品質與客戶融資風險？",
+   "tags": [
+    "news",
+    "technology",
+    "east-asia",
+    "AI 資本支出",
+    "亞洲晶片股",
+    "估值重定價"
+   ],
+   "source_tags": [
+    "AI 資本支出",
+    "亞洲晶片股",
+    "估值重定價"
+   ],
+   "stakeholders": [
+    "亞洲晶片製造商",
+    "AI 基礎設施投資人",
+    "雲端業者",
+    "設備供應商"
+   ],
+   "note": "2026-07-28/2026-07-28-01-ai-demand-no-longer-guarantees-chip-stock-valuation.md"
+  },
   {
    "date": "2026-07-27",
    "signal_title_zh": "油價重新定價快於實體航運正常化",
