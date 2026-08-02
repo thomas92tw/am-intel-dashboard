@@ -1,8 +1,78 @@
 {
- "generated_at": "2026-08-01T12:05+08:00",
- "count": 304,
- "latest_date": "2026-08-01",
+ "generated_at": "2026-08-02T12:04+08:00",
+ "count": 306,
+ "latest_date": "2026-08-02",
  "items": [
+  {
+   "date": "2026-08-02",
+   "signal_title_zh": "中國製造業回升尚未轉化為持久新訂單",
+   "signal_title_en": "China's manufacturing rebound has not converted into durable new orders",
+   "topic": "China July 2026 manufacturing PMI",
+   "region": "China",
+   "country": "China",
+   "category": "Economy",
+   "sub_category": "Manufacturing demand",
+   "source": "Associated Press",
+   "source_url": "https://apnews.com/article/a9a5016ca01d4f65e0491ff5327c0a11",
+   "source_file": "20260802.md",
+   "paywall": false,
+   "business_relevance": "high",
+   "used_for_practice": false,
+   "practice_date": "",
+   "summary_zh": "中國官方製造業 PMI 從 6 月的 50.3 降至 7 月的 49.2，新訂單分項降至 48.5。這項逆轉顯示，科技出口雖可支撐特定產業，卻尚不足以修復廣泛的國內工業需求。",
+   "summary_en": "China's official manufacturing PMI fell to 49.2 in July from 50.3 in June, while the new-orders sub-index dropped to 48.5. The reversal suggests technology exports can support selected sectors without repairing broad domestic industrial demand.",
+   "key_issue": "企業應如何區分 AI 相關出口強勢與中國整體內需製造週期的疲弱？",
+   "tags": [
+    "news",
+    "economy",
+    "china",
+    "China PMI",
+    "new orders",
+    "manufacturing demand"
+   ],
+   "source_tags": [
+    "China PMI",
+    "new orders",
+    "manufacturing demand"
+   ],
+   "stakeholders": "",
+   "note": "2026-08-02/2026-08-02-02-chinas-manufacturing-rebound-has-not-converted-into-durable-new-orders.md"
+  },
+  {
+   "date": "2026-08-02",
+   "signal_title_zh": "AI 透明度已從政策設計進入產品營運",
+   "signal_title_en": "AI transparency has moved from policy design into product operations",
+   "topic": "EU AI Act Article 50 transparency obligations",
+   "region": "Europe",
+   "country": "European Union",
+   "category": "AI",
+   "sub_category": "AI governance and transparency",
+   "source": "European Commission",
+   "source_url": "https://digital-strategy.ec.europa.eu/en/news/commission-publishes-guidelines-on-transparency-obligations-providers-and-deployers-certain-ai-systems",
+   "source_file": "20260802.md",
+   "paywall": false,
+   "business_relevance": "high",
+   "used_for_practice": false,
+   "practice_date": "",
+   "summary_zh": "歐盟執委會指出，第 50 條透明度義務自 8 月 2 日起適用，涵蓋人機互動揭露，以及特定生成或操控內容的機器可讀標記。供應商現在需要把使用者通知、來源 metadata 與稽核證據串接成產品層級控制。",
+   "summary_en": "The European Commission says Article 50 transparency obligations apply from August 2, covering disclosures for human-AI interaction and machine-readable marking for certain generated or manipulated content. Vendors now need product-level controls connecting user notices, provenance metadata and audit evidence.",
+   "key_issue": "跨境 AI 供應商能否把揭露、內容標記與稽核證據落實為一致的產品控制？",
+   "tags": [
+    "news",
+    "ai",
+    "europe",
+    "EU AI Act",
+    "Article 50",
+    "transparency"
+   ],
+   "source_tags": [
+    "EU AI Act",
+    "Article 50",
+    "transparency"
+   ],
+   "stakeholders": "",
+   "note": "2026-08-02/2026-08-02-01-ai-transparency-has-moved-from-policy-design-into-product-operations.md"
+  },
   {
    "date": "2026-08-01",
    "signal_title_zh": "AI 準確性主張正成為消費者保護議題",
