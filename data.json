@@ -1,8 +1,43 @@
 {
- "generated_at": "2026-08-02T12:04+08:00",
- "count": 306,
- "latest_date": "2026-08-02",
+ "generated_at": "2026-08-03T12:03+08:00",
+ "count": 307,
+ "latest_date": "2026-08-03",
  "items": [
+  {
+   "date": "2026-08-03",
+   "signal_title_zh": "OPEC+ 在實體供應完全正常化前完成配額回撤",
+   "signal_title_en": "OPEC+ has finished a quota rollback before physical supply has fully normalized",
+   "topic": "OPEC+ September 2026 oil production quota",
+   "region": "Global",
+   "country": "OPEC+",
+   "category": "Energy",
+   "sub_category": "Oil supply and energy security",
+   "source": "Reuters via MarketScreener",
+   "source_url": "https://www.marketscreener.com/news/opec-set-to-approve-another-oil-output-increase-sources-say-ce7f5edadc8dfe26",
+   "source_file": "20260803.md",
+   "paywall": false,
+   "business_relevance": "high",
+   "used_for_practice": false,
+   "practice_date": "",
+   "summary_zh": "OPEC+ 核准自 9 月起增產約每日 18.8 萬桶，完成其中一層自願減產的回撤。商業影響仍取決於成員能否在波斯灣流量受阻、產能限制與履約落差下，把較高配額轉化為實際出口原油。",
+   "summary_en": "OPEC+ approved an increase of about 188,000 barrels per day from September, completing the unwinding of a layer of voluntary cuts. The commercial impact depends on whether members can convert higher quotas into export barrels amid disrupted Gulf flows, capacity constraints and compliance gaps.",
+   "key_issue": "新增生產配額有多少能轉化為實際出口供應，並降低企業能源與物流成本？",
+   "tags": [
+    "news",
+    "energy",
+    "global",
+    "OPEC+",
+    "oil quotas",
+    "physical supply"
+   ],
+   "source_tags": [
+    "OPEC+",
+    "oil quotas",
+    "physical supply"
+   ],
+   "stakeholders": "",
+   "note": "2026-08-03/2026-08-03-01-opec-finishes-a-quota-rollback-before-physical-supply-normalizes.md"
+  },
   {
    "date": "2026-08-02",
    "signal_title_zh": "中國製造業回升尚未轉化為持久新訂單",
