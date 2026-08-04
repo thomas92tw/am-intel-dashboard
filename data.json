@@ -1,8 +1,44 @@
 {
- "generated_at": "2026-08-03T12:03+08:00",
- "count": 307,
- "latest_date": "2026-08-03",
+ "generated_at": "2026-08-04T12:04+08:00",
+ "count": 308,
+ "latest_date": "2026-08-04",
  "items": [
+  {
+   "date": "2026-08-04",
+   "signal_title_zh": "歐盟高風險 AI 合規進入雙軌延期時鐘",
+   "signal_title_en": "EU high-risk AI compliance now runs on two delayed clocks",
+   "topic": "EU AI Act high-risk system implementation timeline",
+   "region": "Europe",
+   "country": "European Union",
+   "category": "AI",
+   "sub_category": "AI regulation and conformity assessment",
+   "source": "EUR-Lex",
+   "source_url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32026R1744",
+   "source_file": "20260804.md",
+   "paywall": false,
+   "business_relevance": "high",
+   "used_for_practice": false,
+   "practice_date": "",
+   "summary_zh": "歐盟第 2026/1744 號規則把附件 III 高風險 AI 系統的主要義務延至 2027 年 12 月 2 日，產品法規相關的附件 I 系統則延至 2028 年 8 月 2 日。延期降低近期執行壓力，但使正確分類、合規證據與產品路線圖排序更重要。",
+   "summary_en": "Regulation (EU) 2026/1744 moves the main high-risk AI obligations to 2 December 2027 for Annex III systems and 2 August 2028 for product-linked Annex I systems. The delay reduces near-term implementation pressure but increases the importance of accurate classification, compliance evidence and product-roadmap sequencing.",
+   "key_issue": "企業應如何在透明度義務已生效、高風險義務分流延期的情況下重新配置合規預算與產品時程？",
+   "tags": [
+    "news",
+    "ai",
+    "europe",
+    "EU AI Act",
+    "high-risk AI",
+    "compliance timeline"
+   ],
+   "source_tags": [
+    "EU AI Act",
+    "high-risk AI",
+    "Digital Omnibus",
+    "conformity assessment"
+   ],
+   "stakeholders": "",
+   "note": "2026-08-04/2026-08-04-01-eu-high-risk-ai-compliance-now-runs-on-two-delayed-clocks.md"
+  },
   {
    "date": "2026-08-03",
    "signal_title_zh": "OPEC+ 在實體供應完全正常化前完成配額回撤",
