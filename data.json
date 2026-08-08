@@ -1,8 +1,78 @@
 {
- "generated_at": "2026-08-04T12:04+08:00",
- "count": 308,
- "latest_date": "2026-08-04",
+ "generated_at": "2026-08-08T12:03+08:00",
+ "count": 310,
+ "latest_date": "2026-08-08",
  "items": [
+  {
+   "date": "2026-08-08",
+   "signal_title_zh": "勞動基礎轉弱使利率利多優於終端需求",
+   "signal_title_en": "A weaker labor base is making rate relief look better than final demand",
+   "topic": "United States July employment and interest-rate outlook",
+   "region": "Americas",
+   "country": "United States",
+   "category": "Economy",
+   "sub_category": "Labor market and monetary policy",
+   "source": "Associated Press",
+   "source_url": "https://apnews.com/article/9636095906bbb689a1f612bce9a07343",
+   "source_file": "20260808.md",
+   "paywall": false,
+   "business_relevance": "high",
+   "used_for_practice": false,
+   "practice_date": "",
+   "summary_zh": "美國 7 月意外減少 2.3 萬個工作，先前月份就業也遭下修。數據降低近期升息機率並推低殖利率，但就業與實質購買力轉弱，代表企業不能把較寬鬆金融條件直接等同於終端需求改善。",
+   "summary_en": "U.S. employers unexpectedly shed 23,000 jobs in July and earlier months were revised lower. The report reduced expectations for near-term rate increases, but weaker employment and purchasing power mean businesses should not equate easier financial conditions with healthier final demand.",
+   "key_issue": "企業應如何在融資條件可能改善、但就業與消費需求基礎轉弱時調整投資、庫存與營收假設？",
+   "tags": [
+    "news",
+    "economy",
+    "united states",
+    "jobs",
+    "interest rates"
+   ],
+   "source_tags": [
+    "U.S. jobs",
+    "Federal Reserve",
+    "rates",
+    "consumer demand"
+   ],
+   "stakeholders": "",
+   "note": "2026-08-08/2026-08-08-02-a-weaker-labor-base-is-making-rate-relief-look-better-than-final-demand.md"
+  },
+  {
+   "date": "2026-08-08",
+   "signal_title_zh": "中國出口韌性更集中於科技產品與非美市場",
+   "signal_title_en": "China's export resilience is becoming more technology-heavy and less U.S.-dependent",
+   "topic": "China July trade and high-technology exports",
+   "region": "China",
+   "country": "China",
+   "category": "Trade",
+   "sub_category": "Export concentration and trade diversion",
+   "source": "Associated Press",
+   "source_url": "https://apnews.com/article/8bd433d388d143ba2d37a10aefdc5629",
+   "source_file": "20260808.md",
+   "paywall": false,
+   "business_relevance": "high",
+   "used_for_practice": false,
+   "practice_date": "",
+   "summary_zh": "中國 7 月貿易順差縮至 1,125 億美元，但電子與綠色科技需求使進出口金額仍處高檔，抵銷對美出口急降。出口韌性因此更依賴特定產品與非美市場，也提高貿易轉向與第三市場防禦措施的風險。",
+   "summary_en": "China's July trade surplus narrowed to $112.5 billion, but strong demand for electronics and green technology kept trade values elevated despite a sharp fall in exports to the United States. Export resilience is therefore becoming more dependent on selected products and non-U.S. markets.",
+   "key_issue": "企業應如何在中國科技出口仍強、但目的地與產品集中度上升時調整供應鏈、定價與市場准入策略？",
+   "tags": [
+    "news",
+    "trade",
+    "china",
+    "electronics",
+    "green technology"
+   ],
+   "source_tags": [
+    "China trade",
+    "high-tech exports",
+    "trade diversion",
+    "United States"
+   ],
+   "stakeholders": "",
+   "note": "2026-08-08/2026-08-08-01-chinas-export-resilience-is-becoming-more-technology-heavy.md"
+  },
   {
    "date": "2026-08-04",
    "signal_title_zh": "歐盟高風險 AI 合規進入雙軌延期時鐘",
